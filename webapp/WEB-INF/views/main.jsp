@@ -12,11 +12,27 @@
 
 <title>Main</title>
 <link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-	<button id="test">회원가입</button>
+	<div id="header">
+		<div id="nav">
+			<ul>
+				<li class="left"><Button class="title">QUIZBOOK</Button></li>
+				<li class="left"><Button class="nav">팔로잉</Button></li>
+				<li class="left"><Button class="nav">만들기</Button></li>
+				<li><input type="text" placeholder=" 검색"></li>
+				<li class="right"><Button class="nav">로그인</Button></li>
+				<li class="right"><Button class="nav">회원가입</Button></li>
+			</ul>
+		</div>
+	</div>
+
+	
+	
+	
 </body>
 
 
