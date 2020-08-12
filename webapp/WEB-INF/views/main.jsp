@@ -21,11 +21,11 @@
 		<div id="nav">
 			<ul>
 				<li class="left"><Button class="title">QUIZBOOK</Button></li>
-				<li class="left"><Button class="nav">팔로잉</Button></li>
-				<li class="left"><Button class="nav">만들기</Button></li>
+				<li class="left"><Button class="navLeft rightLine">팔로잉</Button></li>
+				<li class="left"><Button class="navRight">만들기</Button></li>
 				<li><input type="text" placeholder=" 검색"></li>
-				<li class="right"><Button class="nav">회원가입</Button></li>
-				<li class="right"><Button class="nav">로그인</Button></li>
+				<li class="right"><Button class="navRight">회원가입</Button></li>
+				<li class="right"><Button class="navLeft">로그인</Button></li>
 			</ul>
 		</div>
 		<!-- nav -->
@@ -37,7 +37,7 @@
 			
 		</div>
 		<div id="mainImg1">
-			<!-- <img src="${pageContext.request.contextPath}/assets/images/01.메인.png"/>  -->
+			<img src="${pageContext.request.contextPath}/assets/images/01.메인.png"/>
 		</div>
 	</div>
 	
@@ -46,6 +46,47 @@
 	</div>
 	
 	<div id="main3">
+		
+	</div>
+	
+	
+	
+	<div class="container-fluid">
+	
+		<div class="row color" id="footerTop">
+			<div class="col-xs-12">
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-12" id="divider">
+			</div>
+		</div>
+		
+		<div class="row color" id="footerBottom">
+			<div class="col-xs-6">
+				<span>
+						<a href="${pageContext.request.contextPath}/">
+							<img class="logo" src="${pageContext.request.contextPath}/assets/images/f.png">
+						</a>
+				</span>
+				<span>
+						<a href="${pageContext.request.contextPath}/">
+							<img class="logo" src="${pageContext.request.contextPath}/assets/images/i.png">
+						</a>
+				</span>
+				<span>
+						<a href="${pageContext.request.contextPath}/">
+							<img class="logo" src="${pageContext.request.contextPath}/assets/images/t.jpg">
+						</a>
+				</span>
+			</div>
+			
+			<div class="col-xs-6" id="copywrite">
+				Quizbook
+			</div>
+			
+		</div>
 		
 	</div>
 
