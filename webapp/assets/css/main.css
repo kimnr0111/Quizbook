@@ -1,24 +1,26 @@
 @charset "UTF-8";
+
+
+/*폰트 적용*/
 @font-face {
 	font-family:"NotoSansKR-Regular";
-	src:url("${pageContext.request.contextPath}/assets/fonts/NotoSansKR-Regular.otf");
+	src:url("fonts/NotoSansKR-Regular.otf");
 }
 @font-face {
 	font-family:"NotoSansKR-Bold";
-	src:url("${pageContext.request.contextPath}/assets/fonts/NotoSansKR-Bold.otf");
+	src:url("fonts/NotoSansKR-Bold.otf");
 }
-/****************************************************************/
-/* 초기화 관련 ***************************************************/
-/****************************************************************/
+
 
 /* 여백 초기화 */
 body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
 input, fieldset, legend, p, select, table, th, td, tr,
-textarea, button, form {margin: 0; padding: 0; font-family: "NotoSansKR-Regular", sans-serif;}
+textarea, button, form {margin: 0; padding: 0;}
+
 
 /*header css*/
-#header {width: 1920px; height: 55px; background-color:#4257B1;}
-#nav {width: 1200px; height: 55px; background-color:#4257B1; margin:0px 360px 0px 360px;}
+#header {width: 1920px; height: 80px; background-color:#4257B1;}
+#nav {width: 1420px; height: 80px; background-color:#4257B1; margin:auto;}
 
 ul, ol	{list-style-type: none;}
 
@@ -26,7 +28,18 @@ ul, ol	{list-style-type: none;}
 #nav ul>li.left {float:left;}
 #nav ul>li.right {float:right;}
 #nav ul>li>Button {border:0; outline:0; background-color:#4257B1;}
-#nav ul>li>Button.title {margin:13px 50px 0px 0px; font-family:"NotoSansKR-Bold"; font-size: 20px; font-weight:700;}
-#nav ul>li>Button.nav {margin:17px 20px 0px 20px; font-size:14px; font-weight:400;}
-#nav ul>li>input {margin:17px 0px 0px 70px; border:none; border-radius:20px; width:530px; color:#000000;}
-/*header css*/
+#nav ul>li>Button.title {font-family:"NotoSansKR-Bold"; font-size: 18px; font-weight:700;}
+#nav ul>li>Button.nav {font-size:13px; font-weight:400; font-family: "NotoSansKR-Regular", sans-serif;}
+#nav ul>li>input {border:none; border-radius:20px; width:530px; color:#000000;}
+
+
+/*mainImg*/
+#main1 {width: 1200px; height:882px; background-color:#123456; margin:0px 360px 0px 360px;}
+#main1
+#main1 #mainImg1 {width:600px; height:600px; margin:141px 0px 0px 600px;}
+
+
+#main2 {width: 1200px; height:882px; background-color:#654321; margin:0px 360px 0px 360px;}
+
+
+#main3 {width: 1200px; height:882px; background-color:#abcdef; margin:0px 360px 0px 360px;}

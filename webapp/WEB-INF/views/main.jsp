@@ -24,10 +24,29 @@
 				<li class="left"><Button class="nav">팔로잉</Button></li>
 				<li class="left"><Button class="nav">만들기</Button></li>
 				<li><input type="text" placeholder=" 검색"></li>
-				<li class="right"><Button class="nav">로그인</Button></li>
 				<li class="right"><Button class="nav">회원가입</Button></li>
+				<li class="right"><Button class="nav">로그인</Button></li>
 			</ul>
 		</div>
+		<!-- nav -->
+	</div>
+	<!-- header -->
+	
+	<div id="main1">
+		<div id="mainContent">
+			
+		</div>
+		<div id="mainImg1">
+			<!-- <img src="${pageContext.request.contextPath}/assets/images/01.메인.png"/>  -->
+		</div>
+	</div>
+	
+	<div id="main2">
+		
+	</div>
+	
+	<div id="main3">
+		
 	</div>
 
 	
