@@ -10,7 +10,7 @@ public class MainController {
 	@RequestMapping(value="", method={RequestMethod.GET, RequestMethod.POST})
 	public String main(){
 		System.out.println("/Quizbook/main");
-		return "main";
+		return "main/main";
 	}
 
 }

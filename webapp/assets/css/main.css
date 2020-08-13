@@ -20,23 +20,40 @@ textarea, button, form {margin: 0; padding: 0;}
 body::-webkit-scrollbar {display: none;}
 
 /*header css*/
-#header {width: 1920px; height: 70px; background-color:#4257B1; position: fixed;}
-#nav {width: 1780px; height: 70px; background-color:#4257B1; margin:0 auto;}
 
-ul, ol	{list-style-type: none;}
+/* header */
 
-#nav ul>li {float:left; color:#FFFFFF; background-color:#4257B1;}
-#nav ul>li.left {float:left;}
-#nav ul>li.right {float:right;}
-#nav ul>li>Button {border:0; outline:0; background-color:#4257B1; font-size:15px; font-weight:400; font-family: "NotoSansKR-Regular", sans-serif;}
-#nav ul>li>Button.title {margin:17px 110px 0px 0px; font-family:"NotoSansKR-Bold"; font-size: 25px; font-weight:700;}
-#nav ul>li>Button.navLeft {float:left; margin:25px 0px 0px 0px; padding:0px 30px 0px 0px;}
-#nav ul>li>Button.rightLine{border-right:1px solid #FFFFFF;}
-#nav ul>li>Button.navRight {float:right; margin:25px 0px 0px 30px;}
-#nav ul>li>input {margin:15px 10px 0px 40px; border:none; border-radius:20px; width:1020px; height:40px; color:#000000;}
+#nav {
+	display:flex;
+	align-items:center;
+	height: 70px; background-color:#4257B1;
+}
+
+.nav-item {
+	color: #FFFFFF;
+	background-color:#4257B1;
+	border:0; 
+	outline:0;
+	font-size:15px; font-weight:400; font-family: "NotoSansKR-Regular", sans-serif;
+}
+
+/*
+#nav div.main-title{width:25%; height:70px;}
+#nav div.main-search{width:25%; height:70px;}
+#nav div.main-left{width:25%; height:70px;}
+#nav div.main-right{width:25%; height:70px;}
+*/
+
+#nav div.main-margin{width:3%; height:70px;}
+#nav Button {border:0; outline:0; background-color:#4257B1; font-size:15px; font-weight:400; font-family: "NotoSansKR-Regular", sans-serif;}
+#nav Button.title {margin:0% 3% 0% 0%; font-family:"NotoSansKR-Bold"; width:10%; font-size: 25px; font-weight:700;}
+#nav Button.content { width:8%;}
+#nav Button.rightLine{border-right:1px solid #FFFFFF;}
+#nav input {margin:0% 3% 0% 3%; border:none; border-radius:20px; width:43%; height:40px; color:#000000; background-color:#FFFFFF;}
 
 
 /*mainImg*/
+
 #main1 {width: 1920px; height:882px; background-color:#123456;}
 #mainImg1 img {width:600px; height:600px;}
 
@@ -46,36 +63,46 @@ ul, ol	{list-style-type: none;}
 
 #main3 {width: 1920px; height:882px; background-color:#abcdef;}
 
+@media all and (max-width:1100px) {
+	#nav Button.left{display:none;}
+}
+
+/* header */
 
 
 /* footer */
 .color {
-	background-color: #4257B2;
+	background-color: #000000;
+}
+
+#header {
+	height: 50px;
 }
 
 #footerTop {
-	height:50px;
+	height: 50px;
 }
 
 #footerBottom {
-	height:100px;
+	height: 100px;
 }
+
 #divider {
 	background-color: #f6f7fb;
-    border: none;
-    height: 2px;
-    margin: 0;
-    opacity: .2;  
+	border: none;
+	height: 2px;
+	margin: 0;
+	opacity: .2;
 }
 
 .logo {
-	width:30px;
-	height:30px;
+	width: 30px;
+	height: 30px;
 }
 
 #copywrite {
-	text-align:right;
-	color:#FFFFFF;
-	font-size:20px;
+	text-align: right;
+	color: #FFFFFF;
+	font-size: 20px;
 }
 /* footer 끝 */
