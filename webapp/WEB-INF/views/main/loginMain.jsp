@@ -113,8 +113,8 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		
-		var uno = 2;
+		console.log(${userVo.userNo}); //유저번호 받아와짐
+		var uno = ${userVo.userNo};
 		var color = "#"
 		var letters = ['D581E6', '8DAEF0', '6DD6A0', 'E9F097', 'E6A54C'];
 		

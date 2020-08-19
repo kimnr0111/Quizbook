@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.MainService;
 import com.javaex.vo.MainVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 public class MainController {
@@ -32,9 +35,14 @@ public class MainController {
 		return "main/index";
 	}
 	
-	@RequestMapping(value="/loginMain", method={RequestMethod.GET, RequestMethod.POST})
-	public String loginMain() {
+	@RequestMapping(value="/{id}", method={RequestMethod.GET, RequestMethod.POST})
+	public String loginMain(Model model, @PathVariable("id") String id) {
 		System.out.println("/Quizbook/loginMain");
+		//아이디로 유저번호 알아내기
+		UserVo userVo = mainService.getUser(id);
+		model.addAttribute("userVo", userVo);
+		//팔로우, 팔로워 숫자
+		
 		return "main/loginMain";
 	}
 	
