@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="container-fluid">
+<%-- <div class="container-fluid">
 	<div class="row color">
 		<div class="col-xs-12">
 
@@ -34,12 +34,12 @@
 
 		</div>
 	</div>
-</div>
+</div> --%>
 
 <!-- 로그인 이후 -->
-<div class="wrap">
+<div id="header-wrap">
 	<div id="loginHeader">
-		<ul class="nav" id="loginNavHeader">
+		<ul class="nav">
 				<li class="login-item" id="login-title">
 					<button class="login-btn">QUIZBOOK</button>
 				</li>
@@ -68,5 +68,4 @@
 				</li>
 			</ul>
 	</div>
-	
 </div>

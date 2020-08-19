@@ -33,7 +33,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	list-style: none;
     align-items: center;
     text-align:center;
-    font-family: "NotoSansKR-Regular";
+    font-family: "NotoSansKR-Regular", sans-serif;
 }
 
 .nav-item {
@@ -99,15 +99,14 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 /* 헤더 끝 */
 
 /*로그인 이후 헤더*/
-.wrap {
-	width:100%;
+#header-wrap {
+	min-width:1400px;
 	height:50px;
-	background-color: #000000;
+	background-color: #4257B2;
 }
 
 
 .login-item {
-	font-family:"NotoSansKR-Bold", sans-serif;
 	font-size:15px;
 	color:#FFFFFF;
 	padding:0px 10px 0px 10px;
@@ -133,6 +132,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 #login-title {
+	font-family:"NotoSansKR-Bold", sans-serif;
 	font-size:25px;
 	width:100px;
 	margin: 0px 70px 0px 0px;
@@ -172,11 +172,236 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	font-family : "Arial", FontAwesome;
 }
 
-
-
 #login-aLinkHeader:hover {
 	background-color: #4257B2;
 }
+
+/* 로그인 이후 main */
+#main-wrap {
+	min-width:1400px;
+	overflow:hidden;
+	background-color: #FFFFFF;
+}
+
+#main-body {
+	display:flex;
+	width:1400px;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+    padding: 0 30px;
+}
+
+#side-nav {
+	backgroud-color:#F4F4F4;
+	position:fixed;
+	width:240px;
+	height:500px;
+}
+
+#main {
+	position:relative;
+	left:240px;
+	width:1000px;
+	margin:30px;
+	background-color: #FFFFFF;
+}
+
+
+/*유저프로필*/
+#user-profile {
+	position:relative;
+	height:250px;
+	padding:50px 0px 0px 0px;
+}
+
+#userprofile-Img {
+	width:80px;
+	height:80px;
+	margin: 0 auto;
+}
+
+.mainImg {
+	width:100%;
+	height:100%;
+}
+
+#userprofile-Info {
+	text-align:center;
+}
+
+#userprofile-Button {
+	width:100%;
+	position:absolute;
+	bottom:0px;
+}
+
+.user-alink:link {
+	text-decoration:none;
+	color: #000000;
+}
+.user-alink:visited {
+	text-decoration:none;
+	color: #000000;
+}
+.user-alink:hover {
+	text-decoration:none;
+	color: #000000;
+}
+.user-alink:active {
+	text-decoration:none;
+	color: #000000;
+}
+
+.alink-Title {
+	font-family:"NotoSansKR-Regular", sans-serif;
+	font-size:20px;
+}
+
+.alink-Content {
+	font-family:"NotoSansKR-Regular", sans-serif;
+	font-size:10px;
+	padding:0px 10px 0px 10px;
+}
+
+.left-line {
+	border-right:1px solid #8F8F8F;
+}
+
+.leftButton {
+	width:30px;
+	height:30px;
+	float:left;
+}
+
+.rightButton {
+	width:30px;
+	height:30px;
+	float:right;
+}
+
+/*유저세트*/
+#user-set {
+	min-height:1000px;
+	background-color:#FFFFFF;
+	margin:30px 0px 0px 0px;
+}
+
+#userset-folderName {
+	font-family:"NotoSansKR-Bold", sans-serif;
+	font-size:20px;
+	padding:20px;
+}
+
+#userset-setArea {
+	width:100%;
+	padding:0px 50px 0px 50px;
+	/*padding:0px 50px 0px 100px;*/
+}
+
+.userset-set {
+	border:1px solid #F2F2F2;
+	border-radius:10px;
+	font-family:"NotoSansKR-Regular", sans-serif;
+	vertical-align:top;
+	display:inline-block;
+	width:180px;
+	height:180px;
+	margin:10px;
+	padding:0px 10px 0px 10px;
+}
+
+.color1 {
+	background-color:#6FC4FD;
+}
+.color2 {
+	background-color:#F4CC28;
+}
+.color3 {
+	background-color:#F8887D;
+}
+.color4 {
+	background-color:#61E498;
+}
+
+.setHeader {
+	position:relative;
+	width:100%;
+	height:65%;
+	padding:30px 0px 0px 0px;
+}
+
+.setHeader-Save {
+	position:absolute;
+	left:130px;
+	top:10px;
+	width:30px;
+	height:30px;
+	visibility:hidden;
+}
+
+.setHeader-Title {
+	font-size:15px;
+	font-family:"NotoSansKR-Bold", sans-serif;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space: normal;
+	line-height: 1.2; 
+	height: 1.2em;
+	display:-webkit-box; 
+	-webkit-line-clamp:1; 
+	-webkit-box-orient:vertical;
+}
+
+.setHeader-setContent {
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space: normal;
+	line-height: 1.2; 
+	height: 2.3em;
+	display:-webkit-box; 
+	-webkit-line-clamp:2; 
+	-webkit-box-orient:vertical;
+	margin:10px 0px 0px 0px;
+}
+
+.setFooter {
+	font-family:"NotoSansKR-Regular", sans-serif;
+	position:relative;
+	width:100%;
+	height:35%;
+	font-size:12px;
+	padding:0px 0px 30px 0px;
+}
+
+.setFooter-like {
+	float:left;
+}
+
+.setFooter-dislike {
+	float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -215,6 +440,13 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	font-size: 25px;
 	margin-top:15px;
 }
+
+
+
+
+
+
+
 
 /* 푸터 하단고정 */
 html,body{height:100%}
