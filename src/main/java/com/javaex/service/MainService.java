@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class MainService {
 		System.out.println("MainService:getUser");
 		
 		UserVo userVo = mainDao.getUser(id);
+		System.out.println(userVo.toString());
 		
 		return userVo;
 	}
@@ -27,7 +29,10 @@ public class MainService {
 	//세트가져오기
 	public List<MainVo> getSetList(int userNo) {
 		System.out.println("MainService:getSetList");
+		
+		//세트가져오기(아이디포함)
 		List<MainVo> setList = mainDao.getSetList(userNo);
+		
 		return setList;
 	}
 

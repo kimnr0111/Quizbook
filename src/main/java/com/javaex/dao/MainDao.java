@@ -19,13 +19,11 @@ public class MainDao {
 	public UserVo getUser(String id) {
 		System.out.println("MainDao:getUser");
 		
-		//set --> user로 수정
-		UserVo userVo = sqlSession.selectOne("set.getUser", id);
-		System.out.println(userVo.toString());
+		UserVo userVo = sqlSession.selectOne("user.getUser", id);
 		return userVo;
 	}
 	
-	//세트가져오기
+	//세트가져오기(아이디포함)
 	public List<MainVo> getSetList(int userNo) {
 		System.out.println("MainDao:getSetList");
 		

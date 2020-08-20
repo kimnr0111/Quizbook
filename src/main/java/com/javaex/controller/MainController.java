@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ public class MainController {
 	@RequestMapping(value="/{id}", method={RequestMethod.GET, RequestMethod.POST})
 	public String loginMain(Model model, @PathVariable("id") String id) {
 		System.out.println("/Quizbook/loginMain");
+		
 		//아이디로 유저번호 알아내기
 		UserVo userVo = mainService.getUser(id);
 		model.addAttribute("userVo", userVo);
-		//팔로우, 팔로워 숫자
+		
+		//팔로우, 팔로워 숫자 나중에 넣기
 		
 		return "main/loginMain";
 	}
@@ -55,7 +58,7 @@ public class MainController {
 		int userNo = mainVo.getUserNo();
 		//Main 나중에 이름 적당한거로 바꾸기
 		List<MainVo> setList = mainService.getSetList(userNo);
-		System.out.println(setList.toString());	
+		System.out.println(setList.toString());
 		return setList;
 	}
 

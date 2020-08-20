@@ -5,6 +5,7 @@ public class MainVo {
 	private int setNo;
 	private int folderNo;
 	private int userNo;
+	private String id;
 	private String setName;
 	private String setExplain;
 	private String regDate;
@@ -15,11 +16,12 @@ public class MainVo {
 	
 	public MainVo() {}
 
-	public MainVo(int setNo, int folderNo, int userNo, String setName, String setExplain, String regDate, String setImg,
-			String search_tag, int setlike, int setdislike) {
+	public MainVo(int setNo, int folderNo, int userNo, String id, String setName, String setExplain, String regDate,
+			String setImg, String search_tag, int setlike, int setdislike) {
 		this.setNo = setNo;
 		this.folderNo = folderNo;
 		this.userNo = userNo;
+		this.id = id;
 		this.setName = setName;
 		this.setExplain = setExplain;
 		this.regDate = regDate;
@@ -51,6 +53,14 @@ public class MainVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getSetName() {
@@ -111,13 +121,10 @@ public class MainVo {
 
 	@Override
 	public String toString() {
-		return "MainVo [setNo=" + setNo + ", folderNo=" + folderNo + ", userNo=" + userNo + ", setName=" + setName
-				+ ", setExplain=" + setExplain + ", regDate=" + regDate + ", setImg=" + setImg + ", search_tag="
-				+ search_tag + ", setlike=" + setlike + ", setdislike=" + setdislike + "]";
+		return "MainVo [setNo=" + setNo + ", folderNo=" + folderNo + ", userNo=" + userNo + ", id=" + id + ", setName="
+				+ setName + ", setExplain=" + setExplain + ", regDate=" + regDate + ", setImg=" + setImg
+				+ ", search_tag=" + search_tag + ", setlike=" + setlike + ", setdislike=" + setdislike + "]";
 	}
-	
-	
-	
 	
 
 }

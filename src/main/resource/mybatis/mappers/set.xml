@@ -3,22 +3,13 @@
 
 <mapper namespace="set">
 	
-	<!-- 유저정보 가져오기(user로 이동) -->
-	<select id="getUser" parameterType="String" resultType="com.javaex.vo.UserVo">
-		<![CDATA[
-			select *
-			from users
-			where id = #{id}
-		]]>
-	</select>
-	
-	
 	<!-- 세트 가져오기 -->
 	<select id="selectSetList" parameterType="int" resultType="com.javaex.vo.MainVo">
 		<![CDATA[
-			select *
-			from sets
-			where userNo = #{userNo}
+			select sets.*, users.id
+			from sets, users
+			where sets.userNo = users.userNo
+			and sets.userNo = #{userNo}
 		]]>
 	</select>
 	

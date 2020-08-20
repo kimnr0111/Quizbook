@@ -60,7 +60,15 @@
 				</li>
 				<li class="login-item" id="login-profileHeader">
 					<button class="login-btn">
-						<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" alt="mainImage" id="profileImg"/>
+					<!-- 사용자의 프로필사진 가져오기 -->
+					<c:choose>
+						<c:when test="${userVo.userImg == null}"> <!-- 프로필사진이 없을때 -->
+							<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" id="profileImg">
+						</c:when>
+						<c:when test="${userVo.userImg != null}"> <!-- 프로필사진이 있을때 -->
+							<img src="${pageContext.request.contextPath}/upload/user/${userVo.userImg}" id="profileImg"/>
+						</c:when>
+					</c:choose>
 					</button>
 				</li>
 				<li class="login-item" id="login-signUpHeader">
