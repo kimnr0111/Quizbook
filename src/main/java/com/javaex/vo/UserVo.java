@@ -16,6 +16,14 @@ public class UserVo {
 	private String gender;
 	
 	public UserVo() {}
+	
+	
+
+	public UserVo(int userNo, String id, String password) {
+		this.userNo = userNo;
+		this.id = id;
+		this.password = password;
+	}
 
 	public UserVo(int userNo, String id, String firstName, String lastName, String nickName, String password,
 			String joinDate, int age, String userImg, String userInfo, String email, String gender) {

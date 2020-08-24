@@ -60,6 +60,10 @@
 								<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-volume-control-9-32.png" class="mainImg">
 							</a>
 						</div>
+						<ul class="order-menu">
+							<a href=""><li class='order-list orderby-recently'>등록순</li></a>
+							<a href=""><li class='order-list orderby-name'>이름순</li></a>
+						</ul>
 					</div>
 					<!-- profileButton -->
 				</div>
@@ -94,42 +98,69 @@
 
 
 
-
-<div class="modal fade" id="modifyModal">
+<!-- 세트삭제 모달창 -->
+<div class="modal fade" id="setDeleteModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
 				<h4 class="modal-title">
-					퀴즐렛,<br>당신이 찾는<br>모든 지식 콘텐츠
+					삭제하시겠습니까?
 				</h4>
-				<p>당신이 원하는 스터디 찾기</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary" id="setDel-modal">삭제</button>
+				<input type="hidden" value="" id="setDelNo"> <br>	
 			</div>
 		</div>
 		<!-- modal-content  -->
 	</div>
 	<!-- modal-dialog  -->
 </div>
-<!-- 로그인 modal -->
+<!-- 세트삭제 모달창 -->
 
+<!-- 세트복사 모달창 -->
+<div class="modal fade" id="setCopyModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<select id="setCopy-folderArea">
+					
+				</select>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary" id="setCopy-modal">복사</button>
+				<input type="text" value="" id="setCopyNo"><br>
+			</div>
+		</div>
+		
+		<!-- modal-content  -->
+	</div>
+	<!-- modal-dialog  -->
+</div>
+<!-- 세트복사 모달창 -->
+
+
+<!-- 우클릭메뉴 -->
 <!-- 내 세트일때 수정, 복사, 삭제
 	  다른 사용자의 세트일때 복사 -->
-<ul class='custom-menu'>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>저장</li></a>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>수정</li></a>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>복사</li></a>
-	<a href='#'><li class='custom-menu-attribute'>삭제</li></a>
-</ul>
-
-<ul class='custom-menu-button'>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>저장</li></a>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>수정</li></a>
-	<a href='#'><li class='custom-menu-attribute bottom-line'>복사</li></a>
-	<a href='#'><li class='custom-menu-attribute'>삭제</li></a>
-</ul>
+<c:choose>
+	<c:when test="${sessionScope.authUser.userNo == userVo.userNo }">
+		<ul class='custom-menu'>
+			<!-- 수정버튼 클릭시 세트수정폼(세트입력폼에서 약간 수정)으로 이동 -->
+			<li id="setModify" class='custom-menu-attribute bottom-line'>수정</li>
+			<li id="setCopy" class='custom-menu-attribute bottom-line'>복사</li>
+			<li id="setDelete" class='custom-menu-attribute'>삭제</li>
+		</ul>
+	</c:when>
+	
+	<c:when test="${sessionScope.authUser.userNo != userVo.userNo }">
+		<ul class='custom-menu'>
+			<li id="setCopy" class='custom-menu-attribute bottom-line'>복사</li>
+		</ul>
+	</c:when>
+</c:choose>
 
 </body>
 
@@ -139,12 +170,16 @@
 		
 		console.log(${userVo.userNo}); //유저번호 받아와짐
 		var uno = ${userVo.userNo};
+		var folderNo = ${folderVo.folderNo};
 		var color = "#"
 		var letters = ['D581E6', '8DAEF0', '6DD6A0', 'E9F097', 'E6A54C'];
 		
 		var mainVo = {
-				userNo: uno
+				userNo: uno,
+				folderNo: folderNo
 		};
+		
+		
 		
 		/* set불러오기 */
 		$.ajax({
@@ -161,7 +196,6 @@
 					color += letters[Math.floor(Math.random() * letters.length)];
 					console.log(color);
 					$("#userset-"+setList[i].setNo).css('background-color', color);
-					
 				}
 			},
 			error : function(XHR, status, error) {
@@ -199,10 +233,13 @@
 	$(document).on('contextmenu', '.userset-set', function() {
 		event.preventDefault();
 		$(".custom-menu-button").hide();
-		   
 		var $this = $(this);
 	    var no = $this.data("setno");
 	    console.log(no);
+	    
+	    $("#setDelNo").val(no); //setNo값 전달
+	    $("#setCopyNo").val(no); //setNo값 전달
+	    
 	    $(".custom-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
 		$(".custom-menu").show();
 	/* 우클릭 후 클릭 */
@@ -210,22 +247,152 @@
 			$(".custom-menu").hide();
 	});
 	
+	/* 세트 우측상단 버튼클릭 */
 	$(document).on('click', '.setHeader-Save-Button', function() {
 		console.log("세트버튼클릭");
 	    
 		var $this = $(this);
 	    var no = $this.data("setno");
 	    console.log(no);
-	    
-	    $(".custom-menu-button").css({top: event.pageY + "px", left: event.pageX + "px"});
-		$(".custom-menu-button").toggle();
 
 	});
+	
+	
+	/* 수정버튼클릭 */
+	$(document).on('click', '#setModify', function(){
+		event.preventDefault(); //a태그 기능 막기
+		console.log("수정버튼클릭");
+		//세트입력폼으로 이동
+	});
+	
+	/* 복사버튼클릭 */
+	$(document).on('click', '#setCopy', function(){
+		event.preventDefault();
+		console.log("복사버튼클릭");
+		$("#setCopyModal").modal();
+		
+		var no = ${sessionScope.authUser.userNo};
+		console.log("authUser : " + no);
+		var mainVo = {
+				userNo: no
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/folderList",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(mainVo),
+			success : function(folderList){
+				console.log(folderList);
+				$("#setCopy-folderArea").html("");
+				for(var i=0;i<folderList.length;i++) {
+					renderOption(folderList[i]);
+					
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
+	/* 모달창 복사버튼클릭 */
+	$(document).on('click', '#setCopy-modal', function(){
+		console.log("모달창 복사버튼 클릭");
+		
+		var setNo = $("#setCopyNo").val();
+		console.log("세트번호:" + setNo);
+		var folderNo = $("#setCopy-folderArea").val();
+		
+		console.log("폴더번호:" + folderNo);
+		
+		var vo = {
+				setNo: setNo,
+				folderNo: folderNo
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/setCopy",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(vo),
+			success : function(count){
+				console.log(count);
+				//세트 지우기
+				$("#userset-" + no).remove();
+				//모달창 닫기
+				$("#setDeleteModal").modal("hide");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		
+		$("#setCopyModal").modal("hide");
+	});
+	
+	/* 삭제버튼클릭 */
+	$(document).on('click', '#setDelete', function(){
+		event.preventDefault();
+		console.log("삭제버튼클릭");
+		$("#setDeleteModal").modal();
+	});
+	
+	/* 모달창 삭제버튼 클릭 */
+	$(document).on('click', '#setDel-modal', function(){
+		console.log("모달창 삭제버튼 클릭");
+		
+		var no = $("#setDelNo").val();
+		console.log(no);
+		
+		var mainVo = {
+				setNo: no
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/setDelete",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(mainVo),
+			success : function(count){
+				console.log(count);
+				//세트 지우기
+				$("#userset-" + no).remove();
+				//모달창 닫기
+				$("#setDeleteModal").modal("hide");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
+	/* 세트 정렬 */
+	$(document).on('click', '.rightButton', function(){
+		event.preventDefault();
+		console.log("정렬버튼클릭");
+		$(".order-menu").toggle();
+	});
+	
+	$(document).on('click','.orderby-recently', function(){
+		event.preventDefault();
+		console.log("최근");
+	});
+	
+	$(document).on('click','.orderby-name', function(){
+		event.preventDefault();
+		console.log("이름순");
+	});
+	
 	
 	/* set 그리기 */
 	function render(mainVo) {
 		var str = "";
-		str += "<div class='userset-set' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"'>";
+		str += "<div class='userset-set' draggable='true' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"'>";
 		str += "	<div class='setHeader'>";
 		str += "		<div class='setHeader-Save'>";
 		str += "			<button class='setHeader-Save-Button' data-setno="+mainVo.setNo+"><img src='${pageContext.request.contextPath}/assets/images/iconmonstr-plus-1-32.png' class='mainImg'></button>";
@@ -238,7 +405,7 @@
 		str += "		</div>";
 		str += "	</div>";
 		str += "	<div class='setFooter'>";
-		str += "		<a href='' class='user-alink'><span class='setFooter-setUser'>"+mainVo.id+"</span></a><br>"; //유저번호가져옴 유저아이디 가져오게 수정
+		str += "		<a href='${pageContext.request.contextPath }/" + mainVo.id + "' class='user-alink'><span class='setFooter-setUser'>"+mainVo.id+"</span></a><br>"; //유저번호가져옴 유저아이디 가져오게 수정
 		str += "		<span class='setFooter-like'>♥"+mainVo.setlike+"</span>";
 		str += "		<span class='setFooter-dislike'>♡"+mainVo.setdislike+"</span>";
 		str += "	</div>";
@@ -246,6 +413,15 @@
 		str += "";
 		
 		$("#userset-setArea").append(str);
+	}
+	
+	function renderOption(folderVo) {
+		
+		var str = "";
+		str += "<option value=" + folderVo.folderNo + " id='folderNo-" + folderVo.folderNo + "'>" + folderVo.folderName + "</option>";
+		str += "";
+		
+		$("#setCopy-folderArea").append(str);
 	}
 	
 	

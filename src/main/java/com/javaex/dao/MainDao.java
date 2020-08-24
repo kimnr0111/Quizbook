@@ -1,11 +1,13 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.FolderVo;
 import com.javaex.vo.MainVo;
 import com.javaex.vo.UserVo;
 
@@ -23,15 +25,60 @@ public class MainDao {
 		return userVo;
 	}
 	
-	//세트가져오기(아이디포함)
-	public List<MainVo> getSetList(int userNo) {
+	//세트리스트 가져오기(아이디포함)
+	public List<MainVo> getSetList(int userNo, int folderNo) {
 		System.out.println("MainDao:getSetList");
-		
-		List<MainVo> setList = sqlSession.selectList("set.selectSetList", userNo);
+		HashMap<String, Integer> listMap = new HashMap<String, Integer>();
+		listMap.put("userNo", userNo);
+		listMap.put("folderNo", folderNo);
+		List<MainVo> setList = sqlSession.selectList("set.selectSetList", listMap);
 		
 		
 		return setList;
 		
+	}
+	
+	//세트 가져오기
+	public MainVo getSet(int setNo) {
+		System.out.println("MainDao:getSet");
+		
+		MainVo set = sqlSession.selectOne("set.selectSet", setNo);
+
+		return set;
+	}
+	
+	//세트저장
+	public void addSet(MainVo set) {
+		System.out.println("MainDao:addSet");
+		System.out.println("Dao" + set);
+		sqlSession.insert("set.addSet", set);
+	}
+	
+	//세트지우기
+	public int setDelete(int setNo) {
+		System.out.println("MainDao:setDelete");
+		
+		int count = sqlSession.delete("set.setDelete", setNo);
+		System.out.println(count);
+		return count;
+	}
+	
+	//폴더리스트 불러오기
+	public List<FolderVo> folderList(int userNo) {
+		System.out.println("MainDao:folderList");
+		System.out.println(userNo);
+		List<FolderVo> folderList = sqlSession.selectList("folder.getList", userNo);
+		System.out.println(folderList.toString());
+		
+		return folderList;
+	}
+	
+	//기본폴더 불러오기
+	public FolderVo getFolder(int userNo) {
+		System.out.println("MainDao:getFolder");
+		FolderVo folderVo = sqlSession.selectOne("folder.getFolder", userNo);
+		System.out.println("기본폴더 불러오기:" + folderVo);
+		return folderVo;
 	}
 
 }

@@ -196,7 +196,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 #side-nav {
-	backgroud-color:#F4F4F4;
+	background-color:#F4F4F4;
 	position:fixed;
 	width:240px;
 	height:500px;
@@ -235,6 +235,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #userprofile-Button {
 	width:100%;
+	height:30px;
 	position:absolute;
 	bottom:0px;
 }
@@ -283,6 +284,33 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	float:right;
 }
 
+.order-menu {
+	float:right;
+	width:100px;
+  	margin: 0;
+  	padding: 0;
+  	background: #FFFFFF;
+  	list-style: none;
+  	box-shadow:
+    	0 15px 35px rgba(50,50,90,0.1),
+    	0 5px 15px rgba(0,0,0,0.07);
+  	overflow: hidden;
+  	z-index: 999999;
+  	border:2px solid #CCCCCC;
+  	display:none;
+}
+
+.order-menu a {
+	text-decoration:none;
+}
+
+.order-list {
+	font-family:"NotoSansKR-Regular", sans-serif;
+	font-size:15px;
+	color:#000000;
+	text-decoration:none;
+}
+
 /*유저세트*/
 #user-set {
 	min-height:1000px;
@@ -298,7 +326,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #userset-setArea {
 	width:100%;
-	padding:0px 0px 0px 100px;
+	padding:0px 0px 0px 120px;
 	/*padding:0px 50px 0px 100px;*/
 }
 
@@ -310,8 +338,9 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	display:inline-block;
 	width:180px;
 	height:180px;
-	margin:10px;
+	margin:5px;
 	padding:0px 10px 0px 10px;
+	cursor:pointer;
 }
 
 .color1 {
@@ -433,15 +462,13 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 .custom-menu-attribute {
 	padding:5px;
-}
-
-.custom-menu-attribute {
 	font-family:"NotoSansKR-Regular", sans-serif;
 	font-size:15px;
 	color:#000000;
 }
 
 .custom-menu-attribute:hover {
+	cursor:pointer;
 	background:#CE93D8;
   	border-left:3px solid #9C27B0;
   	transition:ease .2s;
