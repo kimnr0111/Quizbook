@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+/*폰트 적용*/
+@font-face {
+	font-family:"NotoSansKR-Regular";
+	src:url("fonts/NotoSansKR-Regular.otf");
+}
+@font-face {
+	font-family:"NotoSansKR-Bold";
+	src:url("fonts/NotoSansKR-Bold.otf");
+}
+
+/****************************************************************/
+/* 초기화 관련 ***************************************************/
+/****************************************************************/
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+  /* =========  사이드바  ========== */
+
+    .col-sidenav {
+      background-color: #ffffff;
+      position:fixed;
+      padding:70px 0px 70px 0px;
+      width: 180px;
+      margin-left: 45px;
+      margin-top: 0px;
+      box-shadow:0px 0px 15px #cdcdcd ;
+      display:inline-block;
+      z-index:0;
+    }
+
+   ul {
+      list-style:none;
+      font-family:"NotoSansKR-Regular";
+      font-weight: bold;
+      font-size: 13px;
+    }
+   
+   /* ----- li 전체 적용 ----- */
+  	li a{
+	  	display: block;
+	  	color:#000000;
+	  	padding: 8px;
+	  	text-decoration: none;
+	  	
+	  	}
+  	
+  	li a:hover {
+  		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+  		}
+  		
+  	li a:after {
+        display: block;
+        width: 60px;
+        border-bottom: 1px solid #FCFCFC;
+        margin: 20px 0px;
+         text-decoration:none;		        
+	}
+  		
+  	/* ------- 이미지 -------- */	
+  	.img-block {
+  		width:14px;
+  		height:14px;
+  		margin-left:10px;
+  		margin-top:-3px;
+  	}
+  	.fold-block {
+  		width: 14px;
+  		height: 12px;
+  		margin-left:10px;
+  		margin-top:-3px;
+  	}
+  	
+  	
+	/* ------- 선 -------- */	
+	hr {
+        color:#cdcdcd;border:0.5px solid #FCFCFC;
+	}
+		     
+  	/* --------------text 간격 조정 ---------------*/
+	#home-txt {
+  		margin: 0px 0px 0px 20px;
+  	}
+  	#rec-txt {
+  		margin: 0px 0px 0px 17px;
+  	}
+  	#fol-txt {
+  		margin: 0px 0px 0px 20px;
+  	}
+  	#set-txt {
+  		margin: 0px 0px 0px 20px;
+  	}
+	#fold-txt {
+  		margin: 0px 0px 0px 20px;
+  	}  	
+  	#mypage-txt {
+  		margin: 0px 0px 0px 20px;
+  	}
+  	#setting-txt{
+  		margin: 0px 0px 0px 20px;
+  	}
+  	#f1-txt {
+  		padding: 0px 0px 0px 0px;
+  	}
+  	
+  	/* ---------펼치기 ------------*/
+  	.on-fold {
+  		margin: 0px 0px 0px 30px;
+  	}
+  	
+  	#onfold-txt {
+			padding: 0px 0px 0px 40px;
+	}
+		
+	.in-fold .on-fold { 
+	width: 100%;
+    border-bottom: 1px solid #cfa608;
+    background: white;
+    display: none; 
+    }
+    
+	.in-fold ul { 
+	background: white;
+	text-decoration:none;
+	}
+	.in-fold ul li { text-indent: 20px;}
+	
+	.material-icons {
+		vertical-align:middle;
+		color:#1ABC9C;
+		
+	}
+	
+	.folder-Area {
+		font-family:"NotoSansKR-Regular";
+      	font-weight: bold;
+      	font-size: 13px;
+      	overflow:auto;
+      	height:300px;
+      	-ms-overflow-style: none; /* IE and Edge */
+    	scrollbar-width: none; /* Firefox */
+	}
+	
+	.folder-Area::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera*/
+	}
+	
+	.folder {
+		padding:5px 0px 5px 30px;
+		text-overflow:ellipsis;
+		overflow:hidden;
+		white-space: nowrap;
+		line-height:1.5;
+		display:block; 
+	}
+	
+	.folder:hover {
+		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+  		cursor:pointer;
+	}
+	
+	.selected {
+		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+	}
+	
+	[data-depth='1'] {
+		padding:5px 0px 5px 40px;
+		display:none;
+	}
+	
+	[data-depth='2'] {
+		padding:5px 0px 5px 50px;
+		display:none;
+		}
+	
+	.material-icons {
+		width:20px;
+		height:20px;
+	}
+
+  	

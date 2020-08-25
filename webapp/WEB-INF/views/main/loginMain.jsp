@@ -5,6 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"> -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript"
@@ -14,7 +24,7 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
-
+<link href="${pageContext.request.contextPath}/assets/css/sidebar.css" rel="stylesheet" type="text/css">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link rel="shortcut icon" href="#">
@@ -25,9 +35,7 @@
 	<!-- header -->
 	<div id="main-wrap">
 		<div id="main-body">
-			<div id="side-nav">
-				사이드바 공간
-			</div>
+			<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
 			<div id="main">
 				<div id="user-profile">
 					<div id="userprofile-Img">
@@ -166,50 +174,12 @@
 
 <script type="text/javascript">
 	
+	/* 세트리스트 불러오기 */
 	$(document).ready(function(){
 		
-		console.log(${userVo.userNo}); //유저번호 받아와짐
-		var uno = ${userVo.userNo};
-		var folderNo = ${folderVo.folderNo};
-		var color = "#"
-		var letters = ['D581E6', '8DAEF0', '6DD6A0', 'E9F097', 'E6A54C'];
-		
-		var mainVo = {
-				userNo: uno,
-				folderNo: folderNo
-		};
-		
-		
-		
-		/* set불러오기 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/setList",		
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(mainVo),
-			dataType: "json",
-			success : function(setList){
-				console.log(setList);
-				for(var i=0;i<setList.length;i++) {
-					color = "#"
-					render(setList[i]);
-					color += letters[Math.floor(Math.random() * letters.length)];
-					console.log(color);
-					$("#userset-"+setList[i].setNo).css('background-color', color);
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+		fetchList();
 		
 	});
-
-	/* 	
-	$("#test").on("click", function(){
-		$("#modifyModal").modal(); //모달창 보이게
-	});
-	 */
 	
 	/* 세트에 마우스 올려졌을때 */
 	$(document).on('mouseenter', '.userset-set', function(){
@@ -381,12 +351,66 @@
 	$(document).on('click','.orderby-recently', function(){
 		event.preventDefault();
 		console.log("최근");
+		$(".order-menu").hide();
+		
+		$("#userset-setArea").html("");
+		fetchList();
+		
 	});
 	
 	$(document).on('click','.orderby-name', function(){
 		event.preventDefault();
 		console.log("이름순");
+		$(".order-menu").hide();
+		
+		$("#userset-setArea").html("");
+		fetchList();
 	});
+	
+	
+	/* 유저세트 클릭시 */
+	$(document).on('click', '.userset-set', function(){
+		
+		var $this = $(this);
+		var no = $this.data("setno");
+		console.log(no);
+	});
+	
+	
+	
+	/* setList 가져오기 */
+	function fetchList() {
+		var uno = ${userVo.userNo};
+		var folderNo = ${folderVo.folderNo};
+		var color = "#"
+		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
+		
+		var mainVo = {
+				userNo: uno,
+				folderNo: folderNo
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/setList",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mainVo),
+			dataType: "json",
+			success : function(setList){
+				console.log(setList);
+				for(var i=0;i<setList.length;i++) {
+					color = "#"
+					render(setList[i]);
+					color += letters[Math.floor(Math.random() * letters.length)];
+					console.log(color);
+					$("#userset-"+setList[i].setNo).css('background-color', color);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
 	
 	
 	/* set 그리기 */
@@ -423,6 +447,39 @@
 		
 		$("#setCopy-folderArea").append(str);
 	}
+	
+	
+	
+	
+	
+	/* 사이드바 */
+	$(".nav-mid > li > ul").click(function() {
+		var submenu = $(".in-fold");
+
+		if (submenu.is(":visible")) {
+
+			submenu.slideUp();
+
+		} else {
+			submenu.slideDown();
+		}
+		return false;
+
+	});
+	
+	$(".nav-mid > li > ul").click(function() {
+		var submenu = $(".new-fold");
+
+		if (submenu.is(":visible")) {
+
+			submenu.slideUp();
+
+		} else {
+			submenu.slideDown();
+		}
+		return false;
+
+	});
 	
 	
 </script>

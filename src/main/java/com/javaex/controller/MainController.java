@@ -58,6 +58,10 @@ public class MainController {
 		FolderVo folderVo = mainService.getFolder(userNo);
 		model.addAttribute("folderVo", folderVo);
 		
+		//폴더리스트 불러오기
+		List<FolderVo> folderList = mainService.folderList(userNo);
+		System.out.println("폴더리스트 : " + folderList.toString());
+		model.addAttribute("folderList", folderList);
 		//팔로우, 팔로워 숫자 나중에 넣기
 		
 		return "main/loginMain";

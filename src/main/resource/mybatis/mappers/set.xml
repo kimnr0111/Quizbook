@@ -11,6 +11,7 @@
 			where sets.userNo = users.userNo
 			and sets.userNo = #{userNo}
 			and sets.folderNo = #{folderNo}
+			order by sets.regDate desc
 		]]>
 	</select>
 	
