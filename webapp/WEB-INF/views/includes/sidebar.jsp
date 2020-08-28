@@ -131,7 +131,7 @@
 		});
 		
 		/* 상대 폴더 불러오기 */
-		/* $.ajax({
+		$.ajax({
 			url : "${pageContext.request.contextPath }/getFolderList",		
 			type : "post",
 			contentType : "application/json",
@@ -146,7 +146,7 @@
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		}); */
+		});
 	});
 	
 	$(document).on('click', '.myfolder-title', function(){
@@ -188,45 +188,27 @@
 
 		var folderno = $this.data("folderno");
 		
-		
-/* 		var rootno = $this.data("rootno");
-		var groupno = $this.data("groupno");
-		var orderno = $this.data("orderno") + 1;
-		var depth = $this.data("depth"); */
-		
 		var folderStatus = $(".myfolderContents[data-rootno=" + folderno + "]");
 		var display = $(".myfolderContents[data-rootno=" + folderno + "]").css('display');
 		
+		console.log(display);
+		
 		/* 디스플레이가 none일때 보이고 block일때 안보이게 */
 		if(display == 'none') {
+			console.log("display:none");
 			folderStatus.slideDown();
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_down');
 		} else if(display == 'block') {
+			console.log("display:block");
 			folderStatus.slideUp();
-			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
-			
-			
-				/* $(".myfolderContents[data-rootno=" + folderno + "]").slideUp();
-				$this.find($(".material-icons")).text('keyboard_arrow_right');
-				하위폴더까지 한번에 닫히게 
-				while(true) {
-					var subDepth = $(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").data('depth');
-					if(depth < subDepth) {
-						$(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").slideUp();
-						$(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").find($(".material-icons")).text('keyboard_arrow_right');
-						orderno = orderno + 1;
-						console.log("아직");
-					} else {
-						console.log("탈출");
-						break;
-					}
-				} */			
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');			
 		}
 	});
 	
 	/* 다른사람폴더클릭 */
-	$(document).on('click', '.otherfolderContents', function(){
+	$(document).on('click', '.otherfolderContents', function(event){
 		console.log("폴더클릭");
+		event.stopPropagation();
 		
 		var $this = $(this);
 		/* $this.addClass('selected').siblings().removeClass('selected'); */
@@ -250,20 +232,6 @@
 			folderStatus.slideUp();
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
 		}
-		
-		/* if(display == 'none') {
-			folderStatus.slideDown();
-			$this.find($(".material-icons")).text('keyboard_arrow_down');
-		} else if(display == 'block') {
-				$(".otherfolderContents[data-rootno=" + folderno + "]").slideUp();
-				$this.find($(".material-icons")).text('keyboard_arrow_right');
-				하위폴더까지 한번에 닫히게
-				for(var i=0;i<length;i++) {
-					var subfolderno = $(subArray[i]).data("folderno");
-					$(".otherfolderContents[data-rootno=" + subfolderno + "]").slideUp();
-					$(".otherfolderContents[data-rootno=" + subfolderno + "]").find($(".material-icons")).text('keyboard_arrow_right');
-				}
-		} */
 	});
 	
 </script>

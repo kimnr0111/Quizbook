@@ -578,9 +578,9 @@
 		
 		if(myfolderList.depth <= 2) {
 			var str = "";
-			str += "<div class='folder-contents myfolderContents myfolderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
 			str += "<div class='folderContents-hover'>";
-			str += "<div class='folderContents-padding'>";
+			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
 			str += "</div>";
 			str += "</div>";
@@ -588,9 +588,11 @@
 			str += "";
 		} else {
 			var str = "";
-			str += "<div class='folder-contents myfolderContents myfolderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
 			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
 			str += "</div>";
 			str += "</div>";
 			str += "";
@@ -603,16 +605,16 @@
 			$(".myfolder").append(str);
 		} else {
 			console.log("depth:else")
-			$("[data-folderno=" + myfolderList.rootNo + "]").append(str);
+			$(".myfolderContents[data-groupno=" + myfolderList.groupNo + "][data-folderno=" + myfolderList.rootNo + "]").append(str);
 		}
 	}
 	
 	function otherfolderRender(otherfolderList) {
 		if(otherfolderList.depth <= 2) {
 			var str = "";
-			str += "<div class='folder-contents otherfolderContents otherfolderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
 			str += "<div class='folderContents-hover'>";
-			str += "<div class='folderContents-padding'>";
+			str += "<div class='folderContents-padding-" + otherfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
 			str += "</div>";
 			str += "</div>";
@@ -620,9 +622,11 @@
 			str += "";
 		} else {
 			var str = "";
-			str += "<div class='folder-contents otherfolderContents otherfolderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
 			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
+			str += "</div>";
 			str += "</div>";
 			str += "</div>";
 			str += "";
@@ -635,7 +639,7 @@
 			$(".otherfolder").append(str);
 		} else {
 			console.log("depth:else")
-			$("[data-folderno=" + otherfolderList.rootNo + "]").append(str);
+			$(".otherfolderContents[data-groupno=" + otherfolderList.groupNo + "][data-folderno=" + otherfolderList.rootNo + "]").append(str);
 		}
 	}
 	

@@ -211,9 +211,22 @@ textarea, button, form {margin: 0; padding: 0;}
   		
 	}
 	
-	.folderContents-padding {
+	.folderContents-padding-0 {
 		padding: 0px 0px 0px 30px;
 	}
+	
+	.folderContents-padding-1 {
+		padding: 0px 0px 0px 40px;
+	}
+	
+	.folderContents-padding-2 {
+		padding: 0px 0px 0px 50px;
+	}
+	
+	.folderContents-padding-3 {
+		padding: 0px 0px 0px 60px;
+	}
+	
 	
 	.newfolder {
 		margin:10px 0px 10px 0px;
@@ -229,21 +242,18 @@ textarea, button, form {margin: 0; padding: 0;}
   		color:white;
   		text-decoration:none;
 	}
-	.myfolderDepth-0 {
+	.folderDepth-0 {
 	}
 	
-	.myfolderDepth-1 {
-		padding:0px 0px 0px 10px;
+	.folderDepth-1 {
 		display:none;
 	}
 	
-	.myfolderDepth-2 {
-		padding:0px 0px 0px 10px;
+	.folderDepth-2 {
 		display:none;
 		}
 	
-	.myfolderDepth-3 {
-		padding:0px 0px 0px 10px;
+	.folderDepth-3 {
 		display:none;
 		}
 	
