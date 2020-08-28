@@ -99,10 +99,10 @@
 
 	$(document).ready(function(){
 		var myuserNo = ${sessionScope.authUser.userNo};
-		console.log(myuserNo);
+		console.log("내번호:" + myuserNo);
 		
 		var userNo = ${userVo.userNo};
-		console.log(userNo);
+		console.log("방문한페이지번호" + userNo);
 		
 		var myVo = {
 				userNo: myuserNo
