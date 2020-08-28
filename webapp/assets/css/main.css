@@ -432,7 +432,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	float:right;
 }
 
-/* 우클릭 */
+/* 세트 우클릭 */
 .custom-menu {
 	width:100px;
     position: absolute;
@@ -446,10 +446,9 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   	overflow: hidden;
   	z-index: 999999;
   	border:2px solid #CCCCCC;
-  	display:none;
 }
 
-.custom-menu-button {
+/* .custom-menu-button {
 	width:100px;
     position: absolute;
   	margin: 0;
@@ -463,6 +462,14 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   	z-index: 999999;
   	border:2px solid #CCCCCC;
   	display:none;
+} */
+
+.folder-menu {
+	display:none;
+}
+
+.set-menu {
+	display:none;
 }
 
 .bottom-line {

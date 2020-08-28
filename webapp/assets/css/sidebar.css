@@ -25,8 +25,8 @@ textarea, button, form {margin: 0; padding: 0;}
       background-color: #ffffff;
       position:fixed;
       padding:70px 0px 70px 0px;
-      width: 180px;
-      margin-left: 45px;
+      width: 220px;
+      margin-left: 0px;
       margin-top: 0px;
       box-shadow:0px 0px 15px #cdcdcd ;
       display:inline-block;
@@ -99,6 +99,9 @@ textarea, button, form {margin: 0; padding: 0;}
 	#fold-txt {
   		margin: 0px 0px 0px 20px;
   	}  	
+  	#otherfold-txt {
+  		margin: 0px 0px 0px 20px;
+  	}
   	#mypage-txt {
   		margin: 0px 0px 0px 20px;
   	}
@@ -137,12 +140,44 @@ textarea, button, form {margin: 0; padding: 0;}
 		
 	}
 	
+	.myfolder-title {
+		cursor:pointer;
+		font-family:"NotoSansKR-Regular";
+      	font-weight: bold;
+      	font-size: 13px;
+	}
+	
+	.otherfolder-title {
+		cursor:pointer;
+		font-family:"NotoSansKR-Regular";
+      	font-weight: bold;
+      	font-size: 13px;
+      	color:#000000;
+      	padding:8px;
+      	text-overflow:ellipsis;
+		overflow:hidden;
+		white-space: nowrap;
+	}
+	
+	.otherfolder-title:hover {
+		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+  		cursor:pointer;
+	}
+	
+	.folder-wrap {
+		height:150px;
+	}
+
+	
 	.folder-Area {
 		font-family:"NotoSansKR-Regular";
       	font-weight: bold;
       	font-size: 13px;
+      	color:#000000;
       	overflow:auto;
-      	height:300px;
+      	height:150px;
       	-ms-overflow-style: none; /* IE and Edge */
     	scrollbar-width: none; /* Firefox */
 	}
@@ -151,20 +186,42 @@ textarea, button, form {margin: 0; padding: 0;}
 		display: none; /* Chrome, Safari, Opera*/
 	}
 	
-	.folder {
-		padding:5px 0px 5px 30px;
+	.myfolder {
+		display:none;
+	}
+	
+	.otherfolder {
+		display:none;
+	}
+	
+	.folderContents-hover {
+		padding:5px 0px 5px 0px;
 		text-overflow:ellipsis;
 		overflow:hidden;
 		white-space: nowrap;
 		line-height:1.5;
-		display:block; 
+		display:block;
+		cursor:pointer;
 	}
 	
-	.folder:hover {
+	.folderContents-hover:hover {
 		background-color:#FFD739;
   		color:white;
   		text-decoration:none;
-  		cursor:pointer;
+  		
+	}
+	
+	.folderContents-padding {
+		padding: 0px 0px 0px 30px;
+	}
+	
+	.newfolder {
+		margin:10px 0px 10px 0px;
+		text-align:center;
+		cursor:pointer;
+		font-family:"NotoSansKR-Regular";
+      	font-weight: bold;
+      	font-size: 13px;
 	}
 	
 	.selected {
@@ -172,14 +229,21 @@ textarea, button, form {margin: 0; padding: 0;}
   		color:white;
   		text-decoration:none;
 	}
+	.myfolderDepth-0 {
+	}
 	
-	[data-depth='1'] {
-		padding:5px 0px 5px 40px;
+	.myfolderDepth-1 {
+		padding:0px 0px 0px 10px;
 		display:none;
 	}
 	
-	[data-depth='2'] {
-		padding:5px 0px 5px 50px;
+	.myfolderDepth-2 {
+		padding:0px 0px 0px 10px;
+		display:none;
+		}
+	
+	.myfolderDepth-3 {
+		padding:0px 0px 0px 10px;
 		display:none;
 		}
 	

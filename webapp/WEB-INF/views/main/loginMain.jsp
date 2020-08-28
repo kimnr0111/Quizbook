@@ -103,9 +103,6 @@
 
 
 
-
-
-
 <!-- 세트삭제 모달창 -->
 <div class="modal fade" id="setDeleteModal">
 	<div class="modal-dialog">
@@ -138,7 +135,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" id="setCopy-modal">복사</button>
+				<button type="button" class="btn btn-primary" id="setCopyModal-Button">복사</button>
 				<input type="text" value="" id="setCopyNo"><br>
 			</div>
 		</div>
@@ -149,13 +146,64 @@
 </div>
 <!-- 세트복사 모달창 -->
 
+<!-- 폴더생성 모달창 -->
+<div class="modal fade" id="folderCreateModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<form action="${pageContext.request.contextPath }/folderCreate" method="get">
+			<div class="modal-body">
+				<input type="text" name="folderName" placeholder="폴더이름" id="folderCreate-folderName">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button type="submit" class="btn btn-primary" id="folderCreateModal-Button">만들기</button>
+				<input type="text" name="userNo" value="${sessionScope.authUser.userNo }" id="folderCreate-userNo"><br>
+				<input type="text" name="folderNo" value="" id="folderCreate-folderNo"><br>
+				<input type="text" name="groupNo" value="" id="folderCreate-groupNo"><br>
+				<input type="text" name="orderNo" value="" id="folderCreate-orderNo"><br>
+				<input type="text" name="depth" value="" id="folderCreate-depth"><br>
+			</div>
+		</form>
+		</div>
+		
+		<!-- modal-content  -->
+	</div>
+	<!-- modal-dialog  -->
+</div>
+<!-- 폴더생성 모달창 -->
+
+<!-- 폴더삭제 모달창 -->
+<div class="modal fade" id="folderDeleteModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<form action="${pageContext.request.contextPath }/folderDelete" method="get">
+			<div class="modal-body">
+				삭제하시겠습니까?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+				<button type="submit" class="btn btn-primary" id="folderDeleteModal-Button">예</button>
+				<input type="text" name="folderNo" value="" id="folderDelete-folderNo"><br>
+				<input type="text" name="groupNo" value="" id="folderDelete-groupNo"><br>
+				<input type="text" name="orderNo" value="" id="folderDelete-orderNo"><br>
+				<input type="text" name="depth" value="" id="folderDelete-depth"><br>
+			</div>
+		</form>
+		</div>
+		
+		<!-- modal-content  -->
+	</div>
+	<!-- modal-dialog  -->
+</div>
+<!-- 폴더삭제 모달창 -->
+
 
 <!-- 우클릭메뉴 -->
 <!-- 내 세트일때 수정, 복사, 삭제
 	  다른 사용자의 세트일때 복사 -->
 <c:choose>
 	<c:when test="${sessionScope.authUser.userNo == userVo.userNo }">
-		<ul class='custom-menu'>
+		<ul class='custom-menu set-menu'>
 			<!-- 수정버튼 클릭시 세트수정폼(세트입력폼에서 약간 수정)으로 이동 -->
 			<li id="setModify" class='custom-menu-attribute bottom-line'>수정</li>
 			<li id="setCopy" class='custom-menu-attribute bottom-line'>복사</li>
@@ -164,45 +212,54 @@
 	</c:when>
 	
 	<c:when test="${sessionScope.authUser.userNo != userVo.userNo }">
-		<ul class='custom-menu'>
+		<ul class='custom-menu set-menu'>
 			<li id="setCopy" class='custom-menu-attribute bottom-line'>복사</li>
 		</ul>
 	</c:when>
 </c:choose>
+<!-- 우클릭메뉴 폴더 -->
+		<ul class='custom-menu folder-menu'>
+			<!-- 수정버튼 클릭시 세트수정폼(세트입력폼에서 약간 수정)으로 이동 -->
+			<li id="folder-setCreate" class='custom-menu-attribute bottom-line' onclick="location.href='#'">세트 만들기</li>
+			<li id="folderCreate" class='custom-menu-attribute bottom-line'>폴더 만들기</li>
+			<li id="folderCopy" class='custom-menu-attribute bottom-line'>복사</li>
+			<li id="folderDelete" class='custom-menu-attribute'>삭제</li>
+		</ul>
 
 </body>
 
 <script type="text/javascript">
 	
 	/* 세트리스트 불러오기 */
-	$(document).ready(function(){
+	/* $(document).ready(function(){
 		
 		fetchList();
 		
-	});
+	}); */
 	
 	/* 세트에 마우스 올려졌을때 */
-	$(document).on('mouseenter', '.userset-set', function(){
+	
+	/* $(document).on('mouseenter', '.userset-set', function(){
 		console.log("mouseenter");
 		
 		var $this = $(this);
 		$this.find('.setHeader-Save').css('visibility', 'visible');
 			
-	});
+	}); */
 	
 	/* 세트에서 마우스 벗어났을때 */
-	$(document).on('mouseleave', '.userset-set', function(){
+	
+	/* $(document).on('mouseleave', '.userset-set', function(){
 		console.log("mouseleave");
 		
 		var $this = $(this);
 		$this.find('.setHeader-Save').css('visibility', 'hidden');
 		
-	});
+	}); */
 	
-	/* 우클릭 */
+	/* 세트우클릭 */
 	$(document).on('contextmenu', '.userset-set', function() {
 		event.preventDefault();
-		$(".custom-menu-button").hide();
 		var $this = $(this);
 	    var no = $this.data("setno");
 	    console.log(no);
@@ -210,22 +267,22 @@
 	    $("#setDelNo").val(no); //setNo값 전달
 	    $("#setCopyNo").val(no); //setNo값 전달
 	    
-	    $(".custom-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
-		$(".custom-menu").show();
+	    $(".set-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
+		$(".set-menu").show();
 	/* 우클릭 후 클릭 */
 	}).on('click', function() {
-			$(".custom-menu").hide();
+			$(".set-menu").hide();
 	});
 	
 	/* 세트 우측상단 버튼클릭 */
-	$(document).on('click', '.setHeader-Save-Button', function() {
+	/* $(document).on('click', '.setHeader-Save-Button', function() {
 		console.log("세트버튼클릭");
 	    
 		var $this = $(this);
 	    var no = $this.data("setno");
 	    console.log(no);
 
-	});
+	}); */
 	
 	
 	/* 수정버튼클릭 */
@@ -268,7 +325,7 @@
 	});
 	
 	/* 모달창 복사버튼클릭 */
-	$(document).on('click', '#setCopy-modal', function(){
+	$(document).on('click', '#setCopyModal-Button', function(){
 		console.log("모달창 복사버튼 클릭");
 		
 		var setNo = $("#setCopyNo").val();
@@ -289,11 +346,9 @@
 			dataType: "json",
 			data : JSON.stringify(vo),
 			success : function(count){
-				console.log(count);
-				//세트 지우기
-				$("#userset-" + no).remove();
-				//모달창 닫기
-				$("#setDeleteModal").modal("hide");
+				console.log(count)
+
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -340,6 +395,76 @@
 			}
 		});
 	});
+	
+	
+	/* 폴더우클릭 */
+	$(document).on('contextmenu', '.folder-contents', function() {
+		event.preventDefault();
+		var $this = $(this);
+		var folderNo = $this.data("folderno");
+	    var groupNo = $this.data("groupno");
+	    var orderNo = $this.data("orderno") + 1;
+	    var myorderNo = $this.data("orderno");
+	    var depth = $this.data("depth") + 1;
+	    var mydepth= $this.data("depth");
+		
+	    console.log("폴더번호:" + folderNo);
+	    console.log("그룹번호:" + groupNo);
+	    console.log("정렬번호:" + orderNo);
+	    console.log("depth:" + depth);
+	    
+	  	//create값 전달
+	  	$("#folderCreate-folderNo").val(folderNo);
+	    $("#folderCreate-groupNo").val(groupNo);
+	    $("#folderCreate-orderNo").val(orderNo);
+	    $("#folderCreate-depth").val(depth);
+	    
+	    //delete값 전달
+	    $("#folderDelete-folderNo").val(folderNo);
+	    $("#folderDelete-groupNo").val(groupNo); 
+	    $("#folderDelete-orderNo").val(myorderNo);
+	    $("#folderDelete-depth").val(mydepth);
+
+
+	    
+	    $(".folder-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
+		$(".folder-menu").show();
+	/* 우클릭 후 클릭 */
+	}).on('click', function() {
+			$(".folder-menu").hide();
+	});
+	
+	/* 세트만들기 클릭 */
+	$(document).on('click', '#folder-setCreate', function(){
+		console.log("폴더 세트만들기");
+	});
+	
+	/* 폴더만들기 클릭 */
+	$(document).on('click', '#folderCreate', function(){
+		console.log("폴더 폴더만들기");
+		$("#folderCreateModal").modal();
+	});
+	
+	$(document).on('click', '.newfolder', function(){
+		console.log("사이드바 폴더만들기");
+		var groupNo = 0;
+		var depth = 0;
+		$("#folderCreate-groupNo").val(groupNo); 
+	    $("#folderCreate-depth").val(depth);
+		$("#folderCreateModal").modal();
+	});
+	
+	/* 복사클릭 */
+	$(document).on('click', '#folderCopy', function(){
+		console.log("폴더 복사하기");
+	});
+	
+	/* 삭제클릭 */
+	$(document).on('click', '#folderDelete', function(){
+		console.log("폴더 삭제");
+		$("#folderDeleteModal").modal();
+	});
+	
 	
 	/* 세트 정렬 */
 	$(document).on('click', '.rightButton', function(){
@@ -448,38 +573,86 @@
 		$("#setCopy-folderArea").append(str);
 	}
 	
-	
-	
-	
-	
-	/* 사이드바 */
-	$(".nav-mid > li > ul").click(function() {
-		var submenu = $(".in-fold");
-
-		if (submenu.is(":visible")) {
-
-			submenu.slideUp();
-
+	/* myfolder 그리기 */
+	function myfolderRender(myfolderList) {
+		
+		if(myfolderList.depth <= 2) {
+			var str = "";
+			str += "<div class='folder-contents myfolderContents myfolderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-padding'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
 		} else {
-			submenu.slideDown();
+			var str = "";
+			str += "<div class='folder-contents myfolderContents myfolderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folderContents-hover'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "";
 		}
-		return false;
-
-	});
-	
-	$(".nav-mid > li > ul").click(function() {
-		var submenu = $(".new-fold");
-
-		if (submenu.is(":visible")) {
-
-			submenu.slideUp();
-
+		
+		console.log(str);
+		
+		if(myfolderList.depth == 0) {
+			console.log("depth:0");
+			$(".myfolder").append(str);
 		} else {
-			submenu.slideDown();
+			console.log("depth:else")
+			$("[data-folderno=" + myfolderList.rootNo + "]").append(str);
 		}
-		return false;
-
-	});
+	}
+	
+	function otherfolderRender(otherfolderList) {
+		if(otherfolderList.depth <= 2) {
+			var str = "";
+			str += "<div class='folder-contents otherfolderContents otherfolderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-padding'>";
+			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		} else {
+			var str = "";
+			str += "<div class='folder-contents otherfolderContents otherfolderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folderContents-hover'>";
+			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		}
+		
+		console.log(str);
+		
+		if(otherfolderList.depth == 0) {
+			console.log("depth:0");
+			$(".otherfolder").append(str);
+		} else {
+			console.log("depth:else")
+			$("[data-folderno=" + otherfolderList.rootNo + "]").append(str);
+		}
+	}
+	
+	/* <c:forEach items="${myfolderList }" var="folderList">
+	<c:choose>
+		<c:when test="${folderList.depth <= 2}">
+			<div class="folder-contents myfolderContents myfolderDepth-${folderList.depth }" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
+				<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="folder-contents myfolderContents myfolderDepth-3" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
+				<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
+			</div>
+		</c:otherwise>
+	</c:choose>
+	</c:forEach> */
 	
 	
 </script>

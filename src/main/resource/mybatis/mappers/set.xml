@@ -25,7 +25,7 @@
 	</select>
 	
 	<!-- 세트저장 -->
-	<select id="addSet" parameterType="com.javaex.vo.MainVo">
+	<select id="addSet" parameterType="com.javaex.vo.MainVo" resultType="int">
 		<![CDATA[
 			insert into sets values(setNo.nextval, #{folderNo}, #{userNo}, #{setName}, #{setExplain}, sysdate, #{setImg}, #{search_tag}, #{setlike}, #{setdislike})
 		]]>

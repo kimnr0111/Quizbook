@@ -9,6 +9,7 @@
 			select *
 			from folder
 			where userNo = #{userNo}
+			order by groupno, orderno
 		]]>
 	</select>
 	
@@ -22,5 +23,38 @@
                   			  where userNo = #{userNo})
 		]]>
 	</select>
+	
+	<!-- 최상위 폴더만들기 -->
+	<insert id="createRootFolder" parameterType="com.javaex.vo.FolderVo">
+		<![CDATA[
+			insert into folder values(FOLDERNO.nextval, #{userNo}, #{folderName}, FOLDERNO.nextval, 0, 1, 0, sysdate)
+		]]>
+	</insert>
+	
+	<!-- orderNo 조정(폴더만들기 전에 실행) -->
+	<update id="orderNoModify" parameterType="com.javaex.vo.FolderVo">
+		<![CDATA[
+			update folder
+			set orderno = orderno + 1
+			where groupno = #{groupNo} and orderno >= #{orderNo}
+		]]>
+	</update>
+	
+	<!-- 폴더만들기 -->
+	<insert id="createFolder" parameterType="com.javaex.vo.FolderVo">
+		<![CDATA[
+			insert into folder values(FOLDERNO.nextval, #{userNo}, #{folderName}, #{groupNo}, #{folderNo}, #{orderNo}, #{depth}, sysdate)
+		]]>
+	</insert>
+	
+	
+	
+	<!-- 폴더삭제 -->
+	<delete id="deleteFolder" parameterType="int">
+		<![CDATA[
+			delete from folder
+			where folderNo = #{folderNo}
+		]]>
+	</delete>
 	
 </mapper>

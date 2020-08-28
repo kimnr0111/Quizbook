@@ -48,10 +48,10 @@ public class MainDao {
 	}
 	
 	//세트저장
-	public void addSet(MainVo set) {
+	public int addSet(MainVo set) {
 		System.out.println("MainDao:addSet");
 		System.out.println("Dao" + set);
-		sqlSession.insert("set.addSet", set);
+		return sqlSession.insert("set.addSet", set);
 	}
 	
 	//세트지우기
@@ -80,5 +80,23 @@ public class MainDao {
 		System.out.println("기본폴더 불러오기:" + folderVo);
 		return folderVo;
 	}
-
+	
+	//최상위 폴더만들기
+	public void createRootFolder(FolderVo folderVo) {
+		System.out.println("MainDao:createRootFolder");
+		sqlSession.insert("folder.createRootFolder", folderVo);
+	}
+	
+	//폴더만들기
+	public void createFolder(FolderVo folderVo) {
+		System.out.println("MainDao:createFolder");
+		sqlSession.update("orderNoModify", folderVo);
+		sqlSession.insert("folder.createFolder", folderVo);
+	}
+	
+	//폴더삭제
+	public void deleteFolder(int folderNo) {
+		System.out.println("MainDao:deleteFolder");
+		sqlSession.delete("folder.deleteFolder", folderNo);
+	}
 }

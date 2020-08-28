@@ -38,7 +38,7 @@ public class MainService {
 	}
 	
 	//세트 복사
-	public MainVo getSet(int folderNo, int setNo) {
+	public int getSet(int folderNo, int setNo) {
 		System.out.println("MainService:getSet");
 		
 		MainVo set = mainDao.getSet(setNo);
@@ -54,9 +54,10 @@ public class MainService {
 		
 		System.out.println(set);
 		
-		mainDao.addSet(set);
+		int count = mainDao.addSet(set);
+		System.out.println("세트복사count:" + count);
 		
-		return set;
+		return count;
 	}
 	
 	//세트지우기
@@ -87,6 +88,23 @@ public class MainService {
 		return folderVo;
 		
 		
+	}
+	
+	//폴더만들기
+	public void createFolder(FolderVo folderVo) {
+		System.out.println("MainService:createFolder");
+		if(folderVo.getGroupNo() == 0) {
+			mainDao.createRootFolder(folderVo);
+		} else {
+			mainDao.createFolder(folderVo);
+		}	
+	}
+	
+	//폴더삭제
+	public void deleteFolder(int folderNo) {
+		System.out.println("MainService:deleteFolder");
+		
+		mainDao.deleteFolder(folderNo);
 	}
 
 }

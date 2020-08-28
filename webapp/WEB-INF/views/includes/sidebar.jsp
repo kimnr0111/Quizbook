@@ -27,88 +27,58 @@
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
 					alt="set"><span id="set-txt">세트</span>
 			</a></li>
-			<li><a> <img class="fold-block"
+			<li class="myfolder-title"><a> <img class="fold-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-					alt="folder"><span id="fold-txt">폴더</span></a></li>
+					alt="folder"><span id="fold-txt">내 폴더</span></a></li>
 		</ul>
-		<div class="folder-Area">
-			<!-- 그룹번호는 상위폴더의 그룹번호, 상위폴더가 없을경우 폴더번호
-				 depth는 상위폴더의 depth+1, 상위폴더가 없을경우 0
-				 ino는 폴더번호 -->
-			<div class="folder" data-folderno="1" data-groupno="1" data-depth="0">
-				<i class="material-icons" data-ino="1" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
+		<div class="folder-wrap">
+			<!-- 내폴더 -->
+			<div class="folder-Area myfolder">
+				<!-- 그룹번호는 상위폴더의 그룹번호, 상위폴더가 없을경우 폴더번호
+					 depth는 상위폴더의 depth+1, 상위폴더가 없을경우 0
+					 ino는 폴더번호 -->
+				<%-- <c:forEach items="${myfolderList }" var="folderList">
+				<c:choose>
+					<c:when test="${folderList.depth <= 2}">
+						<div class="folder-contents myfolderContents myfolderDepth-${folderList.depth }" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
+							<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="folder-contents myfolderContents myfolderDepth-3" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
+							<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
+						</div>
+					</c:otherwise>
+				</c:choose>
+				</c:forEach> --%>
+				
+				
 			</div>
-			<div class="folder" data-folderno="2" data-groupno="1" data-depth="1">
-				<i class="material-icons" data-ino="2" style="font-size: 20px">keyboard_arrow_right</i>depth일이삼사오육칠팔구십십일십이
-			</div>
-			<div class="folder" data-folderno="3" data-groupno="1" data-depth="2">
-				<i class="material-icons" data-ino="3" style="font-size: 20px">keyboard_arrow_right</i>depth이삼사오육칠팔구십십일십이
-			</div>
-			<div class="folder" data-folderno="4" data-groupno="4" data-depth="0">
-				<i class="material-icons" data-ino="4" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="5" data-groupno="4" data-depth="1">
-				<i class="material-icons" data-ino="5" style="font-size: 20px">keyboard_arrow_right</i>depth1
-			</div>
-			<div class="folder" data-folderno="6" data-groupno="4" data-depth="1">
-				<i class="material-icons" data-ino="6" style="font-size: 20px">keyboard_arrow_right</i>depth1
-			</div>
-			<div class="folder" data-folderno="7" data-groupno="7" data-depth="0">
-				<i class="material-icons" data-ino="7" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="8" data-groupno="8" data-depth="0">
-				<i class="material-icons" data-ino="8" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			<div class="folder" data-folderno="9" data-groupno="9" data-depth="0">
-				<i class="material-icons" data-ino="9" style="font-size: 20px">keyboard_arrow_right</i>최상위폴더
-			</div>
-			
+				
 		</div>
+		
+		<div class="newfolder">
+			폴더 +
+		</div>
+		
+		<div class="otherfolder-title"> <img class="fold-block"
+				src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
+				alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
+		</div>
+		
+		<div class="folder-wrap">
+			<!-- 방문한 페이지 사용자폴더 -->
+			<div class="folder-Area otherfolder">
+			
+			
+				<%-- <c:forEach items="${otherfolderList }" var="folderList">
+					<div class="folder-contents otherfolderContents" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
+						<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
+					</div>
+				</c:forEach> --%>
+			</div>
+		</div>
+		
 		
 		<div class="a">
 			<hr>
@@ -126,49 +96,174 @@
 	</nav>
 	
 <script type="text/javascript">
+
+	$(document).ready(function(){
+		var myuserNo = ${sessionScope.authUser.userNo};
+		console.log(myuserNo);
+		
+		var userNo = ${userVo.userNo};
+		console.log(userNo);
+		
+		var myVo = {
+				userNo: myuserNo
+		}
+		
+		var otherVo = {
+				userNo: userNo
+		}
+		
+		/* 내 폴더 불러오기 */
+		$.ajax({
+			url : "${pageContext.request.contextPath }/getFolderList",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(myVo),
+			success : function(myfolderList){
+				console.log(myfolderList.length);
+				for(var i=0;i<myfolderList.length;i++) {
+					myfolderRender(myfolderList[i]);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		/* 상대 폴더 불러오기 */
+		/* $.ajax({
+			url : "${pageContext.request.contextPath }/getFolderList",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(otherVo),
+			success : function(otherfolderList){
+				console.log(otherfolderList.length);
+				for(var i=0;i<otherfolderList.length;i++) {
+					otherfolderRender(otherfolderList[i]);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); */
+	});
+	
+	$(document).on('click', '.myfolder-title', function(){
+		console.log("내폴더클릭");
+		if($(".myfolder").css('display') == 'none') {
+			$(".myfolder").slideDown();
+		} else if($(".myfolder").css('display') == 'block') {
+			$(".myfolder").slideUp();
+		}
+	});
+	
+	$(document).on('click', '.otherfolder-title', function(){
+		console.log("다른사람폴더클릭");
+		if($(".otherfolder").css('display') == 'none') {
+			$(".otherfolder").slideDown();
+		} else if($(".otherfolder").css('display') == 'block') {
+			$(".otherfolder").slideUp();
+		}
+		
+	});
 	
 	/* 사이드바 폴더 클릭 */
-	$(document).on('click', '.folder', function(){
+	/* 내폴더클릭 */
+	$(document).on('click', '.myfolderContents', function(event){
 		console.log("폴더클릭");
+		event.stopPropagation();
 		
 		var $this = $(this);
 		
-		$this.addClass('selected').siblings().removeClass('selected');
+		/* 클릭강조 */
+		/* $this.addClass('selected').siblings().removeClass('selected'); */
 		
 		/* 폴더번호, 그룹번호, depth번호 가져옴 */
 		console.log("폴더번호:" + $this.data("folderno"));
+		console.log("상위폴더번호:" + $this.data("rootno"));
 		console.log("그룹번호:" + $this.data("groupno"));
-		console.log("depth번호:" + $this.data("depth"));
+		console.log("정렬번호:" + $this.data("orderno")) + 1;
+		console.log("depth:" + $this.data("depth"));
+
 		var folderno = $this.data("folderno");
+		
+		
+/* 		var rootno = $this.data("rootno");
 		var groupno = $this.data("groupno");
-		var depth = $this.data("depth") + 1;
+		var orderno = $this.data("orderno") + 1;
+		var depth = $this.data("depth"); */
 		
-		/* 아이콘모양변경 */
-		var text = $("[data-ino=" + folderno + "]").text();
-		
-		var folderStatus = $("[data-groupno=" + groupno + "][data-depth=" + depth + "]");
-		var display = $("[data-groupno=" + groupno + "][data-depth=" + depth + "]").css('display');
+		var folderStatus = $(".myfolderContents[data-rootno=" + folderno + "]");
+		var display = $(".myfolderContents[data-rootno=" + folderno + "]").css('display');
 		
 		/* 디스플레이가 none일때 보이고 block일때 안보이게 */
 		if(display == 'none') {
 			folderStatus.slideDown();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_down');
 		} else if(display == 'block') {
-			for(var i=depth;;i++) {
-				$("[data-groupno=" + groupno + "][data-depth=" + i + "]").slideUp();
-				if($("[data-groupno=" + groupno + "][data-depth=" + i + "]").attr('class') == null) {
-					break;
-				}
-			}
+			folderStatus.slideUp();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
 			
+			
+				/* $(".myfolderContents[data-rootno=" + folderno + "]").slideUp();
+				$this.find($(".material-icons")).text('keyboard_arrow_right');
+				하위폴더까지 한번에 닫히게 
+				while(true) {
+					var subDepth = $(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").data('depth');
+					if(depth < subDepth) {
+						$(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").slideUp();
+						$(".myfolderContents[data-groupno=" + groupno + "][data-orderno=" + orderno + "]").find($(".material-icons")).text('keyboard_arrow_right');
+						orderno = orderno + 1;
+						console.log("아직");
+					} else {
+						console.log("탈출");
+						break;
+					}
+				} */			
 		}
+	});
+	
+	/* 다른사람폴더클릭 */
+	$(document).on('click', '.otherfolderContents', function(){
+		console.log("폴더클릭");
 		
-		if(text == 'keyboard_arrow_right') {
-			$("[data-ino=" + folderno + "]").text('keyboard_arrow_down');
-		} else {
-			$("[data-ino=" + folderno + "]").text('keyboard_arrow_right');
-		}
+		var $this = $(this);
+		/* $this.addClass('selected').siblings().removeClass('selected'); */
+		
+		/* 폴더번호, 그룹번호, depth번호 가져옴 */
+		console.log("폴더번호:" + $this.data("folderno"));
+		console.log("상위폴더번호:" + $this.data("rootno"));
+		console.log("그룹번호:" + $this.data("groupno"));
+		console.log("depth:" + $this.data("depth")) + 1;
 
+		var folderno = $this.data("folderno");
 		
+		var folderStatus = $(".otherfolderContents[data-rootno=" + folderno + "]");
+		var display = $(".otherfolderContents[data-rootno=" + folderno + "]").css('display');
+		
+		/* 디스플레이가 none일때 보이고 block일때 안보이게 */
+		if(display == 'none') {
+			folderStatus.slideDown();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_down');
+		} else if(display == 'block') {
+			folderStatus.slideUp();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
+		}
+		
+		/* if(display == 'none') {
+			folderStatus.slideDown();
+			$this.find($(".material-icons")).text('keyboard_arrow_down');
+		} else if(display == 'block') {
+				$(".otherfolderContents[data-rootno=" + folderno + "]").slideUp();
+				$this.find($(".material-icons")).text('keyboard_arrow_right');
+				하위폴더까지 한번에 닫히게
+				for(var i=0;i<length;i++) {
+					var subfolderno = $(subArray[i]).data("folderno");
+					$(".otherfolderContents[data-rootno=" + subfolderno + "]").slideUp();
+					$(".otherfolderContents[data-rootno=" + subfolderno + "]").find($(".material-icons")).text('keyboard_arrow_right');
+				}
+		} */
 	});
 	
 </script>
