@@ -231,11 +231,11 @@
 <script type="text/javascript">
 	
 	/* 세트리스트 불러오기 */
-	/* $(document).ready(function(){
+	$(document).ready(function(){
 		
 		fetchList();
 		
-	}); */
+	});
 	
 	/* 세트에 마우스 올려졌을때 */
 	
@@ -398,7 +398,7 @@
 	
 	
 	/* 폴더우클릭 */
-	$(document).on('contextmenu', '.folder-contents', function() {
+	$(document).on('contextmenu', '.folderContents-hover', function() {
 		event.preventDefault();
 		var $this = $(this);
 		var folderNo = $this.data("folderno");
@@ -579,7 +579,7 @@
 		if(myfolderList.depth <= 2) {
 			var str = "";
 			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
-			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-hover' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
 			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
 			str += "</div>";
@@ -589,7 +589,7 @@
 		} else {
 			var str = "";
 			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
-			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-hover' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
 			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
 			str += "</div>";
@@ -613,7 +613,7 @@
 		if(otherfolderList.depth <= 2) {
 			var str = "";
 			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
-			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-hover' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
 			str += "<div class='folderContents-padding-" + otherfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
 			str += "</div>";
@@ -623,7 +623,7 @@
 		} else {
 			var str = "";
 			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
-			str += "<div class='folderContents-hover'>";
+			str += "<div class='folderContents-hover' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
 			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
 			str += "</div>";

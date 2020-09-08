@@ -205,6 +205,17 @@
 		}
 	});
 	
+	/* 클릭한 폴더 강조 */
+	$(document).on('click', '.folderContents-hover', function(){
+		console.log("클릭한폴더강조");
+		event.stopPropagation();
+		
+		var $this = $(this);
+		$(".folderContents-hover").removeClass('selected');
+		
+		$this.addClass('selected');
+	});
+	
 	/* 다른사람폴더클릭 */
 	$(document).on('click', '.otherfolderContents', function(event){
 		console.log("폴더클릭");
