@@ -28,11 +28,11 @@ public class MainService {
 	}
 	
 	//세트리스트 가져오기
-	public List<MainVo> getSetList(int userNo, int folderNo) {
+	public List<MainVo> getSetList(int folderNo) {
 		System.out.println("MainService:getSetList");
 		
 		//세트가져오기(아이디포함)
-		List<MainVo> setList = mainDao.getSetList(userNo, folderNo);
+		List<MainVo> setList = mainDao.getSetList(folderNo);
 		
 		return setList;
 	}
@@ -50,6 +50,10 @@ public class MainService {
 		
 		if(set.getSearch_tag() == null) {
 			set.setSearch_tag("");
+		}
+		
+		if(set.getSetExplain() == null) {
+			set.setSetExplain("");
 		}
 		
 		System.out.println(set);

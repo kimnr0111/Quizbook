@@ -124,6 +124,7 @@
 				for(var i=0;i<myfolderList.length;i++) {
 					myfolderRender(myfolderList[i]);
 				}
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -185,8 +186,10 @@
 		console.log("그룹번호:" + $this.data("groupno"));
 		console.log("정렬번호:" + $this.data("orderno")) + 1;
 		console.log("depth:" + $this.data("depth"));
+		console.log("폴더이름:" + $this.data("foldername"));
 
 		var folderno = $this.data("folderno");
+		var foldername = $this.data("foldername");
 		
 		var folderStatus = $(".myfolderContents[data-rootno=" + folderno + "]");
 		var display = $(".myfolderContents[data-rootno=" + folderno + "]").css('display');
@@ -203,6 +206,10 @@
 			folderStatus.slideUp();
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');			
 		}
+		
+		$("#userset-folderName").html(foldername);
+		
+		getSetList(folderno);
 	});
 	
 	/* 클릭한 폴더 강조 */
@@ -228,9 +235,12 @@
 		console.log("폴더번호:" + $this.data("folderno"));
 		console.log("상위폴더번호:" + $this.data("rootno"));
 		console.log("그룹번호:" + $this.data("groupno"));
-		console.log("depth:" + $this.data("depth")) + 1;
+		console.log("정렬번호:" + $this.data("orderno")) + 1;
+		console.log("depth:" + $this.data("depth"));
+		console.log("폴더이름:" + $this.data("foldername"));
 
 		var folderno = $this.data("folderno");
+		var foldername = $this.data("foldername");
 		
 		var folderStatus = $(".otherfolderContents[data-rootno=" + folderno + "]");
 		var display = $(".otherfolderContents[data-rootno=" + folderno + "]").css('display');
@@ -243,6 +253,10 @@
 			folderStatus.slideUp();
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
 		}
+		
+		$("#userset-folderName").html(foldername);
+		
+		getSetList(folderno);
 	});
 	
 </script>

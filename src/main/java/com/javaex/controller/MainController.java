@@ -59,7 +59,7 @@ public class MainController {
 		UserVo userVo = mainService.getUser(id);
 		model.addAttribute("userVo", userVo);
 
-		// 개인페이지 접속시 기본폴더 출력
+		// 개인페이지 접속시 기본폴더 출력(나중에 최근학습 세트목록 불러오기로 수정)
 		int userNo = userVo.getUserNo();
 		FolderVo folderVo = mainService.getFolder(userNo);
 		model.addAttribute("folderVo", folderVo);
@@ -100,11 +100,11 @@ public class MainController {
 		System.out.println("/Quizbook/setList");
 		System.out.println(mainVo);
 		// 사용자의 세트만 출력하기 위해 userNo를 받아 저장
-		int userNo = mainVo.getUserNo();
-		// 기본폴더 번호
+		//int userNo = mainVo.getUserNo();
+		// 폴더 번호
 		int folderNo = mainVo.getFolderNo();
 		// Main 나중에 이름 적당한거로 바꾸기
-		List<MainVo> setList = mainService.getSetList(userNo, folderNo);
+		List<MainVo> setList = mainService.getSetList(folderNo);
 		System.out.println(setList.toString());
 		return setList;
 	}

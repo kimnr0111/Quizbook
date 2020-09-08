@@ -218,12 +218,17 @@
 	</c:when>
 </c:choose>
 <!-- 우클릭메뉴 폴더 -->
-		<ul class='custom-menu folder-menu'>
+		<ul class='custom-menu myfolder-menu'>
 			<!-- 수정버튼 클릭시 세트수정폼(세트입력폼에서 약간 수정)으로 이동 -->
 			<li id="folder-setCreate" class='custom-menu-attribute bottom-line' onclick="location.href='#'">세트 만들기</li>
 			<li id="folderCreate" class='custom-menu-attribute bottom-line'>폴더 만들기</li>
 			<li id="folderCopy" class='custom-menu-attribute bottom-line'>복사</li>
 			<li id="folderDelete" class='custom-menu-attribute'>삭제</li>
+		</ul>
+		
+<!-- 우클릭메뉴 폴더 -->
+		<ul class='custom-menu otherfolder-menu'>
+			<li id="folderCopy" class='custom-menu-attribute bottom-line'>복사</li>
 		</ul>
 
 </body>
@@ -397,9 +402,10 @@
 	});
 	
 	
-	/* 폴더우클릭 */
-	$(document).on('contextmenu', '.folderContents-hover', function() {
+	/* 내 폴더우클릭 */
+	$(document).on('contextmenu', '.myContextmenu', function() {
 		event.preventDefault();
+		$(".otherfolder-menu").hide();
 		var $this = $(this);
 		var folderNo = $this.data("folderno");
 	    var groupNo = $this.data("groupno");
@@ -427,11 +433,49 @@
 
 
 	    
-	    $(".folder-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
-		$(".folder-menu").show();
+	    $(".myfolder-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
+		$(".myfolder-menu").show();
 	/* 우클릭 후 클릭 */
 	}).on('click', function() {
-			$(".folder-menu").hide();
+			$(".myfolder-menu").hide();
+	});
+	
+	/* 방문폴더 우클릭 */
+	$(document).on('contextmenu', '.otherContextmenu', function() {
+		event.preventDefault();
+		$(".myfolder-menu").hide();
+		var $this = $(this);
+		var folderNo = $this.data("folderno");
+	    var groupNo = $this.data("groupno");
+	    var orderNo = $this.data("orderno") + 1;
+	    var myorderNo = $this.data("orderno");
+	    var depth = $this.data("depth") + 1;
+	    var mydepth= $this.data("depth");
+		
+	    console.log("폴더번호:" + folderNo);
+	    console.log("그룹번호:" + groupNo);
+	    console.log("정렬번호:" + orderNo);
+	    console.log("depth:" + depth);
+	    
+	  	//create값 전달
+	  	$("#folderCreate-folderNo").val(folderNo);
+	    $("#folderCreate-groupNo").val(groupNo);
+	    $("#folderCreate-orderNo").val(orderNo);
+	    $("#folderCreate-depth").val(depth);
+	    
+	    //delete값 전달
+	    $("#folderDelete-folderNo").val(folderNo);
+	    $("#folderDelete-groupNo").val(groupNo); 
+	    $("#folderDelete-orderNo").val(myorderNo);
+	    $("#folderDelete-depth").val(mydepth);
+
+
+	    
+	    $(".otherfolder-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
+		$(".otherfolder-menu").show();
+	/* 우클릭 후 클릭 */
+	}).on('click', function() {
+			$(".otherfolder-menu").hide();
 	});
 	
 	/* 세트만들기 클릭 */
@@ -503,15 +547,13 @@
 	
 	
 	
-	/* setList 가져오기 */
+	/* 기본 setList 가져오기 */
 	function fetchList() {
-		var uno = ${userVo.userNo};
 		var folderNo = ${folderVo.folderNo};
 		var color = "#"
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
 		var mainVo = {
-				userNo: uno,
 				folderNo: folderNo
 		};
 		
@@ -523,6 +565,39 @@
 			dataType: "json",
 			success : function(setList){
 				console.log(setList);
+				for(var i=0;i<setList.length;i++) {
+					color = "#"
+					render(setList[i]);
+					color += letters[Math.floor(Math.random() * letters.length)];
+					console.log(color);
+					$("#userset-"+setList[i].setNo).css('background-color', color);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	/* 클릭한 폴더 setList 가져오기 */
+	function getSetList(folderno) {
+		var color = "#"
+		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
+		var folderNo = folderno;
+		var folderName = folderName;
+		var mainVo = {
+				folderNo: folderNo
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/setList",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mainVo),
+			dataType: "json",
+			success : function(setList){
+				console.log(setList);
+				$("#userset-setArea").html('');
 				for(var i=0;i<setList.length;i++) {
 					color = "#"
 					render(setList[i]);
@@ -562,6 +637,7 @@
 		str += "";
 		
 		$("#userset-setArea").append(str);
+
 	}
 	
 	function renderOption(folderVo) {
@@ -578,8 +654,8 @@
 		
 		if(myfolderList.depth <= 2) {
 			var str = "";
-			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
-			str += "<div class='folderContents-hover' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
 			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
 			str += "</div>";
@@ -588,8 +664,8 @@
 			str += "";
 		} else {
 			var str = "";
-			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
-			str += "<div class='folderContents-hover' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + ">";
+			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
 			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
 			str += "</div>";
@@ -612,8 +688,8 @@
 	function otherfolderRender(otherfolderList) {
 		if(otherfolderList.depth <= 2) {
 			var str = "";
-			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
-			str += "<div class='folderContents-hover' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
 			str += "<div class='folderContents-padding-" + otherfolderList.depth + "'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
 			str += "</div>";
@@ -622,8 +698,8 @@
 			str += "";
 		} else {
 			var str = "";
-			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
-			str += "<div class='folderContents-hover' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + ">";
+			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
 			str += "<div class='folderContents-padding-3'>";
 			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
 			str += "</div>";

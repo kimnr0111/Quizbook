@@ -26,12 +26,14 @@ public class MainDao {
 	}
 	
 	//세트리스트 가져오기(아이디포함)
-	public List<MainVo> getSetList(int userNo, int folderNo) {
+	public List<MainVo> getSetList(int folderNo) {
 		System.out.println("MainDao:getSetList");
-		HashMap<String, Integer> listMap = new HashMap<String, Integer>();
-		listMap.put("userNo", userNo);
-		listMap.put("folderNo", folderNo);
-		List<MainVo> setList = sqlSession.selectList("set.selectSetList", listMap);
+		
+		/*
+		 * HashMap<String, Integer> listMap = new HashMap<String, Integer>();
+		 * listMap.put("userNo", userNo); listMap.put("folderNo", folderNo);
+		 */
+		List<MainVo> setList = sqlSession.selectList("set.selectSetList", folderNo);
 		
 		
 		return setList;

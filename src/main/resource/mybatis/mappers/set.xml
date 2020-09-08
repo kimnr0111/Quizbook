@@ -4,12 +4,11 @@
 <mapper namespace="set">
 	
 	<!-- 세트 리스트 가져오기 -->
-	<select id="selectSetList" parameterType="hashMap" resultType="com.javaex.vo.MainVo">
+	<select id="selectSetList" parameterType="int" resultType="com.javaex.vo.MainVo">
 		<![CDATA[
 			select sets.*, users.id
 			from sets, users
 			where sets.userNo = users.userNo
-			and sets.userNo = #{userNo}
 			and sets.folderNo = #{folderNo}
 			order by sets.regDate desc
 		]]>
