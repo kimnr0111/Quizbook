@@ -1,0 +1,386 @@
+@charset "UTF-8";
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+
+#body {
+	position: relative;
+	width: 1400px;
+	margin: 0 auto;
+}
+
+/* 애니메이션 중복적용을 위해 추가 (translate) */
+#study_wrap {
+	display:inline-block;
+	width: 695px;
+	height: 500px;
+	margin-top: 50px;
+	margin-left: 297px;
+	
+	border-bottom: 2px solid #c3c3c3;
+}
+
+#study_title {
+	width: 100%;
+	height: 50px;
+	
+	font-size: 25px;
+	font-weight:bold;
+	
+	font-family: "NotoSansKR-Bold";
+}
+
+#study_user {
+	height: 400px;
+	/* bottom right 그림자 */
+	box-shadow: 4px 4px 4px #EEEEEE;
+}
+
+/* studt_user div에 top left 그림자 넣기위해 추가 */
+#addShadow {
+	height:100%;
+	box-shadow: -4px -4px 4px #EEEEEE;
+	text-align:center
+}
+
+/* position static이 아닌 조상을 기준 최하단에 고정 및 좌우정렬 (여기서는 study_area를 기준) */
+.CardsList-navControl {
+	bottom: 0;
+	position: absolute;
+}
+
+.previousButton {
+	left: 37%;
+}
+
+.progressIndex {
+	left: 45%;
+	right: 45%;
+	margin: auto;
+	
+	text-align: center;
+	
+	border: 1px solid #CCCCCC;
+	border-radius:5px;
+}
+
+.nextButton {
+	right: 37%;
+}
+
+/* ! position static이 아닌 조상을 기준 최하단에 고정 및 좌우정렬 (여기서는 study_area를 기준) */
+
+
+#study_user_nav {
+	font-size: 16px;
+	color:#515151;
+	margin: 10px 0px 0px 20%;
+	text-align:left;
+}
+
+#study_user_nav>li {
+	height: 33px;
+	text-decoration: none;
+}
+
+#study_user_nav>li>a {
+	color:#515151;
+	text-decoration: none;
+	padding-bottom:4px;
+
+}
+
+#study_user_nav>li>a:hover {
+	font-weight:bold;
+	color: #404040;
+	border-bottom: 2px solid #F1C40F;
+}
+
+div.card_wrap {
+	width: 500px;
+	height: 300px;
+	float: left;
+}
+
+div.study_area {
+	width: 500px;
+	height: 410px;
+	float: left;
+	position: relative;
+}
+
+
+/* 애니메이션 관련 */
+
+div.card {
+	width: 100%;
+	height: 300px;
+
+	cursor: pointer;
+
+	/* x축을 기준으로 회전시킬것이므로 3d로 설정 */
+
+	transform-style: preserve-3d;
+	/* 요소의 자식이 3D 공간에 배치 */
+}
+
+.front, .back {
+	width: 100%;
+	height: 100%;
+	
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	
+	display: flex;
+	flex-direction: column;
+	/* container 안의 아이템 정방향 배치 */
+	justify-content: center;
+	/* 수평 가운데에서부터 배치 */
+	align-items: center;
+	/* 수직 가운데 배치 */
+	
+	position:absolute;
+	/* front, back을 같은위치에 배치시키고 */
+	backface-visibility: hidden;
+	/* 뒷면은 보이지않게 함 */
+}
+
+.back {
+	transform: rotateX(180deg);
+}
+
+.button_back {
+	transform: rotateX(180deg);
+}
+
+.next {
+	transition: opacity, transform;
+	transition-duration: 1000ms;
+	opacity: 0;
+	transform: translateX(-10%);
+}
+
+.previous {
+	transition: opacity, transform;
+	transition-duration: 1000ms;
+	opacity: 0;
+	transform: translateX(10%);
+}
+
+/* 애니메이션 끝 */
+#study_user_nav>li>a>span {
+	color: #4EA3DC;
+}
+
+#logo {
+	width: 100%;
+	height: 140px;
+	line-height: 140px;
+}
+
+#logoImg {
+	width: 100px;
+	height: 100px;
+	
+	vertical-align: bottom;
+
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+#user_data_nick {
+	margin-top: 10px;
+	text-align: center;
+	font-size: 20px;
+	height: 40px;
+}
+
+#user_data_nick a {
+	color: #525252;
+	text-decoration:none;
+	font-family: "NotoSansKR-Bold";
+}
+
+#user_wrap {
+	margin-top:24px;
+	margin-left: 25px;
+	width: 170px;
+	height: 350px;
+	
+	float: left;
+}
+
+#icon_home {
+	font-size: 20px;
+	color: #4EA3DC;
+	text-decoration: none;
+}
+
+#icon_home:hover {
+	text-decoration: none;
+}
+
+#followNo {
+	width: 90%;
+	height:20px;
+	text-align:center;
+	display:inline-block;
+}
+
+#following {
+	float:left;
+	text-align:right;
+	width:45%;
+}
+
+#follower {
+	float:right;
+	text-align:left;
+	width:45%;
+}
+
+#follow_divider {
+	text-align:center;
+	width:10%;
+	float:left;
+}
+
+#aHeart {
+	color: #E74C3C;
+
+	font-family: 'Font Awesome 5 Free';
+	font-weight:bold;
+
+	text-decoration:none;
+}
+
+#followNo a {
+	font-size:11px;
+	text-decoration: none;
+	color:#000000;
+}
+#follow_wrapper>div>span>a:hover {
+	text-decoration: none;
+	color:#000000;	
+}
+
+#heart {
+	width:100%;
+}
+
+#heart {
+	text-align:center;
+	margin-top:5px;
+	font-size: 20px;
+}
+
+.card_left {
+	left:0;
+	height:100%;
+	width:60px;
+	border-radius: 10px 0px 0px 10px;
+	outline:0;
+	
+	position:absolute;
+	z-index:99;
+}
+
+.card_right {
+	right:0;	
+	height:100%;
+	width:60px;
+	border-radius: 0px 10px 10px 0px;
+	outline:0;
+	
+	position:absolute;
+	z-index:99;
+}
+
+.card_content {
+	width:100%;
+	height:100%;
+	position:absolute;
+	z-index:0;
+}
+
+
+.imgWithText {
+	object-fit: contain;
+	width:50%;
+	height:50%;
+}
+
+.imgOnly {
+	max-width:100%;
+	max-height:100%;
+	object-fit: contain;
+}
+
+.card_nav {
+	
+	font-size:50px;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align:center;
+	
+	/* rgba를 쓸경우 다 같이써야한다 */
+	
+	position:absolute;
+	color:rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);	
+	
+}
+.card:hover .card_nav {
+	
+	/* 백그라운드 */
+	background-color: rgba(207, 207, 207, 0.1);
+
+	/* 폰트 */
+	color:rgba(0, 0, 0, 0.3);
+}
+
+#index {
+	height:30px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card_btn {
+	font-size:30px;
+	display:inline-block;
+	height:32px;
+	border:0;
+	outline:0;
+	background-color:initial;
+	
+	color:#000000;
+}
+
+#card_content {
+	display: flex;
+    align-items: center;
+	width:100%;
+	height:100%;
+}
+
+.text {
+	
+	text-align:center;
+	
+	width:50%;
+	max-width:100%;
+}
+
+.fontAwsome5 {
+	font-family: 'Font Awesome 5 Free';
+	font-weight:bold;
+}

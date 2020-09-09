@@ -24,6 +24,7 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/headerfooter.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/sidebar.css" rel="stylesheet" type="text/css">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -59,7 +60,7 @@
 					<!-- profileInfo -->
 					<div id="userprofile-Button">
 						<div class="leftButton">
-							<a href="" class="user-alink">
+							<a href="${pageContext.request.contextPath}/study/set" class="user-alink">
 								<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
 							</a>
 						</div>
@@ -621,7 +622,7 @@
 	/* set 그리기 */
 	function render(mainVo) {
 		var str = "";
-		str += "<div class='userset-set' draggable='true' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"'>";
+		str += "<div class='userset-set' draggable='true' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"' OnClick='location.href =\"${pageContext.request.contextPath }/study/main\"'>";
 		str += "	<div class='setHeader'>";
 		str += "		<div class='setHeader-Save'>";
 		str += "			<button class='setHeader-Save-Button' data-setno="+mainVo.setNo+"><img src='${pageContext.request.contextPath}/assets/images/iconmonstr-plus-1-32.png' class='mainImg'></button>";
@@ -654,75 +655,7 @@
 		$("#setCopy-folderArea").append(str);
 	}
 	
-	/* myfolder 그리기 */
-	function myfolderRender(myfolderList) {
-		
-		if(myfolderList.depth <= 2) {
-			var str = "";
-			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
-			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
-			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
-			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
-			str += "</div>";
-			str += "</div>";
-			str += "</div>";
-			str += "";
-		} else {
-			var str = "";
-			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
-			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
-			str += "<div class='folderContents-padding-3'>";
-			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
-			str += "</div>";
-			str += "</div>";
-			str += "</div>";
-			str += "";
-		}
-		
-		console.log(str);
-		
-		if(myfolderList.depth == 0) {
-			console.log("depth:0");
-			$(".myfolder").append(str);
-		} else {
-			console.log("depth:else")
-			$(".myfolderContents[data-groupno=" + myfolderList.groupNo + "][data-folderno=" + myfolderList.rootNo + "]").append(str);
-		}
-	}
 	
-	function otherfolderRender(otherfolderList) {
-		if(otherfolderList.depth <= 2) {
-			var str = "";
-			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
-			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
-			str += "<div class='folderContents-padding-" + otherfolderList.depth + "'>";
-			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
-			str += "</div>";
-			str += "</div>";
-			str += "</div>";
-			str += "";
-		} else {
-			var str = "";
-			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
-			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
-			str += "<div class='folderContents-padding-3'>";
-			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
-			str += "</div>";
-			str += "</div>";
-			str += "</div>";
-			str += "";
-		}
-		
-		console.log(str);
-		
-		if(otherfolderList.depth == 0) {
-			console.log("depth:0");
-			$(".otherfolder").append(str);
-		} else {
-			console.log("depth:else")
-			$(".otherfolderContents[data-groupno=" + otherfolderList.groupNo + "][data-folderno=" + otherfolderList.rootNo + "]").append(str);
-		}
-	}
 	
 	/* <c:forEach items="${myfolderList }" var="folderList">
 	<c:choose>

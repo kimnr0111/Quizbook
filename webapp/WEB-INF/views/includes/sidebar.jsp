@@ -23,13 +23,15 @@
 			<hr>
 		</div>
 		<ul class="nav-mid">
-			<li><a href=""> <img class="img-block"
+			<li><a href="${pageContext.request.contextPath}/study/set"> <img class="img-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
-					alt="set"><span id="set-txt">세트</span>
+					alt="set"><span id="set-txt">세트만들기</span>
 			</a></li>
-			<li class="myfolder-title"><a> <img class="fold-block"
+			<c:if test="${userVo != null }">
+				<li class="myfolder-title"><a> <img class="fold-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
 					alt="folder"><span id="fold-txt">내 폴더</span></a></li>
+			</c:if>
 		</ul>
 		<div class="folder-wrap">
 			<!-- 내폴더 -->
@@ -39,14 +41,17 @@
 				
 		</div>
 		
-		<div class="newfolder">
-			폴더 +
-		</div>
+		<c:if test="${userVo != null }">
+			<div class="newfolder">
+				폴더 +
+			</div>
+		
 		
 		<div class="otherfolder-title"> <img class="fold-block"
 				src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
 				alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
 		</div>
+		</c:if>
 		
 		<div class="folder-wrap">
 			<!-- 방문한 페이지 사용자폴더 -->
@@ -234,6 +239,76 @@
 		
 		getSetList(folderno);
 	});
+	
+	/* myfolder 그리기 */
+	function myfolderRender(myfolderList) {
+		
+		if(myfolderList.depth <= 2) {
+			var str = "";
+			str += "<div class='folder-contents myfolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		} else {
+			var str = "";
+			str += "<div class='folder-contents myfolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-3'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		}
+		
+		console.log(str);
+		
+		if(myfolderList.depth == 0) {
+			console.log("depth:0");
+			$(".myfolder").append(str);
+		} else {
+			console.log("depth:else")
+			$(".myfolderContents[data-groupno=" + myfolderList.groupNo + "][data-folderno=" + myfolderList.rootNo + "]").append(str);
+		}
+	}
+	
+	function otherfolderRender(otherfolderList) {
+		if(otherfolderList.depth <= 2) {
+			var str = "";
+			str += "<div class='folder-contents otherfolderContents folderDepth-" + otherfolderList.depth + "' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-" + otherfolderList.depth + "'>";
+			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		} else {
+			var str = "";
+			str += "<div class='folder-contents otherfolderContents folderDepth-3' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-hover otherContextmenu' data-folderno=" + otherfolderList.folderNo + " data-groupno=" + otherfolderList.groupNo + " data-rootno=" + otherfolderList.rootNo + " data-orderno=" + otherfolderList.orderNo + " data-depth=" + otherfolderList.depth + " data-foldername=" + otherfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-3'>";
+			str += "<i class='material-icons' data-ino=" + otherfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + otherfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		}
+		
+		console.log(str);
+		
+		if(otherfolderList.depth == 0) {
+			console.log("depth:0");
+			$(".otherfolder").append(str);
+		} else {
+			console.log("depth:else")
+			$(".otherfolderContents[data-groupno=" + otherfolderList.groupNo + "][data-folderno=" + otherfolderList.rootNo + "]").append(str);
+		}
+	}
 	
 </script>
 <!-- 사이드바 끝 -->

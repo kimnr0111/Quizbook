@@ -1,0 +1,399 @@
+@charset "UTF-8";
+
+/*폰트 적용*/
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src: url("font/NotoSansKR-Regular.otf");
+}
+
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src: url("font/NotoSansKR-Bold.otf");
+}
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+}
+
+/* 헤더 */
+#header {
+	height: 70px;
+}
+
+.nav {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+	align-items: center;
+	text-align: center;
+	font-family: "NotoSansKR-Regular", sans-serif;
+}
+
+.nav-item {
+	color: #FFFFFF;
+	text-align: center;
+	display: inline-block;
+	font-size: 20px;
+}
+
+#title {
+	font-family: "NotoSansKR-Bold", sans-serif;
+	font-size: 30px;
+	flex: 1 1 11%;
+}
+
+#followingHeader {
+	flex: 1 1 4%;
+	border-right: 1px solid #FFFFFF;
+}
+
+#newHeader {
+	flex: 1 1 4%;
+}
+
+#nav-search {
+	flex: 1 1 50%;
+}
+
+#signUpHeader {
+	flex: 1 1 4%;
+}
+
+#signInHeader {
+	flex: 1 1 4%;
+}
+
+#searchHeader {
+	border-radius: 20px;
+	width: 100%;
+	padding: 10px 5px 10px 10px;
+	color: #000000;
+	border: none;
+	outline: none;
+	font-family: "Arial", FontAwesome;
+}
+
+.btn-header {
+	background-color: #4257B2;
+	border: 0;
+	outline: 0;
+}
+
+#aLinkHeader {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#aLinkHeader:hover {
+	background-color: #4257B2;
+}
+
+/* 헤더 끝 */
+
+/*///////////////////////////////////////////////////////*/
+/*로그인 이후 헤더*/
+/*///////////////////////////////////////////////////////*/
+#header-wrap {
+	min-width: 1400px;
+	height: 50px;
+	background-color: #4257B2;
+}
+
+.login-item {
+	font-size: 15px;
+	color: #FFFFFF;
+	padding: 0px 10px 0px 10px;
+}
+
+.login-btn {
+	width: 70px;
+	background-color: #4257B2;
+	border: 0;
+	outline: 0;
+}
+
+#loginHeader {
+	width: 1400px;
+	height: 50px;
+	background-color: #4257B2;
+	margin: 0 auto;
+	padding: 0 30px;
+}
+
+#login-followingHeader {
+	border-right: 1px solid #FFFFFF;
+}
+
+#login-title {
+	font-family: "NotoSansKR-Bold", sans-serif;
+	font-size: 25px;
+	width: 100px;
+	margin: 0px 70px 0px 0px;
+}
+
+#login-aLinkHeader {
+	width: 100px;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+#login-profileHeader {
+	width: 100px;
+	margin: 0px 40px 0px 20px;
+}
+
+#login-nav-search {
+	margin-right: 50px;
+	width: 650px;
+}
+
+#profileImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 20px;
+}
+
+#login-searchHeader {
+	width: 650px;
+	height: 30px;
+	border-radius: 20px;
+	padding: 10px 5px 10px 10px;
+	color: #000000;
+	border: none;
+	outline: none;
+	font-family: "Arial", FontAwesome;
+}
+
+#login-aLinkHeader:hover {
+	background-color: #4257B2;
+}
+
+.main-wrap {
+	min-width: 1400px;
+	overflow: hidden;
+	background-color: #FFFFFF;
+}
+
+.main-body {
+	display: flex;
+	width: 1400px;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	padding: 0 30px;
+}
+
+.side-nav {
+	background-color: #FFB27D;
+	position: fixed;
+	width: 240px;
+	height: 500px;
+}
+
+.main {
+	position: relative;
+	left: 240px;
+	width: 1000px;
+	margin: 30px;
+	background-color: #FFFFFF;
+}
+
+.content {
+	width: 1000px;
+}
+
+.box {
+	width: 1000px;
+	height: 180px;
+	border: 1px solid #797979;
+	margin: 0px 0px 40px 0px;
+}
+
+.box-head {
+	width: 1000px;
+	height: 60px;
+}
+
+.box-body {
+	width: 1000px;
+	height: 140px;
+}
+
+
+
+
+
+.box-headout{
+	width: 1000px;
+	height: 60px;
+}
+
+.drag {
+	margin: 0px 20px 0px 880px;
+}
+
+
+.add {
+	width: 70px;
+	height: 70px;
+}
+
+.mean {
+	padding: 0px 0px 0px 450px;
+}
+
+#textWord {
+	margin: 0px 80px 0px 0px;
+	width: 400px;
+	height: 50px;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #000000;
+	font-size: 20px;
+}
+
+#textMean {
+	margin: 0px 30px 0px 0px;
+	width: 400px;
+	height: 50px;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #000000;
+	font-size: 20px;
+}
+
+.textTitle {
+	width:600px;
+	height: 50px;
+	margin: 30px 285px 0px 0px;
+	border: none;
+	outline: none;
+	font-size: 25px;
+	font-weight: bold;
+	border-bottom: 2px solid #F1C40F;
+}
+
+/* 설명을 추가해주세요 */ 
+.textAccount {
+	width:600px; 
+	height: 50px;
+	margin: 25px 250px 25px 0px;
+	border: hidden;
+	outline: none;
+	font-size: 25px;
+	font-weight: bold;
+	border-bottom: 2px solid #000000;
+}
+
+/* 만들기 */
+.madeBtn {
+	padding:15px 30px 15px 30px; 
+	text-align:right;
+	border:none;
+	background-color: #3498DB;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+	
+}
+
+.label {
+	margin: 0px 0px 20px 0px;
+	padding: 50px 320px 50px 370px;
+	border:dashed;
+	color:#000000;
+	cursor: pointer;
+}
+
+.p {
+	font-size: 18px;
+	text-align:center;
+	
+}
+
+.boxImg {
+	text-align: left;
+	width: 60x;
+	height: 60px;
+	margin: 0px 0px 0px 0px;
+}
+
+.number {
+	padding: 10px;
+	color: #797979;
+	font-size: 20px;
+}
+
+.word {
+	font-size: 20px;
+	color: #797979;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+}
+
+.underLine {
+	text-align: center;
+	padding: 0px 100px 0px 0px;
+	
+}
+
+.txtTag {
+	margin: 0px 0px 0px 20px;
+	border: hidden;
+	outline: none;
+	border-bottom: 2px solid #F1C40F;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.cardBtn {
+	border: hidden;
+	outline: none;
+	border-bottom: 2px solid #1ABC9C;
+	background-color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	
+}
+
+.dragBtn {
+	border: none;
+	outline: none;
+	background-color: #ffffff;
+	cursor: move;
+	position: relative; 
+}
+
+.btn btn-default {
+	border: none;
+	outline: none;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+.tag {
+	font-size: 16px;
+	
+}
+
+.boxImg {
+	width: 50px;
+	height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
