@@ -34,25 +34,7 @@
 		<div class="folder-wrap">
 			<!-- 내폴더 -->
 			<div class="folder-Area myfolder">
-				<!-- 그룹번호는 상위폴더의 그룹번호, 상위폴더가 없을경우 폴더번호
-					 depth는 상위폴더의 depth+1, 상위폴더가 없을경우 0
-					 ino는 폴더번호 -->
-				<%-- <c:forEach items="${myfolderList }" var="folderList">
-				<c:choose>
-					<c:when test="${folderList.depth <= 2}">
-						<div class="folder-contents myfolderContents myfolderDepth-${folderList.depth }" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
-							<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="folder-contents myfolderContents myfolderDepth-3" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
-							<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
-						</div>
-					</c:otherwise>
-				</c:choose>
-				</c:forEach> --%>
-				
-				
+							
 			</div>
 				
 		</div>
@@ -69,13 +51,7 @@
 		<div class="folder-wrap">
 			<!-- 방문한 페이지 사용자폴더 -->
 			<div class="folder-Area otherfolder">
-			
-			
-				<%-- <c:forEach items="${otherfolderList }" var="folderList">
-					<div class="folder-contents otherfolderContents" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
-						<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
-					</div>
-				</c:forEach> --%>
+
 			</div>
 		</div>
 		

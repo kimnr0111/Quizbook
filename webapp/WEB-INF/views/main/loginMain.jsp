@@ -172,6 +172,7 @@
 </div>
 <!-- 폴더생성 모달창 -->
 
+
 <!-- 폴더삭제 모달창 -->
 <div class="modal fade" id="folderDeleteModal">
 	<div class="modal-dialog">
@@ -493,7 +494,11 @@
 		console.log("사이드바 폴더만들기");
 		var groupNo = 0;
 		var depth = 0;
-		$("#folderCreate-groupNo").val(groupNo); 
+		var folderNo = 0;
+		var orderNo = 0;
+		$("#folderCreate-folderNo").val(folderNo);
+	    $("#folderCreate-groupNo").val(groupNo);
+	    $("#folderCreate-orderNo").val(orderNo);
 	    $("#folderCreate-depth").val(depth);
 		$("#folderCreateModal").modal();
 	});

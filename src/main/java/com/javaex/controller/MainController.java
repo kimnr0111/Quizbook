@@ -79,6 +79,7 @@ public class MainController {
 		return "main/loginMain";
 	}
 	
+	/* 폴더리스트 불러오기 */
 	@ResponseBody
 	@RequestMapping(value = "/getFolderList", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<FolderVo> getFolderList(@RequestBody FolderVo folderVo) {
@@ -93,7 +94,7 @@ public class MainController {
 		
 	}
 	 
-
+	/* 세트리스트 불러오기 */
 	@ResponseBody
 	@RequestMapping(value = "/setList", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<MainVo> setList(@RequestBody MainVo mainVo) {
@@ -109,6 +110,7 @@ public class MainController {
 		return setList;
 	}
 
+	/* 세트삭제 */
 	@ResponseBody
 	@RequestMapping(value = "/setDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	public int setDelete(@RequestBody MainVo mainVo) {
@@ -120,6 +122,7 @@ public class MainController {
 
 	}
 
+	/* 모달창 폴더리스트 불러오기 */
 	@ResponseBody
 	@RequestMapping(value = "/folderList", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<FolderVo> folderList(@RequestBody MainVo mainVo) {
@@ -131,6 +134,7 @@ public class MainController {
 
 	}
 
+	/* 세트복사 */
 	@ResponseBody
 	@RequestMapping(value = "/setCopy", method = { RequestMethod.GET, RequestMethod.POST })
 	public int setCopy(@RequestBody MainVo vo) {
@@ -147,7 +151,8 @@ public class MainController {
 		return folderNo;
 
 	}
-
+	
+	/* 폴더생성 */
 	@RequestMapping(value = "/folderCreate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String folderCreate(HttpSession session, @ModelAttribute FolderVo folderVo) {
 		System.out.println("/Quizbook/folderCreate");
@@ -163,22 +168,23 @@ public class MainController {
 		return "redirect:/" + id + "";
 	}
 
-	/*
-	 * @RequestMapping(value="/folderDelete", method={RequestMethod.GET,
-	 * RequestMethod.POST}) public String folderDelete(HttpSession
-	 * session, @ModelAttribute FolderVo folderVo) {
-	 * System.out.println("/Quizbook/folderDelete");
-	 * 
-	 * System.out.println(folderVo.toString());
-	 * 
-	 * mainService.deleteFolder(folderVo);
-	 * 
-	 * UserVo loginUser = (UserVo) session.getAttribute("authUser");
-	 * 
-	 * String id = loginUser.getId();
-	 * 
-	 * return "redirect:/" + id + ""; }
-	 */
+	/* 폴더삭제 */
+	@RequestMapping(value="/folderDelete", method={RequestMethod.GET,
+	RequestMethod.POST}) public String folderDelete(HttpSession
+	session, @ModelAttribute FolderVo folderVo) {
+		System.out.println("/Quizbook/folderDelete");
+	 
+		System.out.println(folderVo.toString());
+	 
+		mainService.deleteFolder(folderVo);
+	 
+		UserVo loginUser = (UserVo) session.getAttribute("authUser");
+	 
+		String id = loginUser.getId();
+	 
+		return "redirect:/" + id + ""; 
+	}
+	 
 
 }
 

@@ -31,7 +31,7 @@
 		]]>
 	</insert>
 	
-	<!-- orderNo 조정(폴더만들기 전에 실행) -->
+	<!-- 폴더만들기 orderNo 조정(폴더만들기 전에 실행) -->
 	<update id="orderNoModify" parameterType="com.javaex.vo.FolderVo">
 		<![CDATA[
 			update folder
@@ -56,5 +56,14 @@
 			where folderNo = #{folderNo}
 		]]>
 	</delete>
+	
+	<!-- 폴더삭제 orderNo 조정(폴더삭제 전에 실행) -->
+	<update id="orderNoDelete" parameterType="com.javaex.vo.FolderVo">
+		<![CDATA[
+			update folder
+			set orderno = orderno - 1
+			where groupno = #{groupNo} and orderno >= #{orderNo}
+		]]>
+	</update>
 	
 </mapper>

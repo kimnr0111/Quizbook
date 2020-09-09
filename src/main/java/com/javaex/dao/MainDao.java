@@ -101,4 +101,10 @@ public class MainDao {
 		System.out.println("MainDao:deleteFolder");
 		sqlSession.delete("folder.deleteFolder", folderNo);
 	}
+	
+	//폴더삭제후 orderNo정렬
+	public void orderNoDelete(FolderVo folderVo) {
+		System.out.println("MainDao:orderNoDelete");
+		sqlSession.update("folder.orderNoDelete", folderVo);
+	}
 }

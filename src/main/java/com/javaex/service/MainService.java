@@ -105,10 +105,16 @@ public class MainService {
 	}
 	
 	//폴더삭제
-	public void deleteFolder(int folderNo) {
+	public void deleteFolder(FolderVo folderVo) {
 		System.out.println("MainService:deleteFolder");
 		
+		System.out.println("삭제 폴더정보" + folderVo.toString());
+		
+		int folderNo = folderVo.getFolderNo();
+		System.out.println("삭제 폴더번호" + folderNo);
+		
 		mainDao.deleteFolder(folderNo);
+		mainDao.orderNoDelete(folderVo);
 	}
 
 }
