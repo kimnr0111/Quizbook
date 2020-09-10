@@ -142,11 +142,13 @@ public class MainController {
 
 		System.out.println(vo.getFolderNo());
 		System.out.println(vo.getSetNo());
+		System.out.println(vo.getUserNo());
 
 		int folderNo = vo.getFolderNo();
 		int setNo = vo.getSetNo();
+		int userNo = vo.getUserNo();
 
-		mainService.getSet(folderNo, setNo);
+		mainService.getSet(folderNo, setNo, userNo);
 
 		return folderNo;
 

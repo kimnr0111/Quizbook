@@ -60,7 +60,7 @@
 					<!-- profileInfo -->
 					<div id="userprofile-Button">
 						<div class="leftButton">
-							<a href="${pageContext.request.contextPath}/study/set" class="user-alink">
+							<a href="" id="userAlink" class="user-alink">
 								<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
 							</a>
 						</div>
@@ -130,14 +130,19 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
-				<select id="setCopy-folderArea">
+				<div class="folder-Area setCopyFolder">
 					
-				</select>
+				</div>
+				<!-- <select id="setCopy-folderArea">
+					
+				</select> -->
 			</div>
+			
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				<button type="button" class="btn btn-primary" id="setCopyModal-Button">복사</button>
 				<input type="text" value="" id="setCopyNo"><br>
+				<input type="text" value="" id="setCopyFolderNo"><br>
 			</div>
 		</div>
 		
@@ -305,7 +310,7 @@
 		console.log("복사버튼클릭");
 		$("#setCopyModal").modal();
 		
-		var no = ${sessionScope.authUser.userNo};
+		/* var no = ${sessionScope.authUser.userNo};
 		console.log("authUser : " + no);
 		var mainVo = {
 				userNo: no
@@ -328,7 +333,28 @@
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
+		}); */
+		
+	});
+	
+	/* 세트복사 폴더클릭 */
+	$(document).on('click', '.myContextmenu', function(){
+		console.log("세트복사 폴더클릭");
+		var $this = $(this);
+		
+		console.log("클릭한폴더 번호는: " + $this.data("folderno"));
+		
+		var clickfolderno = $this.data("folderno");
+		
+		$("#setCopyFolderNo").val(clickfolderno);
+		
+	});
+	
+	/* 삭제버튼클릭 */
+	$(document).on('click', '#setDelete', function(){
+		event.preventDefault();
+		console.log("삭제버튼클릭");
+		$("#setDeleteModal").modal();
 	});
 	
 	/* 모달창 복사버튼클릭 */
@@ -337,13 +363,17 @@
 		
 		var setNo = $("#setCopyNo").val();
 		console.log("세트번호:" + setNo);
-		var folderNo = $("#setCopy-folderArea").val();
 		
+		
+		var folderNo = $("#setCopyFolderNo").val();
 		console.log("폴더번호:" + folderNo);
+		
+		var userNo = ${sessionScope.authUser.userNo};
 		
 		var vo = {
 				setNo: setNo,
-				folderNo: folderNo
+				folderNo: folderNo,
+				userNo: userNo
 		}
 		
 		$.ajax({
@@ -646,6 +676,7 @@
 
 	}
 	
+	/* 세트복사 클릭시 로그인한 사용자 폴더목록 */
 	function renderOption(folderVo) {
 		
 		var str = "";

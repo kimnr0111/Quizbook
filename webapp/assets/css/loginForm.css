@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* 폰트적용 */
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src:url("fonts/NotoSansKR-Regular.otf");
+}
+
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src:url("fonts/NotoSansKR-Bold.otf");
+}
+/****************************************************************/
+/* 초기화 관련 ***************************************************/
+/****************************************************************/
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+}
+
+/* 바디정렬 */
+body {
+	text-align: center;
+}
+
+/* 로그인 상단 이미지 */
+.loginImg {
+	position: center;
+} 
+
+
+/* 로그인 버튼  */
+.lgbtn {
+	width: 267px;
+	height: 40px;
+	margin: 20px 0px 10px 0px;
+	background-color: #6CCCCD;
+	padding: 10px 20px 10px 20px;
+	font-size: 15px;
+	cursor: pointer;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius:20px;
+}
+ 
+/* 페이스북 로그인버튼 */
+.btnFacebook {
+	width: 267px;
+	height: 40px;
+	margin: 10px 0px 0px 0px;
+	background-color: #3975EA;
+	padding: 10px 20px 10px 20px;
+	font-size: 15px;
+	cursor: pointer;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius: 20px;
+}
+
+/* 구글 로그인버튼 */
+.btnGoogle {
+	width: 267px;
+	height: 40px;
+	margin: 10px 0px 0px 0px;
+	background-color: #DFDFDF;
+	padding: 10px 20px 10px 20px;
+	font-size: 15px;
+	cursor: pointer;
+	color: #000000;
+	border: 0px;
+	border-radius: 20px;
+}
+
+/* 비밀번호를 잊으셨나요? */
+.pw {
+	font-family: "NotoSansKR-Regular";
+	font-size: 15px;
+	color: #686868;
+	text-align: left;
+	margin: 5px 0px 0px 100px;
+	padding-left:2px;
+}
+
+/* footer */
+.footer {
+	margin: 30px 0px 0px 0px;
+	color: #000000;
+}
+
+
+
+/* 로그인 */
+#center-content #loginForm #centerplz {
+	width: 267px;
+	height: 40px;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 20px;
+	font-family: "NotoSansKR-Regular";
+}
+
+
+/* 아이디박스 */
+#center-content #loginForm #textId {
+	width: 267px;
+	height: 50px;
+	margin: 50px 0px 0px 0px;
+	font-family: "NotoSansKR-Regular";
+	border-radius: 13px;
+	padding-left:5px;
+	color:black;
+}
+
+/* 비밀번호 박스 */
+#center-content #loginForm #textPassword {
+	width: 267px;
+	height: 50px;
+	margin: 10px 0px 0px 0px;
+	font-family: "NotoSansKR-Regular";
+	border-radius: 13px;
+	padding-left:5px;
+	color:black;
+}
+
+/* 또는 */
+#center-content #loginForm #or {
+	text-align: center;
+	color: #686868;
+	font-family: "NotoSansKR-Regular";
+	font-size:15px;
+	padding-top:10px;
+}
+
+
+
+
+
+
+
+
+

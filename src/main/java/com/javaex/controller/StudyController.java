@@ -37,12 +37,5 @@ public class StudyController {
 		
 		return "study/main";
 	}
-	
-	@RequestMapping("/set")
-	public String Set() {
-		System.out.println("study/set");
-	
-		return "study/set";
-	}
 
 }

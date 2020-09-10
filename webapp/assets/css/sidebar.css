@@ -31,13 +31,13 @@ textarea, button, form {margin: 0; padding: 0;}
       box-shadow:0px 0px 15px #cdcdcd ;
       display:inline-block;
       z-index:0;
+      font-family:"NotoSansKR-Regular";
+      font-weight: bold;
+      font-size: 13px;
     }
 
    ul {
       list-style:none;
-      font-family:"NotoSansKR-Regular";
-      font-weight: bold;
-      font-size: 13px;
     }
    
    /* ----- li 전체 적용 ----- */
@@ -187,7 +187,7 @@ textarea, button, form {margin: 0; padding: 0;}
 	}
 	
 	.myfolder {
-		display:none;
+		display:block;
 	}
 	
 	.otherfolder {

@@ -46,11 +46,12 @@
 				폴더 +
 			</div>
 		
-		
-		<div class="otherfolder-title"> <img class="fold-block"
-				src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-				alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
-		</div>
+			<c:if test="${userVo.id != sessionScope.authUser.id }">
+				<div class="otherfolder-title"> <img class="fold-block"
+					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
+					alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
+				</div>
+			</c:if>
 		</c:if>
 		
 		<div class="folder-wrap">
@@ -104,6 +105,25 @@
 				console.log(myfolderList.length);
 				for(var i=0;i<myfolderList.length;i++) {
 					myfolderRender(myfolderList[i]);
+				}
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		/* 세트복사 폴더리스트 */
+		$.ajax({
+			url : "${pageContext.request.contextPath }/getFolderList",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(myVo),
+			success : function(myfolderList){
+				console.log(myfolderList.length);
+				for(var i=0;i<myfolderList.length;i++) {
+					setCopyFolderRender(myfolderList[i]);
 				}
 				
 			},
@@ -171,6 +191,10 @@
 
 		var folderno = $this.data("folderno");
 		var foldername = $this.data("foldername");
+		
+		$("#userAlink").attr("href", "${pageContext.request.contextPath}/set/" + folderno);
+		
+		
 		
 		var folderStatus = $(".myfolderContents[data-rootno=" + folderno + "]");
 		var display = $(".myfolderContents[data-rootno=" + folderno + "]").css('display');
@@ -240,6 +264,50 @@
 		getSetList(folderno);
 	});
 	
+	/* 세트복사 폴더클릭 */
+	$(document).on('click', '.setCopyFolderContents', function(event){
+		console.log("폴더클릭");
+		event.stopPropagation();
+		
+		var $this = $(this);
+		
+		/* 클릭강조 */
+		/* $this.addClass('selected').siblings().removeClass('selected'); */
+		
+		/* 폴더번호, 그룹번호, depth번호 가져옴 */
+		console.log("폴더번호:" + $this.data("folderno"));
+		console.log("상위폴더번호:" + $this.data("rootno"));
+		console.log("그룹번호:" + $this.data("groupno"));
+		console.log("정렬번호:" + $this.data("orderno")) + 1;
+		console.log("depth:" + $this.data("depth"));
+		console.log("폴더이름:" + $this.data("foldername"));
+
+		var folderno = $this.data("folderno");
+		var foldername = $this.data("foldername");
+		
+		var folderStatus = $(".setCopyFolderContents[data-rootno=" + folderno + "]");
+		var display = $(".setCopyFolderContents[data-rootno=" + folderno + "]").css('display');
+		
+		console.log(display);
+		
+		/* 디스플레이가 none일때 보이고 block일때 안보이게 */
+		if(display == 'none') {
+			console.log("display:none");
+			folderStatus.slideDown();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_down');
+		} else if(display == 'block') {
+			console.log("display:block");
+			folderStatus.slideUp();
+			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');			
+		}
+		
+	});
+	
+	
+	
+	/* 세트복사폴더기능 */
+	
+	
 	/* myfolder 그리기 */
 	function myfolderRender(myfolderList) {
 		
@@ -273,6 +341,41 @@
 		} else {
 			console.log("depth:else")
 			$(".myfolderContents[data-groupno=" + myfolderList.groupNo + "][data-folderno=" + myfolderList.rootNo + "]").append(str);
+		}
+	}
+	
+	/* 세트복사 모달창 폴더그리기 */
+	function setCopyFolderRender(myfolderList) {
+		if(myfolderList.depth <= 2) {
+			var str = "";
+			str += "<div class='folder-contents setCopyFolderContents folderDepth-" + myfolderList.depth + "' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-" + myfolderList.depth + "'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		} else {
+			var str = "";
+			str += "<div class='folder-contents setCopyFolderContents folderDepth-3' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-hover myContextmenu' data-folderno=" + myfolderList.folderNo + " data-groupno=" + myfolderList.groupNo + " data-rootno=" + myfolderList.rootNo + " data-orderno=" + myfolderList.orderNo + " data-depth=" + myfolderList.depth + " data-foldername=" + myfolderList.folderName + ">";
+			str += "<div class='folderContents-padding-3'>";
+			str += "<i class='material-icons' data-ino=" + myfolderList.folderNo + " style='font-size: 20px'>keyboard_arrow_right</i>" + myfolderList.folderName + "";
+			str += "</div>";
+			str += "</div>";
+			str += "</div>";
+			str += "";
+		}
+		
+		console.log(str);
+		
+		if(myfolderList.depth == 0) {
+			console.log("depth:0");
+			$(".setCopyFolder").append(str);
+		} else {
+			console.log("depth:else")
+			$(".setCopyFolderContents[data-groupno=" + myfolderList.groupNo + "][data-folderno=" + myfolderList.rootNo + "]").append(str);
 		}
 	}
 	

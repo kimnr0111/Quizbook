@@ -38,11 +38,12 @@ public class MainService {
 	}
 	
 	//세트 복사
-	public int getSet(int folderNo, int setNo) {
+	public int getSet(int folderNo, int setNo, int userNo) {
 		System.out.println("MainService:getSet");
 		
 		MainVo set = mainDao.getSet(setNo);
 		set.setFolderNo(folderNo);
+		set.setUserNo(userNo);
 		
 		if(set.getSetImg() == null) {
 			set.setSetImg("");
