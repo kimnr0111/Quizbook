@@ -21,12 +21,38 @@
 			from sets
 			where setNo = #{setNo}
 		]]>
+		
 	</select>
 	
+	<!--방명록 글 저장(ajax)
+	<insert id="addSet" parameterType="com.javaex.vo.GuestVo">
+		비어있던 no에 seq_no.nextval 값을 넣음
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">	
+			select seq_no.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into guestbook
+			values (#{no}, #{name}, #{password}, #{content}, sysdate)
+		]]>
+	</insert> -->
+	
+
+	
+	
 	<!-- 세트저장 -->
-	<select id="addSet" parameterType="com.javaex.vo.MainVo" resultType="int">
+	<insert id="addSet" parameterType="com.javaex.vo.MainVo">
 		<![CDATA[
 			insert into sets values(setNo.nextval, #{folderNo}, #{userNo}, #{setName}, #{setExplain}, sysdate, #{setImg}, #{search_tag}, #{setlike}, #{setdislike})
+		]]>
+	</insert>
+	
+	<!-- 저장된 세트 불러오기 -->
+	<select id="getSetCreate" parameterType="com.javaex.vo.MainVo" resultType="int">
+		<![CDATA[
+			select max(setno)
+			from sets
+			where userno = #{userNo}
 		]]>
 	</select>
 	

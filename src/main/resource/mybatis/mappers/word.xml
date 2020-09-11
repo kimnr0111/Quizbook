@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="word">
+	
+	<!-- 폴더리스트 가져오기 -->
+	<select id="getWords" parameterType="int" resultType="com.javaex.vo.WordVo">
+		<![CDATA[
+			select *
+			from word
+			where setNo = #{setNo}
+			order by orderno
+		]]>
+	</select>
+	
+	<!-- 카드 추가 -->
+	<insert id="createWord" parameterType="com.javaex.vo.WordVo">
+		<![CDATA[
+			insert into word values(wordNo.nextval, #{setNo}, #{word}, #{meaning}, '', #{orderNo})
+		]]>
+	</insert>
+	
+</mapper>

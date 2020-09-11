@@ -9,5 +9,6 @@
     	<mapper resource="mybatis/mappers/set.xml" />
     	<mapper resource="mybatis/mappers/user.xml" />
     	<mapper resource="mybatis/mappers/folder.xml" />
+    	<mapper resource="mybatis/mappers/word.xml" />
     </mappers>
 </configuration>

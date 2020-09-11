@@ -54,6 +54,12 @@ public class MainController {
 		UserVo loginUser = (UserVo) session.getAttribute("authUser");
 
 		System.out.println(loginUser);
+		
+		// 로그인한 유저 기본폴더 불러오기(사이드바 세트만들기용)
+		UserVo authUserVo = mainService.getUser(authUser.getId());
+		int authUserNo = authUserVo.getUserNo();
+		FolderVo userFolderVo = mainService.getFolder(authUserNo);
+		session.setAttribute("authUserFolder", userFolderVo);
 
 		// 아이디로 유저번호 알아내기
 		UserVo userVo = mainService.getUser(id);

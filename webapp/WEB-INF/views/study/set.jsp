@@ -30,12 +30,12 @@
 					<strong>학습 세트 만들기</strong>
 				</h1>
 				<div class="txtTitle">
-					<input class="textTitle" type="text" name="title"
+					<input class="textTitle" type="text" name="title" value="" id="setTitle"
 						placeholder="제목을 입력해주세요">
-					<button class="madeBtn">만들기</button>
+					<button class="madeBtn" onClick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'">만들기</button>
 				</div>
 				<div>
-					<input class="textAccount" type="text" name="account"
+					<input class="textAccount" type="text" name="account" value="" id="setExplain"
 						placeholder="설명을 추가하세요">
 				</div>
 				<div>
@@ -72,8 +72,8 @@
 										<div class="box-body">
 											<div class="word">
 												<div>
-													<input class="textWord" type="text" name="word"> 
-													<input class="textMean" type="text" name="mean"> 
+													<input class="textWord" type="text" value="" name="word"> 
+													<input class="textMean" type="text" value="" name="mean"> 
 														<label for="file-input"> 
 															<img class="add" src="${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png" />
 														</label>
@@ -133,6 +133,7 @@
 	$(document).on("click", "button[name=addCard]", function() {
 		console.log("추가버튼클릭");
 		wordCardNo = wordCardNo + 1;
+		console.log("추가후 wordCardNo:" + wordCardNo);
 		wordCardRender(wordCardNo);				
 	});
 	
@@ -140,6 +141,7 @@
 	$(document).on("click", "button[name=deleteBtn]", function() {
 		console.log("삭제버튼클릭");
 		wordCardNo = wordCardNo - 1;
+		console.log("삭제후 wordCardNo:" + wordCardNo);
 		var $this = $(this);
 		
 		console.log($this.data("trcard"));
@@ -166,7 +168,7 @@
 			console.log("반복");
 			
 		}
-
+		
 		/* $("tr[data-trcardno]").each(function(){
 			var $this = $(this);
 			var trCardNoData = $this.data("trcardno");
@@ -182,6 +184,93 @@
 		}); */
 	
 		});
+	
+	//세트 만들기 클릭
+	$(document).on('click', '.madeBtn', function(){
+		console.log("세트만들기클릭");
+		
+		var setTitle = $("#setTitle").val();
+		var setExplain = $("#setExplain").val();
+		var setTag = $("#textTag").val();
+		var authUserId = ${sessionScope.authUser.id};
+		var userNo = ${sessionScope.authUser.userNo};
+		
+		
+
+		
+		console.log(setTitle);
+		console.log(setExplain);
+		console.log(setTag);
+		console.log(folderno);
+		console.log("id:" + authUserId);
+		console.log("카드번호:" + wordCardNo);
+		
+		var setVo = {
+				setName: setTitle,
+				setExplain: setExplain,
+				userNo: userNo,
+				id: authUserId,
+				search_tag: setTag,
+				folderNo: folderno
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/set/setCreate",		
+			type : "post",
+			contentType : "application/json",
+			dataType: "json",
+			data : JSON.stringify(setVo),
+			success : function(no){
+				
+				console.log("성공:" + no);
+				var createSetNo = no;
+				
+				/* 카드갯수만큼 반복해서 insert실행 */
+				for(var i=1;i<=wordCardNo;i++) {
+					console.log("createSetNo:" + createSetNo);
+					console.log("워드카드번호반복테스트");
+					var orderNo = i;
+					var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
+					var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
+					var wordImg = 0;
+					var setCreateMap = {
+							createSetNo: createSetNo,
+							orderNo: orderNo,
+							authUserId: authUserId,
+							word: word,
+							meaning: meaning
+					}
+					console.log(setCreateMap);
+					
+					$.ajax({
+						url : "${pageContext.request.contextPath }/set/cardCreate",		
+						type : "post",
+						contentType : "application/json",
+						dataType: "json",
+						data : JSON.stringify(setCreateMap),
+						success : function(count){
+							console.log("성공:" + count);
+						},
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}
+					});
+				}
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+
+		
+		
+		
+		
+		
+		
+	});
 	
 	function wordCardRender(wordCardNo) {
 		var str = "";
@@ -206,8 +295,8 @@
 		str += "				<div class='box-body'>";
 		str += "					<div class='word'>";
 		str += "						<div>";
-		str += "							<input class='textWord' type='text' name='word'>";
-		str += "							<input class='textMean' type='text' name='mean'>";
+		str += "							<input class='textWord' type='text' value='' name='word'>";
+		str += "							<input class='textMean' type='text' value='' name='mean'>";
 		str += "								<label for='file-input'>";
 		str += "									<img class='add' src='${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png'/>";
 		str += "								</label>";
@@ -226,16 +315,6 @@
 		str += "";
 		
 		$("#wordCardContent").append(str);
-	}
-	
-	function reorder() {
-
-	    $(".itemBox").each(function(i, box) {
-
-	        $(box).find(".itemNum").html(i + 1);
-
-	    });
-
 	}
 		
 </script>

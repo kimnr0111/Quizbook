@@ -65,6 +65,37 @@ public class MainService {
 		return count;
 	}
 	
+	//세트 만들기
+	public int setCreate(MainVo setVo) {
+		System.out.println("MainService:setCreate");
+		
+		if(setVo.getSetImg() == null) {
+			setVo.setSetImg("");
+		}
+		
+		if(setVo.getSearch_tag() == null) {
+			setVo.setSearch_tag("");
+		}
+		
+		if(setVo.getSetExplain() == null) {
+			setVo.setSetExplain("");
+		}
+		
+		int count = mainDao.addSet(setVo);
+		
+		return count;
+		
+	}
+	
+	//만든세트 가져오기
+	public int getSetCreate(MainVo setVo) {
+		System.out.println("MainService:getSetCreate");
+		
+		int createSetNo = mainDao.getSetCreate(setVo);
+		
+		return createSetNo;
+	}
+	
 	//세트지우기
 	public int setDelete(int setNo) {
 		System.out.println("MainService:setDelete");

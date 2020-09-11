@@ -23,7 +23,7 @@
 			<hr>
 		</div>
 		<ul class="nav-mid">
-			<li><a href="${pageContext.request.contextPath}/study/set"> <img class="img-block"
+			<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
 					alt="set"><span id="set-txt">세트만들기</span>
 			</a></li>

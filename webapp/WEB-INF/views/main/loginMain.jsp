@@ -60,7 +60,7 @@
 					<!-- profileInfo -->
 					<div id="userprofile-Button">
 						<div class="leftButton">
-							<a href="" id="userAlink" class="user-alink">
+							<a href="${pageContext.request.contextPath}/set/${folderVo.folderNo }" id="userAlink" class="user-alink">
 								<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
 							</a>
 						</div>
@@ -80,7 +80,7 @@
 				
 				<div id="user-set">
 					<div id="userset-folderName">
-						내 폴더
+						${folderVo.folderName }
 					</div>
 					
 					<div id="userset-setArea">
@@ -133,9 +133,6 @@
 				<div class="folder-Area setCopyFolder">
 					
 				</div>
-				<!-- <select id="setCopy-folderArea">
-					
-				</select> -->
 			</div>
 			
 			<div class="modal-footer">
@@ -156,7 +153,7 @@
 <div class="modal fade" id="folderCreateModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<form action="${pageContext.request.contextPath }/folderCreate" method="get">
+		<form action="${pageContext.request.contextPath }/folderCreate" method="post">
 			<div class="modal-body">
 				<input type="text" name="folderName" placeholder="폴더이름" id="folderCreate-folderName">
 			</div>
@@ -675,34 +672,7 @@
 		$("#userset-setArea").append(str);
 
 	}
-	
-	/* 세트복사 클릭시 로그인한 사용자 폴더목록 */
-	function renderOption(folderVo) {
-		
-		var str = "";
-		str += "<option value=" + folderVo.folderNo + " id='folderNo-" + folderVo.folderNo + "'>" + folderVo.folderName + "</option>";
-		str += "";
-		
-		$("#setCopy-folderArea").append(str);
-	}
-	
-	
-	
-	/* <c:forEach items="${myfolderList }" var="folderList">
-	<c:choose>
-		<c:when test="${folderList.depth <= 2}">
-			<div class="folder-contents myfolderContents myfolderDepth-${folderList.depth }" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
-				<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="folder-contents myfolderContents myfolderDepth-3" data-folderno="${folderList.folderNo }" data-groupno="${folderList.groupNo }" data-rootno="${folderList.rootNo }" data-orderno="${folderList.orderNo }" data-depth="${folderList.depth }">
-				<i class="material-icons" data-ino="${folderList.folderNo }" style="font-size: 20px">keyboard_arrow_right</i>${folderList.folderName}
-			</div>
-		</c:otherwise>
-	</c:choose>
-	</c:forEach> */
-	
+
 	
 </script>
 

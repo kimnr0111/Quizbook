@@ -53,7 +53,18 @@ public class MainDao {
 	public int addSet(MainVo set) {
 		System.out.println("MainDao:addSet");
 		System.out.println("Dao" + set);
-		return sqlSession.insert("set.addSet", set);
+		
+		int createSetNo = sqlSession.insert("set.addSet", set);
+		return createSetNo;
+	}
+	
+	//저장한세트 가져오기
+	public int getSetCreate(MainVo setVo) {
+		System.out.println("MainDao.getSetCreate");
+		
+		int createSetNo = sqlSession.selectOne("set.getSetCreate", setVo);
+		
+		return createSetNo;
 	}
 	
 	//세트지우기
