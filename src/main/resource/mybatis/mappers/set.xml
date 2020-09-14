@@ -24,20 +24,19 @@
 		
 	</select>
 	
-	<!--방명록 글 저장(ajax)
-	<insert id="addSet" parameterType="com.javaex.vo.GuestVo">
-		비어있던 no에 seq_no.nextval 값을 넣음
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">	
-			select seq_no.nextval from dual
-		</selectKey>
-		
+	<!-- 세트업데이트 -->
+	<update id="setUpdate" parameterType="com.javaex.vo.MainVo">
 		<![CDATA[
-			insert into guestbook
-			values (#{no}, #{name}, #{password}, #{content}, sysdate)
+			
+			update sets
+			set setName = #{setName},
+    		setExplain = #{setExplain},
+    		tag = #{search_tag},
+    		setImg = ''
+    		where setNo = #{setNo}
+			
 		]]>
-	</insert> -->
-	
-
+	</update>
 	
 	
 	<!-- 세트저장 -->

@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,51 @@ public class SetController {
 	@Autowired
 	private WordService wordService;
 	
-	/* 세트만들기 페이지로 이동 */
+	/* 세트만들기 화면이동 */
 	@RequestMapping(value = "/{folderno}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String Set(Model model, @PathVariable("folderno") int folderNo) {
 		System.out.println("set/Set");
 		
+		int setFlag = 0;
 		model.addAttribute("folderNo", folderNo);
+		model.addAttribute("setFlag", setFlag);
 	
 		return "study/set";
+	}
+	
+	/* 세트수정 화면이동 */
+	@RequestMapping(value = "setModify/{setno}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String SetModify(Model model, @PathVariable("setno") int setNo) {
+		System.out.println("set/setModify");
+		
+		System.out.println("세트번호" + setNo);
+		
+		//List<WordVo> wordList = wordService.getWords(setNo);
+		//System.out.println(wordList.toString());
+		//model.addAttribute("wordList", wordList);
+		
+		int setFlag = 1;
+		model.addAttribute("setFlag", setFlag);
+		
+		MainVo setVo = mainService.getSetOne(setNo); //클릭한 세트의 정보 넘기기
+		System.out.println(setVo.toString());
+		model.addAttribute("setVo", setVo);
+	
+		return "study/set";
+	}
+	
+	/* 카드리스트 불러오기 */
+	@ResponseBody
+	@RequestMapping(value = "setModifyList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<WordVo> SetModifyList(@RequestBody MainVo mainVo) {
+		System.out.println("set/setModifyList");
+		
+		int setNo = mainVo.getSetNo();
+		
+		List<WordVo> wordList = wordService.getWords(setNo);
+		System.out.println(wordList.toString());
+		
+		return wordList;
 	}
 	
 	/* 세트만들기 */
@@ -74,6 +112,36 @@ public class SetController {
 		return wordService.cardCreate(wordVo);
 
 		 
+	}
+	
+	/* 세트업데이트 */
+	@ResponseBody
+	@RequestMapping(value = "/setUpdate", method = { RequestMethod.GET, RequestMethod.POST })
+	public int setUpdate(@RequestBody MainVo setVo) {
+		System.out.println("set/setUpdate");
+		
+		System.out.println(setVo.toString());
+		
+		mainService.setUpdate(setVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
+	/* 카드업데이트 */
+	@ResponseBody
+	@RequestMapping(value = "/cardUpdate", method = { RequestMethod.GET, RequestMethod.POST })
+	public int cardUpdate(@RequestBody WordVo wordVo) {
+		System.out.println("set/cardUpdate");
+		
+		System.out.println(wordVo.toString());
+		
+		wordService.cardUpdate(wordVo);
+		
+		int count = 0;
+		
+		return count;
 	}
 
 }

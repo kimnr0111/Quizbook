@@ -32,4 +32,15 @@ public class WordService {
 		
 	}
 	
+	//카드업데이트
+	public int cardUpdate(WordVo wordVo) {
+		System.out.println("wordService:cardUpdate");
+		
+		wordDao.cardUpdate(wordVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
 }

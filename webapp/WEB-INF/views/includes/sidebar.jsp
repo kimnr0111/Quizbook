@@ -6,7 +6,7 @@
 
 	<nav class="col-sidenav">
 		<ul class="nav-top">
-			<li><a href=""> <img class="img-block"
+			<li><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id }"> <img class="img-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/open-menu.png"
 					alt="menu"><span id="home-txt">홈</span>
 			</a></li>
@@ -104,6 +104,7 @@
 			success : function(myfolderList){
 				console.log(myfolderList.length);
 				for(var i=0;i<myfolderList.length;i++) {
+					console.log(myfolderList[i]);
 					myfolderRender(myfolderList[i]);
 				}
 				
@@ -192,6 +193,28 @@
 		var folderno = $this.data("folderno");
 		var foldername = $this.data("foldername");
 		
+		var folderNo = {
+				folderNo: folderno
+		}
+		
+		//폴더이름 불러오기
+		$.ajax({
+			url : "${pageContext.request.contextPath }/getFolderName",		
+			type : "post",
+			contentType : "application/json",
+			dataType : "json",
+			data : JSON.stringify(folderNo),
+			success : function(folderName){
+				console.log("성공" + folderName.folderName);
+				
+				$("#userset-folderName").html(folderName.folderName);
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
 		$("#userAlink").attr("href", "${pageContext.request.contextPath}/set/" + folderno);
 		
 		
@@ -212,7 +235,7 @@
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');			
 		}
 		
-		$("#userset-folderName").html(foldername);
+		//$("#userset-folderName").html(foldername);
 		
 		getSetList(folderno);
 	});
@@ -247,6 +270,28 @@
 		var folderno = $this.data("folderno");
 		var foldername = $this.data("foldername");
 		
+		var folderNo = {
+				folderNo: folderno
+		}
+		
+		//폴더이름 불러오기
+		$.ajax({
+			url : "${pageContext.request.contextPath }/getFolderName",		
+			type : "post",
+			contentType : "application/json",
+			dataType : "json",
+			data : JSON.stringify(folderNo),
+			success : function(folderName){
+				console.log("성공" + folderName.folderName);
+				
+				$("#userset-folderName").html(folderName.folderName);
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
 		var folderStatus = $(".otherfolderContents[data-rootno=" + folderno + "]");
 		var display = $(".otherfolderContents[data-rootno=" + folderno + "]").css('display');
 		
@@ -258,8 +303,6 @@
 			folderStatus.slideUp();
 			$this.find($(".material-icons[data-ino=" + folderno + "]")).text('keyboard_arrow_right');
 		}
-		
-		$("#userset-folderName").html(foldername);
 		
 		getSetList(folderno);
 	});
@@ -379,6 +422,7 @@
 		}
 	}
 	
+	/* 방문페이지 폴더그리기 */
 	function otherfolderRender(otherfolderList) {
 		if(otherfolderList.depth <= 2) {
 			var str = "";

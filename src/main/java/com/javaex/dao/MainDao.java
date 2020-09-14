@@ -67,6 +67,19 @@ public class MainDao {
 		return createSetNo;
 	}
 	
+	//세트업데이트
+	public int setUpdate(MainVo setVo) {
+		System.out.println("MainDao.setUpdate");
+		
+		sqlSession.update("set.setUpdate", setVo);
+		
+		System.out.println("MainDao.setUpdate끝");
+		
+		int count = 0;
+		
+		return count;
+	}
+	
 	//세트지우기
 	public int setDelete(int setNo) {
 		System.out.println("MainDao:setDelete");
@@ -92,6 +105,13 @@ public class MainDao {
 		FolderVo folderVo = sqlSession.selectOne("folder.getFolder", userNo);
 		System.out.println("기본폴더 불러오기:" + folderVo);
 		return folderVo;
+	}
+	
+	//폴더이름 불러오기
+	public FolderVo getFolderName(int folderNo) {
+		System.out.println("MainDao:getFolderName");
+		FolderVo folderName = sqlSession.selectOne("folder.getFolderName", folderNo);
+		return folderName;
 	}
 	
 	//최상위 폴더만들기

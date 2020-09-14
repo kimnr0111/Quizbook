@@ -65,6 +65,15 @@ public class MainService {
 		return count;
 	}
 	
+	//세트 가져오기
+	public MainVo getSetOne(int setNo) {
+		System.out.println("MainService:getSetOne");
+		
+		MainVo setVo = mainDao.getSet(setNo);
+		
+		return setVo;
+	}
+	
 	//세트 만들기
 	public int setCreate(MainVo setVo) {
 		System.out.println("MainService:setCreate");
@@ -96,6 +105,29 @@ public class MainService {
 		return createSetNo;
 	}
 	
+	//세트업데이트
+	public int setUpdate(MainVo setVo) {
+		System.out.println("MainService:setUpdate");
+		
+		if(setVo.getSetImg() == null) {
+			setVo.setSetImg("");
+		}
+		
+		if(setVo.getSearch_tag() == null) {
+			setVo.setSearch_tag("");
+		}
+		
+		if(setVo.getSetExplain() == null) {
+			setVo.setSetExplain("");
+		}
+		System.out.println("MainService:setUpdate:::" + setVo);
+		mainDao.setUpdate(setVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
 	//세트지우기
 	public int setDelete(int setNo) {
 		System.out.println("MainService:setDelete");
@@ -122,8 +154,15 @@ public class MainService {
 		FolderVo folderVo = mainDao.getFolder(userNo);
 		
 		return folderVo;
+	}
+	
+	//폴더이름 불러오기
+	public FolderVo getFolderName(int folderNo) {
+		System.out.println("MainService:getFolderName");
 		
+		FolderVo folderName = mainDao.getFolderName(folderNo);
 		
+		return folderName;
 	}
 	
 	//폴더만들기

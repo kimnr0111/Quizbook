@@ -33,4 +33,15 @@ public class WordDao {
 		return sqlSession.insert("word.createWord", wordVo);
 	}
 	
+	//카드업데이트
+	public int cardUpdate(WordVo wordVo) {
+		System.out.println("wordDao:cardUpdate");
+		
+		sqlSession.update("word.updateWord", wordVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
 }

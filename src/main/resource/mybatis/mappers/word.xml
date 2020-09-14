@@ -20,4 +20,18 @@
 		]]>
 	</insert>
 	
+	<!-- 카드 업데이트 -->
+	<update id="updateWord" parameterType="com.javaex.vo.WordVo">
+		<![CDATA[
+			merge into word
+			using dual
+    			on (wordno = #{wordNo})
+			when matched then
+    			update set word = #{word}
+    			, meaning = #{meaning}
+			when not matched then
+    			insert (wordNo, setNo, word, meaning, wordImg, orderno) values(wordNo.nextval, #{setNo}, #{word}, #{meaning}, '', #{orderNo})
+		]]>
+	</update>
+	
 </mapper>

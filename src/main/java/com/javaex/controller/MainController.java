@@ -192,6 +192,23 @@ public class MainController {
 	 
 		return "redirect:/" + id + ""; 
 	}
+	
+	/* 폴더이름 불러오기 */
+	@ResponseBody
+	@RequestMapping(value="/getFolderName", method={RequestMethod.GET, RequestMethod.POST}) 
+	public FolderVo getFolderName(HttpSession session, Model model, @RequestBody FolderVo folderVo) {
+		System.out.println("/Quizbook/getFolder");
+		
+		System.out.println("폴더번호 이름" + folderVo);
+		int folderNo = folderVo.getFolderNo();
+		
+		FolderVo folderName = mainService.getFolderName(folderNo);
+		System.out.println("/Quizbook/getFolder : " + folderName);
+		
+		
+		
+		return folderName;
+	}
 	 
 
 }

@@ -224,8 +224,9 @@
 <!-- 우클릭메뉴 폴더 -->
 		<ul class='custom-menu myfolder-menu'>
 			<!-- 수정버튼 클릭시 세트수정폼(세트입력폼에서 약간 수정)으로 이동 -->
-			<li id="folder-setCreate" class='custom-menu-attribute bottom-line' onclick="location.href='#'">세트 만들기</li>
+			<li id="folder-setCreate" class='custom-menu-attribute bottom-line' onclick="">세트 만들기</li>
 			<li id="folderCreate" class='custom-menu-attribute bottom-line'>폴더 만들기</li>
+			<li id="folderNameModify" class='custom-menu-attribute bottom-line'>이름변경</li>
 			<li id="folderCopy" class='custom-menu-attribute bottom-line'>복사</li>
 			<li id="folderDelete" class='custom-menu-attribute'>삭제</li>
 		</ul>
@@ -298,6 +299,8 @@
 	$(document).on('click', '#setModify', function(){
 		event.preventDefault(); //a태그 기능 막기
 		console.log("수정버튼클릭");
+		var setNo = $("#setDelNo").val();
+		location.href = '${pageContext.request.contextPath}/set/setModify/' + setNo;
 		//세트입력폼으로 이동
 	});
 	
@@ -459,6 +462,9 @@
 	    $("#folderDelete-groupNo").val(groupNo); 
 	    $("#folderDelete-orderNo").val(myorderNo);
 	    $("#folderDelete-depth").val(mydepth);
+	    
+	    //세트만들기 링크 설정
+	    $("#folder-setCreate").attr("onclick", "location.href='${pageContext.request.contextPath}/set/" + folderNo + "'");
 
 
 	    
@@ -529,6 +535,11 @@
 	    $("#folderCreate-orderNo").val(orderNo);
 	    $("#folderCreate-depth").val(depth);
 		$("#folderCreateModal").modal();
+	});
+	
+	/* 이름변경클릭 */
+	$(document).on('click', '#folderNameModify', function(){
+		console.log("폴더 이름변경");
 	});
 	
 	/* 복사클릭 */
@@ -649,7 +660,7 @@
 	/* set 그리기 */
 	function render(mainVo) {
 		var str = "";
-		str += "<div class='userset-set' draggable='true' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"' OnClick='location.href =\"${pageContext.request.contextPath }/study/main\"'>";
+		str += "<div class='userset-set' draggable='true' data-setno="+mainVo.setNo+" id='userset-"+mainVo.setNo+"' OnClick='location.href =\"${pageContext.request.contextPath }/study/"+mainVo.setNo+"\"'>";
 		str += "	<div class='setHeader'>";
 		str += "		<div class='setHeader-Save'>";
 		str += "			<button class='setHeader-Save-Button' data-setno="+mainVo.setNo+"><img src='${pageContext.request.contextPath}/assets/images/iconmonstr-plus-1-32.png' class='mainImg'></button>";

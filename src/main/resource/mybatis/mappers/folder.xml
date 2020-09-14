@@ -24,6 +24,15 @@
 		]]>
 	</select>
 	
+	<!-- 폴더이름 불러오기 -->
+	<select id="getFolderName" parameterType="int" resultType="com.javaex.vo.FolderVo">
+		<![CDATA[
+			select folderName
+			from folder
+			where folderNo = #{folderNo}
+		]]>
+	</select>
+	
 	<!-- 최상위 폴더만들기 -->
 	<insert id="createRootFolder" parameterType="com.javaex.vo.FolderVo">
 		<![CDATA[

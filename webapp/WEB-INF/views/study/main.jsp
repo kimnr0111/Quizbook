@@ -60,34 +60,10 @@
 						<div class="card_content">
 
 							<div class="front">
-								<div id="card_content">
-									<!-- if조건 처리 후 ajax $(".card_content").html("element") 사용해서  -->
-
-									<img
-										src="${pageContext.request.contextPath}/assets/images/corn.jpg"
-										class="imgWithText" />
-
-									<div class="text">옥수수</div>
-
-								</div>
+								
 							</div>
+							
 							<div class="back">
-								<div id="card_content">
-
-									<img
-										src="${pageContext.request.contextPath}/assets/images/rabbit.jpg"
-										class="imgWithText" />
-
-									<div class="text">Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate
-										velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-										sint occaecat cupidatat non proident, sunt in culpa qui
-										officia deserunt mollit anim id est laborum.</div>
-
-								</div>
 
 							</div>
 						</div>
@@ -115,9 +91,9 @@
 
 					<div class="CardsList-navControl progressIndex">
 						<ul id="index">
-							<li>1</li>
+							<li id="crt_index"></li>
 							<li>/</li>
-							<li>150</li>
+							<li id="last_index"></li>
 						</ul>
 					</div>
 
@@ -232,6 +208,25 @@
 
 	$(".nextButton,.card_right").on('click', function() {
 		console.log("버튼클릭");
+		
+		
+		crt_index+=1;
+		
+		if(crt_index==0){
+			$(".previousButton,.card_left").hide();
+		} else {
+			$(".previousButton,.card_left").show();
+		}
+		
+		if(crt_index+1==list.length){
+			$(".nextButton,.card_right").hide();
+		} else {
+			$(".nextButton,.card_right").show();
+		}
+		
+		$("#crt_index").text(crt_index+1);
+		$("#last_index").text(list.length);
+		
 		$(".card_wrap").clearQueue();
 		$(".card").clearQueue();
 
@@ -245,9 +240,7 @@
 			console.log("애니메이션 시작");
 
 			setTimeout(function() {
-				$('.front').text('next_front');
-				$('.back').text('next_back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
+				card(crt_index);
 			}, 1000);
 			
 			setTimeout(function() {
@@ -278,8 +271,7 @@
 					}
 				}).dequeue();
 
-				$('.front').text('next_front');
-				$('.back').text('next_back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+				card(crt_index);
 
 				setTimeout(function() {
 					$(".card_wrap").removeClass('next');
@@ -290,59 +282,129 @@
 
 	});
 
-	$(".previousButton,.card_left")
-			.on(
-					'click',
+	$(".previousButton,.card_left").on('click',function() {
+		
+		crt_index-=1;
+		
+		if(crt_index==0){
+			$(".previousButton,.card_left").hide();
+		} else {
+			$(".previousButton,.card_left").show();
+		}
+		
+		if(crt_index+1==list.length){
+			$(".nextButton,.card_right").hide();
+		} else {
+			$(".nextButton,.card_right").show();
+		}
+		
+		$("#crt_index").text(crt_index+1);
+		$("#last_index").text(list.length);
+		
+		console.log("버튼클릭");
+		$(".card_wrap").clearQueue();
+		$(".card").clearQueue();
+
+		console.log(card_front);
+
+		if (card_front == true) {
+			console.log('앞 previous실행')
+
+			$(".card_wrap").addClass('previous');
+			/* $(".card").css('transform','').dequeue(); */
+			console.log("애니메이션 시작");
+
+			setTimeout(
 					function() {
-						console.log("버튼클릭");
-						$(".card_wrap").clearQueue();
-						$(".card").clearQueue();
+						
+						card(crt_index);
+						
+						}, 1000);
 
-						console.log(card_front);
+			setTimeout(function() {
+				$(".card_wrap").removeClass('previous');
+			}, 1000);
 
-						if (card_front == true) {
-							console.log('앞 previous실행')
+		}
+		//back일때
+		//elment에 transform요소를 중복해서 쓸수 없으므로(rotate, translate) card를 싸는 card_wrap을 만들어 각각 적용 card(rotate), card_wrap(translate)
+		else {
+			console.log('뒤 previous실행')
+			//우선순위 1.addClass에 콜백함수를 추가한 함수를 새로 선언하거나(실패) https://gist.github.com/gabrysiak/166befef3264d0c53f47 
+			//2.queue dequeue를 사용(어중간하게 적용), 3.setTimeout
+			$(".card_wrap")
+					.addClass('previous')
+					.delay(1000)
+					.queue(
+							function() {
+								/* $(".card").css('transform','').dequeue(); */
+								console.log("애니메이션 시작");
+								$('.card').animate({deg : 0},{duration : 1, step : function(now) { $(".card").css({transform : 'rotateX('+ now + 'deg)'});}}).dequeue();
+								
+								card(crt_index);
 
-							$(".card_wrap").addClass('previous');
-							/* $(".card").css('transform','').dequeue(); */
-							console.log("애니메이션 시작");
+								setTimeout(function() {$(".card_wrap").removeClass('previous');}, 100);
 
-							setTimeout(
-									function() {
-										$('.front').text('previous_front');
-										$('.back').html('<img class="imgOnly" src="${pageContext.request.contextPath}/assets/images/black_test.jpg"/>');
-										}, 1000);
-
-							setTimeout(function() {
-								$(".card_wrap").removeClass('previous');
-							}, 1000);
-
-						}
-						//back일때
-						//elment에 transform요소를 중복해서 쓸수 없으므로(rotate, translate) card를 싸는 card_wrap을 만들어 각각 적용 card(rotate), card_wrap(translate)
-						else {
-							console.log('뒤 previous실행')
-							//우선순위 1.addClass에 콜백함수를 추가한 함수를 새로 선언하거나(실패) https://gist.github.com/gabrysiak/166befef3264d0c53f47 
-							//2.queue dequeue를 사용(어중간하게 적용), 3.setTimeout
-							$(".card_wrap")
-									.addClass('previous')
-									.delay(1000)
-									.queue(
-											function() {
-												/* $(".card").css('transform','').dequeue(); */
-												console.log("애니메이션 시작");
-												$('.card').animate({deg : 0},{duration : 1, step : function(now) { $(".card").css({transform : 'rotateX('+ now + 'deg)'});}}).dequeue();
-												
-												$('.front').text('previous_front');
-												$('.back').text('previous_back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
-												setTimeout(function() {$(".card_wrap").removeClass('previous');}, 100);
-
-											});
+							});
 						}
 
 					});
 </script>
+
+
+<script type="text/javascript">
+
+	var list = ${json};
+	var crt_index = 0;
+	
+	function card(index) {
+		
+		console.log(list[crt_index].wordImg);
+		//글만 있는경우
+		if(list[crt_index].wordImg == null){
+			$('.front').text(""+list[crt_index].word);
+			$('.back').text(""+list[crt_index].meaning);
+		}
+		//글과 그림이 있는경우
+		else if(list[crt_index].wordImg != null && list[crt_index].word != null){
+			$('.front').html('<div id="card_content"> <img src="${pageContext.request.contextPath}/quizbook/'+list[crt_index].wordImg+'"class="imgWithText" /><div class="text">'+list[crt_index].word+'</div></div>');
+			$('.back').text(""+list[crt_index].meaning);
+		}
+		//그림이 있는경우
+		else if(list[crt_index].wordImg != null && list[crt_index].word == null){
+			$('.front').html('<img class="imgOnly" src="${pageContext.request.contextPath}/quizbook/'+list[crt_index].wordImg+'"/>');
+			$('.back').text(""+list[crt_index].meaning);
+		}
+		
+	}
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		if(crt_index==0){
+			$(".previousButton,.card_left").hide();
+		} else {
+			$(".previousButton,.card_left").show();
+		}
+		
+		if(crt_index+1==list.length){
+			$(".nextButton,.card_right").hide();
+		} else {
+			$(".nextButton,.card_right").show();
+		}
+		
+		card(crt_index);
+		
+		$("#crt_index").text(crt_index+1);
+		$("#last_index").text(list.length);
+		
+	});
+</script>
+
+
+<%-- src="${pageContext.request.contextPath}/upload/${blogVo.logoFile} --%>
 
 <!-- id 안쓰고 class="card" 뒤에 onclick="flip(event) 쓸 경우 
 <script type="text/javascript">
