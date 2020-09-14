@@ -138,8 +138,8 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				<button type="button" class="btn btn-primary" id="setCopyModal-Button">복사</button>
-				<input type="text" value="" id="setCopyNo"><br>
-				<input type="text" value="" id="setCopyFolderNo"><br>
+				<input type="hidden" value="" id="setCopyNo"><br>
+				<input type="hidden" value="" id="setCopyFolderNo"><br>
 			</div>
 		</div>
 		
@@ -160,11 +160,11 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				<button type="submit" class="btn btn-primary" id="folderCreateModal-Button">만들기</button>
-				<input type="text" name="userNo" value="${sessionScope.authUser.userNo }" id="folderCreate-userNo"><br>
-				<input type="text" name="folderNo" value="" id="folderCreate-folderNo"><br>
-				<input type="text" name="groupNo" value="" id="folderCreate-groupNo"><br>
-				<input type="text" name="orderNo" value="" id="folderCreate-orderNo"><br>
-				<input type="text" name="depth" value="" id="folderCreate-depth"><br>
+				<input type="hidden" name="userNo" value="${sessionScope.authUser.userNo }" id="folderCreate-userNo"><br>
+				<input type="hidden" name="folderNo" value="" id="folderCreate-folderNo"><br>
+				<input type="hidden" name="groupNo" value="" id="folderCreate-groupNo"><br>
+				<input type="hidden" name="orderNo" value="" id="folderCreate-orderNo"><br>
+				<input type="hidden" name="depth" value="" id="folderCreate-depth"><br>
 			</div>
 		</form>
 		</div>
@@ -187,10 +187,10 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
 				<button type="submit" class="btn btn-primary" id="folderDeleteModal-Button">예</button>
-				<input type="text" name="folderNo" value="" id="folderDelete-folderNo"><br>
-				<input type="text" name="groupNo" value="" id="folderDelete-groupNo"><br>
-				<input type="text" name="orderNo" value="" id="folderDelete-orderNo"><br>
-				<input type="text" name="depth" value="" id="folderDelete-depth"><br>
+				<input type="hidden" name="folderNo" value="" id="folderDelete-folderNo"><br>
+				<input type="hidden" name="groupNo" value="" id="folderDelete-groupNo"><br>
+				<input type="hidden" name="orderNo" value="" id="folderDelete-orderNo"><br>
+				<input type="hidden" name="depth" value="" id="folderDelete-depth"><br>
 			</div>
 		</form>
 		</div>

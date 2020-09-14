@@ -45,7 +45,7 @@
 			<div class="study_area">
 
 				<!-- 제목 -->
-				<div id="study_title">삼국시대 - 고구려</div>
+				<div id="study_title">${setName}</div>
 				<!-- 제목 -->
 
 				<!-- 카드 -->

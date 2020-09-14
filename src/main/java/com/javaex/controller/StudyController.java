@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javaex.service.MainService;
 import com.javaex.service.WordService;
 import com.javaex.vo.FolderVo;
+import com.javaex.vo.MainVo;
 import com.javaex.vo.UserVo;
 import com.javaex.vo.WordVo;
 
@@ -40,6 +41,11 @@ public class StudyController {
 		List<FolderVo> myfolderList = mainService.folderList(loginUser.getUserNo());
 		System.out.println("my폴더리스트 : " + myfolderList.toString());
 		model.addAttribute("myfolderList", myfolderList);
+		
+		//세트정보불러오기
+		MainVo mainVo = mainService.getSetOne(setNo);
+		String setName = mainVo.getSetName();
+		model.addAttribute("setName", setName);
 		
 		/////////////////////////////////////
 		

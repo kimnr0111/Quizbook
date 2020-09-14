@@ -6,7 +6,10 @@
 	<!-- 세트 리스트 가져오기 -->
 	<select id="selectSetList" parameterType="int" resultType="com.javaex.vo.MainVo">
 		<![CDATA[
-			select sets.*, users.id
+			select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    				nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    				sets.setimg, sets.tag, sets.setlike, 
+    				sets.setdislike, users.id
 			from sets, users
 			where sets.userNo = users.userNo
 			and sets.folderNo = #{folderNo}

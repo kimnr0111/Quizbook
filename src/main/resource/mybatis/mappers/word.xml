@@ -6,7 +6,7 @@
 	<!-- 폴더리스트 가져오기 -->
 	<select id="getWords" parameterType="int" resultType="com.javaex.vo.WordVo">
 		<![CDATA[
-			select *
+			select wordno, setno, nvl(word, ' ') as word, nvl(meaning, ' ') as meaning, wordimg, orderno
 			from word
 			where setNo = #{setNo}
 			order by orderno

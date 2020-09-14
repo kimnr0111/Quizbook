@@ -112,7 +112,10 @@ public class MainController {
 		int folderNo = mainVo.getFolderNo();
 		// Main 나중에 이름 적당한거로 바꾸기
 		List<MainVo> setList = mainService.getSetList(folderNo);
-		System.out.println(setList.toString());
+		System.out.println("구분하기 : : : " + setList.toString());
+		
+		//String space = setList.get(0).getSetExplain();
+		
 		return setList;
 	}
 
