@@ -32,6 +32,13 @@
 
 
 <body>
+
+
+
+	<!-- 테스트!!!!!!!!!!! -->
+	
+	
+	
 	<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	<div id="body">
 
@@ -156,11 +163,6 @@
 
 
 	<%-- <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import> --%>
-
-
-
-		<!-- merge 테스트~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!-->
-
 </body>
 
 <script type="text/javascript">
