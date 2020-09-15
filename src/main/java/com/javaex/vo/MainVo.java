@@ -10,14 +10,14 @@ public class MainVo {
 	private String setExplain;
 	private String regDate;
 	private String setImg;
-	private String search_tag;
+	private String tag;
 	private int setlike;
 	private int setdislike;
 	
 	public MainVo() {}
 
 	public MainVo(int setNo, int folderNo, int userNo, String id, String setName, String setExplain, String regDate,
-			String setImg, String search_tag, int setlike, int setdislike) {
+			String setImg, String tag, int setlike, int setdislike) {
 		this.setNo = setNo;
 		this.folderNo = folderNo;
 		this.userNo = userNo;
@@ -26,7 +26,7 @@ public class MainVo {
 		this.setExplain = setExplain;
 		this.regDate = regDate;
 		this.setImg = setImg;
-		this.search_tag = search_tag;
+		this.tag = tag;
 		this.setlike = setlike;
 		this.setdislike = setdislike;
 	}
@@ -95,12 +95,12 @@ public class MainVo {
 		this.setImg = setImg;
 	}
 
-	public String getSearch_tag() {
-		return search_tag;
+	public String getTag() {
+		return tag;
 	}
 
-	public void setSearch_tag(String search_tag) {
-		this.search_tag = search_tag;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public int getSetlike() {
@@ -123,7 +123,7 @@ public class MainVo {
 	public String toString() {
 		return "MainVo [setNo=" + setNo + ", folderNo=" + folderNo + ", userNo=" + userNo + ", id=" + id + ", setName="
 				+ setName + ", setExplain=" + setExplain + ", regDate=" + regDate + ", setImg=" + setImg
-				+ ", search_tag=" + search_tag + ", setlike=" + setlike + ", setdislike=" + setdislike + "]";
+				+ ", tag=" + tag + ", setlike=" + setlike + ", setdislike=" + setdislike + "]";
 	}
 	
 

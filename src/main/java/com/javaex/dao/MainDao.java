@@ -70,7 +70,7 @@ public class MainDao {
 	//세트업데이트
 	public int setUpdate(MainVo setVo) {
 		System.out.println("MainDao.setUpdate");
-		
+		System.out.println("MainDao:setUpdate:setVo:" + setVo);
 		sqlSession.update("set.setUpdate", setVo);
 		
 		System.out.println("MainDao.setUpdate끝");

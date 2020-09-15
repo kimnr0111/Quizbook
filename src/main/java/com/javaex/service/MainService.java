@@ -1,6 +1,5 @@
 package com.javaex.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,8 @@ public class MainService {
 			set.setSetImg("");
 		}
 		
-		if(set.getSearch_tag() == null) {
-			set.setSearch_tag("");
+		if(set.getTag() == null) {
+			set.setTag("");
 		}
 		
 		if(set.getSetExplain() == null) {
@@ -82,8 +81,8 @@ public class MainService {
 			setVo.setSetImg("");
 		}
 		
-		if(setVo.getSearch_tag() == null) {
-			setVo.setSearch_tag("");
+		if(setVo.getTag() == null) {
+			setVo.setTag("");
 		}
 		
 		if(setVo.getSetExplain() == null) {
@@ -113,8 +112,8 @@ public class MainService {
 			setVo.setSetImg("");
 		}
 		
-		if(setVo.getSearch_tag() == null) {
-			setVo.setSearch_tag("");
+		if(setVo.getTag() == null) {
+			setVo.setTag("");
 		}
 		
 		if(setVo.getSetExplain() == null) {

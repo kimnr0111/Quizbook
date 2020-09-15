@@ -34,7 +34,7 @@
 			update sets
 			set setName = #{setName},
     		setExplain = #{setExplain},
-    		tag = #{search_tag},
+    		tag = #{tag},
     		setImg = ''
     		where setNo = #{setNo}
 			
@@ -45,7 +45,7 @@
 	<!-- 세트저장 -->
 	<insert id="addSet" parameterType="com.javaex.vo.MainVo">
 		<![CDATA[
-			insert into sets values(setNo.nextval, #{folderNo}, #{userNo}, #{setName}, #{setExplain}, sysdate, #{setImg}, #{search_tag}, #{setlike}, #{setdislike})
+			insert into sets values(setNo.nextval, #{folderNo}, #{userNo}, #{setName}, #{setExplain}, sysdate, #{setImg}, #{tag}, #{setlike}, #{setdislike})
 		]]>
 	</insert>
 	

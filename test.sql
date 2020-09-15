@@ -1,4 +1,4 @@
---유저테이블
+--users
 create table users(
     userNo number not null,
     id VARCHAR2(50) not null,
@@ -15,7 +15,7 @@ create table users(
     constraint users_pk primary key(userNo)
 );
 
---폴더테이블
+--folder
 create table folder(
     folderNo number not null,
     userNo number not null,
@@ -26,14 +26,15 @@ create table folder(
     depth number not null,
     regDate date not null,
     constraint folder_pk primary key(folderNo),
-    constraint folder_fk foreign key(userNo) references users(userNo)
+    constraint folder_fk foreign key(userNo) references users(userNo) on delete cascade
 );
 
---시퀀스
+--sequence
 create sequence folderNo start with 1 increment by 1;
 create sequence setNo start with 1 increment by 1;
+create sequence wordNo start with 1 increment by 1;
 
---세트테이블
+--sets
 create table sets(
     setNo number not null,
     folderNo number not null,
@@ -46,8 +47,20 @@ create table sets(
     setlike number,
     setdislike number,
     constraint sets_pk primary key(setNo),
-    constraint sets_fk_folderNo foreign key(folderNo) references folder(folderNo),
-    constraint sets_fk_userNo foreign key(userNo) references users(userNo)
+    constraint sets_fk_folderNo foreign key(folderNo) references folder(folderNo) on delete cascade,
+    constraint sets_fk_userNo foreign key(userNo) references users(userNo) on delete cascade
+);
+
+--word
+create table word(
+    wordNo number not null,
+    setNo number not null,
+    word varchar2(500),
+    meaning varchar2(500),
+    wordImg varchar2(500),
+    orderNo number not null,
+    constraint word_pk primary key(wordNo),
+    constraint word_fk_setNo foreign key(setNo) references sets(setNo) on delete cascade
 );
 
 select *
@@ -60,25 +73,28 @@ order by orderno asc;
 select *
 from sets;
 
+select *
+from word;
+
 delete from folder
 where folderno = 18;
 
 
-insert into users values(2, '456', '누리12', '김34', '김누리123', '1234', sysdate, 26, '', '', '', '');
+insert into users values(2, '456', '12', '34', '123', '1234', sysdate, 26, '', '', '', '');
 
-insert into folder values(folderNo.nextval, 2, '폴더2', folderNo.nextval, 0, 1, 0, sysdate);
+insert into folder values(folderNo.nextval, 1, '내 폴더', folderNo.nextval, 0, 1, 0, sysdate);
 
-insert into folder values(folderNo.nextval, 1, '폴더1-1', 1, 1, 2, 1, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-1', 1, 1, 2, 1, sysdate);
 
-insert into folder values(folderNo.nextval, 1, '폴더1-1-1', 1, 8, 3, 2, sysdate);
-insert into folder values(folderNo.nextval, 1, '폴더1-1-2', 1, 8, 4, 2, sysdate);
-insert into folder values(folderNo.nextval, 1, '폴더1-2', 1, 1, 5, 1, sysdate);
-insert into folder values(folderNo.nextval, 1, '폴더1-3', 1, 1, 6, 1, sysdate);
-insert into folder values(folderNo.nextval, 1, '폴더1-3-1', 1, 12, 7, 2, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-1-1', 1, 8, 3, 2, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-1-2', 1, 8, 4, 2, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-2', 1, 1, 5, 1, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-3', 1, 1, 6, 1, sysdate);
+insert into folder values(folderNo.nextval, 1, '????1-3-1', 1, 12, 7, 2, sysdate);
 
-insert into sets values(setNo.nextval, 1, 1, '세트1', '', sysdate, '', '', 12, 34);
+insert into sets values(setNo.nextval, 1, 1, '???1', '', sysdate, '', '', 12, 34);
 
-insert into sets values(setNo.nextval, 15, 1, '세트2', '', sysdate, '', '', 12, 34);
+insert into sets values(setNo.nextval, 15, 1, '???2', '', sysdate, '', '', 12, 34);
 
 
 select sets.*, users.id
@@ -86,4 +102,12 @@ from sets, users
 where sets.userNo = users.userNo
 and sets.folderNo = 1
 order by sets.regDate desc;
+
+drop table folder;
+
+drop table sets;
+
+drop sequence setNo;
+
+drop sequence folderNo;
 

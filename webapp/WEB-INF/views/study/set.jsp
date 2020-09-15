@@ -155,7 +155,7 @@
 			console.log("세트수정");
 			$("#setTitle").val("${setVo.setName}");
 			$("#setExplain").val("${setVo.setExplain}");
-			$("#textTag").val("${setVo.search_tag}");
+			$("#textTag").val("${setVo.tag}");
 			$("#wordCardContent").html('');
 			
 			console.log(setNo);
@@ -267,7 +267,7 @@
 				setExplain: setExplain,
 				userNo: userNo,
 				id: authUserId,
-				search_tag: setTag,
+				tag: setTag,
 				folderNo: folderno
 		}
 		
@@ -343,10 +343,10 @@
 				setNo: setNo,
 				setName: setTitle,
 				setExplain: setExplain,
-				search_tag: setTag
+				tag: setTag
 		}
 		
-		console.log("setVo: " + setVo);
+		console.log("setVo: " + setVo.toString());
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath }/set/setUpdate",		
