@@ -314,6 +314,96 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   	transition:ease .2s;
 }
 
+/* ================ footer ================ */
+
+#footer{
+   background-color: #4257B2;
+
+}
+.footertop{
+   padding-top:50px;
+   
+}
+
+.footerinbox{
+   width:100%;
+   max-width:1200px;
+   height:100%;
+   margin:0px auto;
+}
+#footerTop {
+   height: 465px;
+}
+
+#footerBottom {
+   height: 55px;
+}
+
+.logo {
+   width: 30px;
+   height: 30px;
+}
+#oneline {
+   background-color: #ffffff;
+   border: none;
+   height: 2px;
+   margin: 0;
+   opacity: .5;
+   margin-top:100px;
+   
+}
+#footerSns {
+      float:left;
+   }
+#footerCopywrite {
+   text-align: right;
+   color: #FFFFFF;
+   font-size: 15px;
+   margin-top:15px;
+}
+
+
+/* 푸터조절 */
+   #footerTop {
+      height: 465px;
+      text-align:left;
+   }
+   
+   .row1 {
+      font-family:"NotoSansKR-Regular", sans-serif;
+      font-size:20px;
+      color:white;
+      text-align:left;
+   }
+   .row2 {
+      margin: 10px 0px 0px 0px;
+      font-family:"NotoSansKR-Medium", sans-serif;
+      font-size:16px;
+      color:white;
+      text-align:left;
+   }
+   #footerBottom {
+      height: 55px;
+   }
+   
+   #snsImg {
+      margin-top:6px;
+      float:left;
+   }
+   
+   #footerCopywrite {
+      font-size: 12px;
+      margin-top:6px;
+   }
+   
+/* 푸터 하단고정 */
+html,body{height:100%}
+body{margin:0}
+#body{min-height:100%}
+#content{padding-bottom:1.5em}
+
+/* footer 끝 */
+
 
 
 /* @charset "UTF-8";

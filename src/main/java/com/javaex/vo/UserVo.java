@@ -19,10 +19,11 @@ public class UserVo {
 	
 	
 
-	public UserVo(int userNo, String id, String password) {
+	public UserVo(int userNo, String id, String password, String userImg) {
 		this.userNo = userNo;
 		this.id = id;
 		this.password = password;
+		this.userImg = userImg;
 	}
 
 	public UserVo(int userNo, String id, String firstName, String lastName, String nickName, String password,

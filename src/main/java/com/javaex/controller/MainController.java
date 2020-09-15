@@ -48,7 +48,7 @@ public class MainController {
 	public String loginMain(HttpSession session, Model model, @PathVariable("id") String id) {
 		System.out.println("/Quizbook/loginMain");
 
-		UserVo authUser = new UserVo(1, "123", "1234");
+		UserVo authUser = new UserVo(1, "123", "1234", "peng.png");
 		session.setAttribute("authUser", authUser);
 
 		UserVo loginUser = (UserVo) session.getAttribute("authUser");
