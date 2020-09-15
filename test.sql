@@ -82,19 +82,7 @@ where folderno = 18;
 
 insert into users values(2, '456', '12', '34', '123', '1234', sysdate, 26, '', '', '', '');
 
-insert into folder values(folderNo.nextval, 1, '≥ª ∆˙¥ı', folderNo.nextval, 0, 1, 0, sysdate);
-
-insert into folder values(folderNo.nextval, 1, '????1-1', 1, 1, 2, 1, sysdate);
-
-insert into folder values(folderNo.nextval, 1, '????1-1-1', 1, 8, 3, 2, sysdate);
-insert into folder values(folderNo.nextval, 1, '????1-1-2', 1, 8, 4, 2, sysdate);
-insert into folder values(folderNo.nextval, 1, '????1-2', 1, 1, 5, 1, sysdate);
-insert into folder values(folderNo.nextval, 1, '????1-3', 1, 1, 6, 1, sysdate);
-insert into folder values(folderNo.nextval, 1, '????1-3-1', 1, 12, 7, 2, sysdate);
-
-insert into sets values(setNo.nextval, 1, 1, '???1', '', sysdate, '', '', 12, 34);
-
-insert into sets values(setNo.nextval, 15, 1, '???2', '', sysdate, '', '', 12, 34);
+insert into folder values(folderNo.nextval, 1, 'ÎÇ¥ Ìè¥Îçî', folderNo.nextval, 0, 1, 0, sysdate);
 
 
 select sets.*, users.id
