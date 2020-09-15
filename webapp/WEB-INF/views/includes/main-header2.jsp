@@ -27,9 +27,20 @@
 				</li>
 				<li class="login-item" id="join-profileHeader">
 					<button class="login-btn" id="lgin-btn-prime"
-					data-toggle="modal" data-target="#myModal">로그인</button>
-					<!-- Modal -->
-						<div class="modal fade" id="myModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					data-toggle="modal" data-target="#loginModal">로그인</button>
+					
+				</li>
+				<li class="login-item" id="join-signUpHeader">
+					<button class="login-btn" 
+					data-toggle="modal" data-target="#joinModal">회원가입</button>
+					
+				</li>
+			</ul>
+	</div>
+</div>
+
+<!-- Modal -->
+						<div class="modal fade" id="loginModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 						    <div class="modal-content" id="login-modal-content">
 						      <div class="modal-body">
@@ -38,12 +49,10 @@
 						    </div>
 						  </div>
 						</div>
-				</li>
-				<li class="login-item" id="join-signUpHeader">
-					<button class="login-btn" 
-					data-toggle="modal" data-target="#myModal">회원가입</button>
-					<!-- Modal -->
-						<div class="modal jfade" id="myModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						
+						
+<!-- Modal -->
+						<div class="modal jfade" id="joinModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-jdialog">
 						    <div class="modal-jcontent" id="join-modal-content">
 						      <div class="modal-jbody">
@@ -52,8 +61,9 @@
 						    </div>
 						  </div>
 						</div>
-				</li>
-			</ul>
-	</div>
-</div> 
+						
+						
+<script type="text/javascript">
+
+</script>
 
