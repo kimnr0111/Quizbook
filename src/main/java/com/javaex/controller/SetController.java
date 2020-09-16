@@ -157,5 +157,26 @@ public class SetController {
 		
 		return count;
 	}
+	
+	
+	/* 세트복사 */
+	@ResponseBody
+	@RequestMapping(value = "/setCopy", method = { RequestMethod.GET, RequestMethod.POST })
+	public int setCopy(@RequestBody MainVo vo) {
+		System.out.println("/Quizbook/folderList");
+
+		System.out.println(vo.getFolderNo());
+		System.out.println(vo.getSetNo());
+		System.out.println(vo.getUserNo());
+
+		int folderNo = vo.getFolderNo();
+		int setNo = vo.getSetNo();
+		int userNo = vo.getUserNo();
+
+		mainService.getSet(folderNo, setNo, userNo);
+
+		return folderNo;
+
+	}
 
 }
