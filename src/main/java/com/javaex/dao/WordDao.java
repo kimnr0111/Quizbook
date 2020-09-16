@@ -33,11 +33,22 @@ public class WordDao {
 		return sqlSession.insert("word.createWord", wordVo);
 	}
 	
-	//카드업데이트
+	//카드리셋
+	public int cardReset(WordVo wordVo) {
+		System.out.println("wordDao:cardReset");
+		System.out.println("wordDao:cardReset:::" + wordVo);
+		sqlSession.delete("word.cardReset", wordVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
+	//리셋 후 저장
 	public int cardUpdate(WordVo wordVo) {
 		System.out.println("wordDao:cardUpdate");
 		
-		sqlSession.update("word.updateWord", wordVo);
+		sqlSession.insert("word.createWord", wordVo);
 		
 		int count = 0;
 		

@@ -43,7 +43,7 @@
 					</c:if>
 					
 					<c:if test="${setFlag == 1 }">
-						<button class="madeBtn" id="modifyBtn" onClick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'">수정</button>
+						<button class="madeBtn" id="modifyBtn" <%-- onClick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'" --%>>수정</button>
 					</c:if>
 					
 					
@@ -144,7 +144,7 @@
 	var setFlag = "${setFlag}";
 	var setNo = "${setVo.setNo}";
 	console.log("세트만들어지는폴더번호: " + folderno);
-	console.log();
+	console.log("setNo = " + setNo);
 	
 	
 	$(document).ready(function(){
@@ -346,6 +346,10 @@
 				tag: setTag
 		}
 		
+		var deleteSetNo = {
+				setNo: setNo
+		}
+		
 		console.log("setVo: " + setVo.toString());
 		
 		$.ajax({
@@ -356,52 +360,70 @@
 			data : JSON.stringify(setVo),
 			success : function(no){
 				console.log("세트수정성공");
+				
+				console.log("카드초기화");
+				$.ajax({
+					url : "${pageContext.request.contextPath }/set/cardReset",		
+					type : "post",
+					contentType : "application/json",
+					dataType: "json",
+					data : JSON.stringify(deleteSetNo),
+					success : function(no){
+						console.log("카드초기화 성공============================");
+						
+						console.log(setFolderNo);
+						console.log("id:" + authUserId);
+						console.log("카드번호:" + wordCardNo);
+						console.log("세트번호:" + setNo);
+						
+						
+						for(var i=1;i<=wordCardNo;i++) {
+							
+							console.log("UpdatesetNo:" + setNo);
+							console.log("워드카드번호반복테스트");
+							var orderNo = i;
+							var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
+							var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
+							var wordNo = $("tr[data-trcardno='" + i + "']").attr("data-trwordno");
+							var wordImg = 0;
+							var wordVo = {
+									wordNo: wordNo,
+									setNo: setNo,
+									orderNo: orderNo,
+									word: word,
+									meaning: meaning
+							}
+							console.log(wordVo);
+							
+							
+							$.ajax({
+								url : "${pageContext.request.contextPath }/set/cardUpdate",		
+								type : "post",
+								contentType : "application/json",
+								dataType: "json",
+								data : JSON.stringify(wordVo),
+								success : function(no){
+									console.log("카드업데이트성공");
+								},
+								error : function(XHR, status, error) {
+									console.error(status + " : " + error);
+								}
+							});
+						}
+						
+						
+						
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-
-		
-		console.log(setFolderNo);
-		console.log("id:" + authUserId);
-		console.log("카드번호:" + wordCardNo);
-		console.log("세트번호:" + setNo);
-		
-		
-		for(var i=1;i<=wordCardNo;i++) {
-			
-			console.log("UpdatesetNo:" + setNo);
-			console.log("워드카드번호반복테스트");
-			var orderNo = i;
-			var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
-			var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
-			var wordNo = $("tr[data-trcardno='" + i + "']").attr("data-trwordno");
-			var wordImg = 0;
-			var wordVo = {
-					wordNo: wordNo,
-					setNo: setNo,
-					orderNo: orderNo,
-					word: word,
-					meaning: meaning
-			}
-			console.log(wordVo);
-			
-			
-			$.ajax({
-				url : "${pageContext.request.contextPath }/set/cardUpdate",		
-				type : "post",
-				contentType : "application/json",
-				dataType: "json",
-				data : JSON.stringify(wordVo),
-				success : function(no){
-					console.log("카드업데이트성공");
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
-		}
 	
 		
 	});

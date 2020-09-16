@@ -32,6 +32,17 @@ public class WordService {
 		
 	}
 	
+	//카드리셋
+	public int cardReset(WordVo wordVo) {
+		System.out.println("WordService:cardReset");
+		
+		wordDao.cardReset(wordVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
 	//카드업데이트
 	public int cardUpdate(WordVo wordVo) {
 		System.out.println("wordService:cardUpdate");

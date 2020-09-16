@@ -129,7 +129,21 @@ public class SetController {
 		return count;
 	}
 	
-	/* 카드업데이트 */
+	/* 카드리셋 */
+	@ResponseBody
+	@RequestMapping(value = "/cardReset", method = { RequestMethod.GET, RequestMethod.POST })
+	public int cardReset(@RequestBody WordVo wordVo) {
+		System.out.println("set/cardReset");
+		System.out.println(wordVo.toString());
+		
+		wordService.cardReset(wordVo);
+		
+		int count = 0;
+		
+		return count;
+	}
+	
+	/* 리셋후 저장 */
 	@ResponseBody
 	@RequestMapping(value = "/cardUpdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public int cardUpdate(@RequestBody WordVo wordVo) {
