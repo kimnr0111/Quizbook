@@ -249,5 +249,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 .modal-open {
-    overflow: scroll;
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-right:0 !important;
 }
