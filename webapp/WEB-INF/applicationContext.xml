@@ -33,8 +33,11 @@
 		class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="URL"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
+    
 		<property name="user" value="quizbook" />
-		<property name="password" value="quizbook" />
+
+		<property name="password" value="1234" />
+
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
 	</bean>

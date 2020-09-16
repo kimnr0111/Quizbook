@@ -310,30 +310,21 @@
 		console.log("복사버튼클릭");
 		$("#setCopyModal").modal();
 		
-		/* var no = ${sessionScope.authUser.userNo};
-		console.log("authUser : " + no);
-		var mainVo = {
-				userNo: no
-		};
-		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/folderList",		
+			url : "${pageContext.request.contextPath }/setCopy",		
 			type : "post",
 			contentType : "application/json",
 			dataType: "json",
-			data : JSON.stringify(mainVo),
-			success : function(folderList){
-				console.log(folderList);
-				$("#setCopy-folderArea").html("");
-				for(var i=0;i<folderList.length;i++) {
-					renderOption(folderList[i]);
-					
-				}
+			data : JSON.stringify(vo),
+			success : function(count){
+				console.log(count)
+
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		}); */
+		});
 		
 	});
 	
@@ -377,7 +368,7 @@
 		}
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/setCopy",		
+			url : "${pageContext.request.contextPath }/set/setCopy",		
 			type : "post",
 			contentType : "application/json",
 			dataType: "json",
