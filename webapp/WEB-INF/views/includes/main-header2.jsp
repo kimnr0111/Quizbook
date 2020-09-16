@@ -32,7 +32,6 @@
             <li class="login-item" id="join-signUpHeader">
                <button class="login-btn" 
                data-toggle="modal" data-target="#joinModal">회원가입</button>
-               
             </li>
          </ul>
    </div>
@@ -60,7 +59,3 @@
                       </div>
                     </div>
                   </div>
-                  
-                  
-<script type="text/javascript">
-</script>

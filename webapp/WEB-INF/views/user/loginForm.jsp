@@ -1,21 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/loginForm.css"
-	rel="stylesheet" type="text/css">
-<title>QuizBook</title>
-
-</head>
-<body>
 	<div id="center-content">
 		<div id="loginForm">
 			<form method="post" action="${pageContext.request.contextPath}/user/login">
@@ -45,5 +30,3 @@
 		<p class="footer"><strong>다른 사람들과 함께 사용하는 기기에서는 반드시 <br>로그아웃해주세요.</strong></p>
 		</div>
 	</div>
-</body>
-</html>

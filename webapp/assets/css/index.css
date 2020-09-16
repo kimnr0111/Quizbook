@@ -68,7 +68,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   position: relative; 
   top: -80px;
   margin-left:-1040px;
-
+  outline:0;
 }
 
 /* ================ mid ================= */
@@ -215,6 +215,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
    text-align:center;
    z-index:2;
    padding-top:215px;
+   cursor:pointer;
 }
 .mid05{
    width: 1100px;
@@ -228,3 +229,25 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
    margin:auto;
    margin-bottom: 200px;
    }
+   
+/*    모달       */
+.modal {
+    padding-right: 0px !important;
+}
+
+#alert-modal-content {
+	margin-top:10%;
+}
+
+#alert-modal-dialog {
+    width: 300px;
+    margin: 30px auto;
+}
+
+#modalAlert {
+	padding-top:15%;
+}
+
+.modal-open {
+    overflow: scroll;
+}
