@@ -44,6 +44,7 @@ body {
 	color: #FFFFFF;
 	border: 0px;
 	border-radius:20px;
+	outline:0;
 }
  
 /* 페이스북 로그인버튼 */
@@ -58,6 +59,7 @@ body {
 	color: #FFFFFF;
 	border: 0px;
 	border-radius: 20px;
+	outline:0;
 }
 
 /* 구글 로그인버튼 */
@@ -72,6 +74,7 @@ body {
 	color: #000000;
 	border: 0px;
 	border-radius: 20px;
+	outline:0;
 }
 
 /* 비밀번호를 잊으셨나요? */
@@ -103,26 +106,19 @@ body {
 }
 
 
-/* 아이디박스 */
-#center-content #loginForm #textId {
-	width: 267px;
-	height: 50px;
-	margin: 50px 0px 0px 0px;
-	font-family: "NotoSansKR-Regular";
-	border-radius: 13px;
-	padding-left:5px;
-	color:black;
-}
 
-/* 비밀번호 박스 */
-#center-content #loginForm #textPassword {
+/* 아이디, 비밀번호 박스 */
+#textId, #textPassword {
 	width: 267px;
 	height: 50px;
 	margin: 10px 0px 0px 0px;
-	font-family: "NotoSansKR-Regular";
+	font-family:"NotoSansKR-regular", sans-serif;
+    font-size:16px;
 	border-radius: 13px;
-	padding-left:5px;
+	padding-left:10px;
 	color:black;
+	border:2px solid #8E8D8D;
+	outline:0;
 }
 
 /* 또는 */

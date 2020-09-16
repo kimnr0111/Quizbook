@@ -1,20 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="ko">
 
-<head>
-<meta charset="UTF-8">
-<title>Join</title>
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/joinForm.css"
-	rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
 	<div id="center-content">
 		<form class="join-Form">
 				<div class="joinImg">
@@ -56,6 +43,3 @@
 		</form>
 		<!-- 회원가입 폼  -->
 	</div>
-</body>
-
-</html>
