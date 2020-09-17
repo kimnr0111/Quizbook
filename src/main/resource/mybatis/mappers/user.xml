@@ -13,9 +13,25 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.javaex.vo.UserVo">
+	
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+   	 		select seq_user_no.nextval FROM DUAL
+ 		</selectKey>
+ 		
 		<![CDATA[
-			insert into users (userNo, id, password, age) 
-			values (seq_user_no.nextval, #{id}, #{password}, #{age})
+			insert all 
+			into users (userNo, id, password, age) values (#{userNo}, #{id}, #{password}, #{age})
+			into folder values(FOLDERNO.nextval, #{userNo}, '폴더', FOLDERNO.nextval, 0, 1, 0, sysdate)
+			select 1 from dual
 		]]>
 	</insert>
+	
+	<select id="getUserByIdPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select *
+			from users
+			where id = #{id} 
+			and password = #{password}
+		]]>
+	</select>
 </mapper>

@@ -206,7 +206,7 @@ $("#btnjoin").on("click",function(){
 			success : function(result){
 				/*성공시 처리해야될 코드 작성*/
 				console.log(result);
-				if(result == 1){
+				if(result >= 1){
 					$('#joinModal').modal("hide");
 					$(".modal-body>p").text("가입완료");
 					$("#modalAlert").modal("show");
@@ -222,6 +222,57 @@ $("#btnjoin").on("click",function(){
 	}
 });
 
+</script>
+
+<script type="text/javascript">
+	$(".lgbtn").on("click",function(){
+		
+		event.preventDefault();
+		
+		console.log('회원가입 클릭');
+		var uId = $("#textId").val();
+		var uPw = $("#textPassword").val();
+		if(uId===""||uPw===""){
+			$(".modal-body>p").text("공백이 있습니다");
+			$("#modalAlert").modal("show");
+		} else {
+			
+			var userInfo = {
+					id: uId,
+					password: uPw
+					}
+			
+			console.log(userInfo);
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath }/user/api/login",		
+				
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify(userInfo),
+				
+				dataType : "json",
+				success : function(result){
+					/*성공시 처리해야될 코드 작성*/
+					console.log(result);
+					if(result == 1){
+						console.log("로그인 성공");
+						$('#loginModal').modal("hide");
+						$(location).attr('href', '${pageContext.request.contextPath}'+'/'+uId);
+					} else {
+						$(".modal-body>p").text("회원정보가 없습니다");
+						$("#modalAlert").modal("show");
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+		} 
+		console.log(uId);
+		console.log(uPw);
+	});
 </script>
 
 </html>

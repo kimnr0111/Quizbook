@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaex.dao.FolderDao;
 import com.javaex.dao.MainDao;
 import com.javaex.dao.UserDao;
 import com.javaex.vo.FolderVo;
@@ -20,17 +21,19 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private FolderDao folderDao;
+	
+	public UserVo login(UserVo uVo) {
+		return userDao.selectLoginUser(uVo);
+	}
+	
 	public int join(UserVo uVo) {
 		int result;
 		
 		if(userDao.idcheck(uVo)==null) {
-			
-			
-			System.out.println("중복아님");
 			result = userDao.insert(uVo);
-			/* 폴더추가 */			
 		} else {
-			System.out.println("중복");
 			result = 0;
 		}
 		return result;

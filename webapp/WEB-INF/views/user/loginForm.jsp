@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<div id="center-content">
 		<div id="loginForm">
-			<form method="post" action="${pageContext.request.contextPath}/user/login">
-					<div class="loginImg"><img src="${pageContext.request.contextPath}/assets/images/04.로그인/로그인상단.png"> </div>
-		
+			<form method="" action="">
+				<div class="loginImg"><img src="${pageContext.request.contextPath}/assets/images/04.로그인/로그인상단.png"> </div>
+				
 				
 				<label for="textId"></label> 
 				<input id="textId" type="text" name="id" placeholder="아이디"> 
