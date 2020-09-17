@@ -21,8 +21,7 @@
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <title>Main</title>
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/headerfooter.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/sidebar.css" rel="stylesheet" type="text/css">
@@ -310,21 +309,27 @@
 		console.log("복사버튼클릭");
 		$("#setCopyModal").modal();
 		
+		/* var setNo = $("#setCopyNo").val();
+		console.log("setCopyNo : " + setNo);
+		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/setCopy",		
+			url : "${pageContext.request.contextPath }/set/getCardList",		
 			type : "post",
-			contentType : "application/json",
+			//contentType : "application/json",
 			dataType: "json",
-			data : JSON.stringify(vo),
-			success : function(count){
-				console.log(count)
+			data : {setno: setNo},
+			success : function(cardList){
+				for(var i=0;i<cardList.length;i++) {
+					console.log(cardList[i]);
+				}
+				
 
 				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
+		}); */
 		
 	});
 	
