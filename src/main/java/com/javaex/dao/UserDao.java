@@ -23,4 +23,9 @@ public class UserDao {
 		return sqlSession.selectOne("user.getUser", userVo.getId());
 	}
 	
+	//로그인
+	public UserVo selectLoginUser(UserVo userVo) {
+		return sqlSession.selectOne("user.getUserByIdPw", userVo);
+	}
+	
 }

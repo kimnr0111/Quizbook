@@ -48,9 +48,11 @@ public class MainController {
 	public String loginMain(HttpSession session, Model model, @PathVariable("id") String id) {
 		System.out.println("/Quizbook/loginMain");
 
-		UserVo authUser = new UserVo(1, "123", "1234", "peng.png");
-		session.setAttribute("authUser", authUser);
-
+		/*
+		 * UserVo authUser = new UserVo(1, "123", "1234", "peng.png");
+		 * session.setAttribute("authUser", authUser);
+		 */
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		UserVo loginUser = (UserVo) session.getAttribute("authUser");
 
 		System.out.println(loginUser);
@@ -64,7 +66,7 @@ public class MainController {
 		// 아이디로 유저번호 알아내기
 		UserVo userVo = mainService.getUser(id);
 		model.addAttribute("userVo", userVo);
-
+		
 		// 개인페이지 접속시 기본폴더 출력(나중에 최근학습 세트목록 불러오기로 수정)
 		int userNo = userVo.getUserNo();
 		FolderVo folderVo = mainService.getFolder(userNo);
