@@ -66,7 +66,7 @@
 			<hr>
 		</div>
 		<ul class="nav-bot">
-			<li><a href=""> <img class="img-block"
+			<li><a href="${pageContext.request.contextPath}/user/${sessionScope.authUser.id}"> <img class="img-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/my.png"
 					alt="mypage"><span id="mypage-txt">정보수정</span>
 			</a></li>

@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+/* 폰트적용 */
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src:url("fonts/NotoSansKR-Regular.otf");
+}
+
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src:url("fonts/NotoSansKR-Bold.otf");
+}
+/****************************************************************/
+/* 초기화 관련 ***************************************************/
+/****************************************************************/
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+	outline:0;
+}
+
+/* 바디정렬 */
+
+/* ===== Form 양식 ===== */
+.profile-form {
+	width: 1150px;
+	height: 600px;
+	margin: auto;
+	background-color:#F9F9F9;
+	font-family: "NotoSansKR-Regular";
+	font-size: 15px;
+}
+
+/* ==== 좌측 네비 ==== */
+
+.leftButton-pro {
+	width: 20px;
+	height: 20px;
+}
+
+.profile-nav {
+	height: 600px;
+	padding: 60px 135px 0px 60px;
+	float: left;
+}
+
+.sideTxt {
+	font-family: "NotoSansKR-Bold";
+	font-weight: bold;
+	font-size: 18px;
+}
+#sideFix {
+	margin-bottom:10px;
+}
+
+
+/* ---------------타이틀 - 프로필수정 ----------------*/
+
+#profile-content {
+	width: 700px;
+	height: 600px;
+	margin: auto;
+	background-color:#F9F9F9;
+	display: inline-block;
+}
+
+#pro-title {
+	width: 300px;
+	font-family: "NotoSansKR-Bold";
+	font-weight: bold;
+	font-size: 32px;
+	padding-top: 60px;
+	margin-bottom:50px;
+	display: inline-block;
+} 
+
+/* ------------취소 확인 버튼 ------------- */
+.btn-top {
+	float: right;
+	padding-top:60px;
+}
+.pro-btn{
+	width: 60px;
+	height: 35px;
+	background-color: #68CAC0;
+	font-family: "NotoSansKR-Bold";
+	font-weight: bold;
+	font-size: 15px;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius: 20px;
+}
+
+#pro-cancle {
+	margin-right: 10px;
+}
+
+/* =============사진 업로드 버튼 ===============*/
+.filebox label {
+  text-align:center;
+  width: 60px;
+  height: 35px;
+  padding-top:8px;
+  display: inline-block;
+  color: #ffffff;
+  font-size: 15px;
+  background-color: #68CAC0;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #FFB700;
+}
+
+.filebox label:active {
+  background-color: #FFB700;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}		
+/* =============================== 사진 업로드 버튼 */
+/* 이름 입력창 */
+#pro-name-area, #pro-job-area {
+	
+	vertical-align: top;
+	
+	
+	display:inline-block;
+}
+.form-name { 
+  padding:0px 0px 0px 10px;
+  margin-top: 10px;
+  border-radius: 8px; 
+  width:300px; 
+  height:40px; 
+  border:1px solid #8E8D8D;
+  font-family:"NotoSansKR-regular", sans-serif;
+  font-size:16px;
+  }
+
+/* 직업 드롭박스 */
+
+
+#dLabel {
+    padding-left: 10px;
+	width: 150px;
+	height:40px;
+    background-color: white;
+    border: 1px solid #8E8D8D;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: "NotoSansKR-Bold";
+	font-size: 20px;
+	font-weight: bold;
+	line-height:100%;
+}
+.dropdown {
+	margin-top:10px;
+}
+
+.img-circle {
+	width:70px;
+	height:70px;
+	border-radius:50%;
+}
+
+.profile-textarea>textarea{
+	resize: none;
+	width: 612px; height:150px;
+	}
+
+textarea::placeholder {
+	padding-left:10px;
+	line-height:148px;
+	}
+
+	select {
+	background: url('../../images/scroll.png') no-repeat right/20%;
+    -webkit-appearance: none;  /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
