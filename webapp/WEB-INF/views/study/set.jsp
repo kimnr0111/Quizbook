@@ -353,6 +353,7 @@
 		var setTitle = $("#setTitle").val();
 		var setExplain = $("#setExplain").val();
 		var setTag = $("#textTag").val();
+
 		var authUserId = "${sessionScope.authUser.id}";
 		var userNo = "${sessionScope.authUser.userNo}";
 		var fileName = "";

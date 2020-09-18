@@ -26,14 +26,14 @@ textarea, button, form {margin: 0; padding: 0;}
       position:fixed;
       padding:70px 0px 70px 0px;
       width: 220px;
-      margin-left: 0px;
+      margin-left: 15px;
       margin-top: 0px;
-      box-shadow:0px 0px 15px #cdcdcd ;
+      box-shadow:0px 0px 20px #f0f0f0 ;
       display:inline-block;
       z-index:0;
       font-family:"NotoSansKR-Regular";
       font-weight: bold;
-      font-size: 13px;
+      font-size: 15px;
     }
 
    ul {
@@ -144,14 +144,14 @@ textarea, button, form {margin: 0; padding: 0;}
 		cursor:pointer;
 		font-family:"NotoSansKR-Regular";
       	font-weight: bold;
-      	font-size: 13px;
+      	font-size: 15px;
 	}
 	
 	.otherfolder-title {
 		cursor:pointer;
 		font-family:"NotoSansKR-Regular";
       	font-weight: bold;
-      	font-size: 13px;
+      	font-size: 15px;
       	color:#000000;
       	padding:8px;
       	text-overflow:ellipsis;
@@ -174,7 +174,7 @@ textarea, button, form {margin: 0; padding: 0;}
 	.folder-Area {
 		font-family:"NotoSansKR-Regular";
       	font-weight: bold;
-      	font-size: 13px;
+      	font-size: 14px;
       	color:#000000;
       	overflow:auto;
       	height:150px;
@@ -212,19 +212,19 @@ textarea, button, form {margin: 0; padding: 0;}
 	}
 	
 	.folderContents-padding-0 {
-		padding: 0px 0px 0px 30px;
+		padding: 0px 0px 0px 48px;
 	}
 	
 	.folderContents-padding-1 {
-		padding: 0px 0px 0px 40px;
+		padding: 0px 0px 0px 63px;
 	}
 	
 	.folderContents-padding-2 {
-		padding: 0px 0px 0px 50px;
+		padding: 0px 0px 0px 78px;
 	}
 	
 	.folderContents-padding-3 {
-		padding: 0px 0px 0px 60px;
+		padding: 0px 0px 0px 93px;
 	}
 	
 	
@@ -242,8 +242,6 @@ textarea, button, form {margin: 0; padding: 0;}
 		background-color:#FFD739;
   		color:white;
   		text-decoration:none;
-	}
-	.folderDepth-0 {
 	}
 	
 	.folderDepth-1 {

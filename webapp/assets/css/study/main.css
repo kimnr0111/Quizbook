@@ -11,15 +11,15 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #body {
 	position: relative;
-	width: 1400px;
+	width: 1340px;
 	margin: 0 auto;
 }
 
 /* 애니메이션 중복적용을 위해 추가 (translate) */
 #study_wrap {
 	display:inline-block;
-	width: 695px;
-	height: 500px;
+	width: 850px;
+	height: 600px;
 	margin-top: 50px;
 	margin-left: 297px;
 	
@@ -37,15 +37,16 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 #study_user {
+	margin-top:15px; 
 	height: 400px;
 	/* bottom right 그림자 */
-	box-shadow: 4px 4px 4px #EEEEEE;
+	box-shadow: 4px 4px 4px #f2f2f2;
 }
 
 /* studt_user div에 top left 그림자 넣기위해 추가 */
 #addShadow {
 	height:100%;
-	box-shadow: -4px -4px 4px #EEEEEE;
+	box-shadow: 0px 0px 30px #F4F4F4;
 	text-align:center
 }
 
@@ -103,14 +104,14 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 div.card_wrap {
-	width: 500px;
-	height: 300px;
+	width: 600px;
+	height: 400px;
 	float: left;
 }
 
 div.study_area {
-	width: 500px;
-	height: 410px;
+	width: 600px;
+	height: 500px;
 	float: left;
 	position: relative;
 }
@@ -120,7 +121,7 @@ div.study_area {
 
 div.card {
 	width: 100%;
-	height: 300px;
+	height: 100%;
 
 	cursor: pointer;
 
@@ -133,9 +134,8 @@ div.card {
 .front, .back {
 	width: 100%;
 	height: 100%;
-	
 	border: 1px solid #CCCCCC;
-	border-radius: 10px;
+	border-radius: 5px;
 	
 	display: flex;
 	flex-direction: column;
@@ -208,8 +208,8 @@ div.card {
 }
 
 #user_wrap {
-	margin-top:24px;
-	margin-left: 25px;
+	margin-top:7px;
+	margin-left: 40px;
 	width: 170px;
 	height: 350px;
 	
@@ -307,6 +307,8 @@ div.card {
 	height:100%;
 	position:absolute;
 	z-index:0;
+	font-size: 40px;
+	font-family: "NotoSansKR-Regular";
 }
 
 
