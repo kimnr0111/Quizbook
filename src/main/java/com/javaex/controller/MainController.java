@@ -47,15 +47,11 @@ public class MainController {
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginMain(HttpSession session, Model model, @PathVariable("id") String id) {
 		System.out.println("/Quizbook/loginMain");
-
-	
-		UserVo authUser = new UserVo(1, "123", "1234", "peng.png");
-		session.setAttribute("authUser", authUser);
 		
-		//UserVo authUser = (UserVo) session.getAttribute("authUser");
-		UserVo loginUser = (UserVo) session.getAttribute("authUser");
+		//세션값 받아오기(아이디)
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		System.out.println(loginUser);
+		System.out.println(authUser);
 		
 		// 로그인한 유저 기본폴더 불러오기(사이드바 세트만들기용)
 		UserVo authUserVo = mainService.getUser(authUser.getId());
@@ -73,7 +69,7 @@ public class MainController {
 		model.addAttribute("folderVo", folderVo);
 
 		// 내 폴더리스트 불러오기
-		List<FolderVo> myfolderList = mainService.folderList(loginUser.getUserNo());
+		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
 		System.out.println("my폴더리스트 : " + myfolderList.toString());
 		model.addAttribute("myfolderList", myfolderList);
 
@@ -81,6 +77,10 @@ public class MainController {
 		List<FolderVo> otherfolderList = mainService.folderList(userNo);
 		System.out.println("other폴더리스트 : " + otherfolderList.toString());
 		model.addAttribute("otherfolderList", otherfolderList);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		boolean folderRenderFlag = true;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
 
 		// 팔로우, 팔로워 숫자 나중에 넣기
 

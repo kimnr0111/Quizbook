@@ -49,7 +49,7 @@
 			<c:if test="${userVo.id != sessionScope.authUser.id }">
 				<div class="otherfolder-title"> <img class="fold-block"
 					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-					alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
+					alt="folder"><span id="otherfold-txt">${userVo.id }</span>
 				</div>
 			</c:if>
 		</c:if>
@@ -80,77 +80,82 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		var myuserNo = ${sessionScope.authUser.userNo};
-		console.log("내번호:" + myuserNo);
-		
-		var userNo = ${userVo.userNo};
-		console.log("방문한페이지번호" + userNo);
-		
-		var myVo = {
-				userNo: myuserNo
+		var folderRenderFlag = ${folderRenderFlag};
+		//folderRenderFlag 값이 true일때만 사이드바에 폴더를 그린다
+		if(folderRenderFlag == true) {
+			
+			var myuserNo = "${sessionScope.authUser.userNo}";
+			console.log("내번호:" + myuserNo);
+			
+			var userNo = "${userVo.userNo}";
+			console.log("방문한페이지번호" + userNo);
+			
+			var myVo = {
+					userNo: myuserNo
+			}
+			
+			var otherVo = {
+					userNo: userNo
+			}
+			
+			/* 내 폴더 불러오기 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(myVo),
+				success : function(myfolderList){
+					console.log(myfolderList.length);
+					for(var i=0;i<myfolderList.length;i++) {
+						console.log(myfolderList[i]);
+						myfolderRender(myfolderList[i]);
+					}
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+			/* 세트복사 폴더리스트 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(myVo),
+				success : function(myfolderList){
+					console.log(myfolderList.length);
+					for(var i=0;i<myfolderList.length;i++) {
+						setCopyFolderRender(myfolderList[i]);
+					}
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+			/* 상대 폴더 불러오기 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(otherVo),
+				success : function(otherfolderList){
+					console.log(otherfolderList.length);
+					for(var i=0;i<otherfolderList.length;i++) {
+						otherfolderRender(otherfolderList[i]);
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
 		}
-		
-		var otherVo = {
-				userNo: userNo
-		}
-		
-		/* 내 폴더 불러오기 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(myVo),
-			success : function(myfolderList){
-				console.log(myfolderList.length);
-				for(var i=0;i<myfolderList.length;i++) {
-					console.log(myfolderList[i]);
-					myfolderRender(myfolderList[i]);
-				}
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		
-		/* 세트복사 폴더리스트 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(myVo),
-			success : function(myfolderList){
-				console.log(myfolderList.length);
-				for(var i=0;i<myfolderList.length;i++) {
-					setCopyFolderRender(myfolderList[i]);
-				}
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		
-		/* 상대 폴더 불러오기 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(otherVo),
-			success : function(otherfolderList){
-				console.log(otherfolderList.length);
-				for(var i=0;i<otherfolderList.length;i++) {
-					otherfolderRender(otherfolderList[i]);
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-	});
+
 	
 	$(document).on('click', '.myfolder-title', function(){
 		console.log("내폴더클릭");

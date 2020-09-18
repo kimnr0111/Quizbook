@@ -35,7 +35,7 @@
 			set setName = #{setName},
     		setExplain = #{setExplain},
     		tag = #{tag},
-    		setImg = ''
+    		setImg = #{setImg}
     		where setNo = #{setNo}
 			
 		]]>

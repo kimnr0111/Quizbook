@@ -36,6 +36,41 @@
 	</div>
 </div> --%>
 
+<!-- 로그인 이전 -->
+<div id="header-wrap">
+   <div id="loginHeader">
+      <ul class="nav">
+            <li class="login-item" id="login-title">
+               <button class="login-btn">QUIZBOOK</button>
+            </li>
+
+            <li class="login-item" id="login-blankHeader"></li>
+
+
+            <li class="login-item" id="login-followingHeader">
+               <button class="login-btn">팔로잉</button>
+            </li>
+            <li class="login-item" id="login-newHeader">
+               <button class="login-btn">만들기</button>
+            </li>
+            <li class="login-item" id="login-nav-search">
+               <form action="${pageContext.request.contextPath}/test" method="post" >
+                  <input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
+               </form>
+            </li>
+            <li class="login-item" id="join-profileHeader">
+               <button class="login-btn" id="lgin-btn-prime"
+               data-toggle="modal" data-target="#loginModal">로그인</button>
+               
+            </li>
+            <li class="login-item" id="join-signUpHeader">
+               <button class="login-btn" 
+               data-toggle="modal" data-target="#joinModal">회원가입</button>
+            </li>
+         </ul>
+   </div>
+</div>
+
 <!-- 로그인 이후 -->
 <div id="header-wrap">
 	<div id="loginHeader">

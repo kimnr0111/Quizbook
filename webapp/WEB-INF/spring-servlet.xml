@@ -64,8 +64,11 @@
 	
 	<!-- url매핑 -->
 	<!-- 주소창에 upload 입력되었을때 javaStudy/upload를 탐색 -->
-<!-- 	<mvc:resources mapping="/upload/**"
-		location="file:C:/javaStudy/upload/" /> -->
+	<mvc:resources mapping="/setImg/**"
+		location="file:C:/javaStudy/upload/setImg/" />
+
+	<mvc:resources mapping="/wordImg/**"
+		location="file:C:/javaStudy/upload/wordImg/" />
 
 
 

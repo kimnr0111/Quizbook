@@ -35,9 +35,16 @@ public class SetController {
 	public String Set(Model model, @PathVariable("folderno") int folderNo) {
 		System.out.println("set/Set");
 		
+		//세트 수정인지 만들기인지 구분하기 위한 정보 전달
 		int setFlag = 0;
-		model.addAttribute("folderNo", folderNo);
 		model.addAttribute("setFlag", setFlag);
+		
+		//어느 폴더에 저장될건지 구분하는 정보 전달
+		model.addAttribute("folderNo", folderNo);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		boolean folderRenderFlag = false;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
 	
 		return "study/set";
 	}
@@ -49,8 +56,13 @@ public class SetController {
 		
 		System.out.println("세트번호" + setNo);
 		
+		//세트 수정인지 만들기인지 구분하기 위한 정보 전달
 		int setFlag = 1;
 		model.addAttribute("setFlag", setFlag);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		boolean folderRenderFlag = false;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
 		MainVo setVo = mainService.getSetOne(setNo); //클릭한 세트의 정보 넘기기
 		System.out.println(setVo.toString());
@@ -104,6 +116,17 @@ public class SetController {
 	}
 	
 	/* 카드이미지 업로드 */
+	@ResponseBody
+	@RequestMapping(value = "/cardImgUpload", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cardImgUpload(@RequestParam("file") MultipartFile file) {
+		System.out.println("set/cardImgUpload");
+		
+		String fileName = file.getOriginalFilename();
+		System.out.println(fileName);
+		
+		return wordService.cardImgUpload(file);
+		
+	}
 	
 	/* 카드만들기 */
 	@ResponseBody
@@ -118,8 +141,9 @@ public class SetController {
 		int orderNo = (int) setCreateMap.get("orderNo"); 
 		String word = (String) setCreateMap.get("word");
 		String meaning = (String) setCreateMap.get("meaning");
+		String wordImg = (String) setCreateMap.get("wordImg");
 						
-		WordVo wordVo = new WordVo( 0, setNo, orderNo, word, meaning, "abc");
+		WordVo wordVo = new WordVo( 0, setNo, orderNo, word, meaning, wordImg);
 		System.out.println(wordVo.toString());
 		
 		return wordService.cardCreate(wordVo);

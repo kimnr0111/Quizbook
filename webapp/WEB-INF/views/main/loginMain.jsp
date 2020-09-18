@@ -52,7 +52,7 @@
 					</div>
 					<!-- profileImg -->
 					<div id="userprofile-Info">
-						<a href="" class="user-alink alink-Title">${userVo.nickName }</a><br>
+						<a href="" class="user-alink alink-Title">${userVo.id }</a><br>
 						<a href="" class="user-alink alink-Content left-line">팔로잉 00</a>
 						<a href="" class="user-alink alink-Content">팔로워 00</a>
 					</div>
@@ -364,7 +364,7 @@
 		var folderNo = $("#setCopyFolderNo").val();
 		console.log("폴더번호:" + folderNo);
 		
-		var userNo = ${sessionScope.authUser.userNo};
+		var userNo = "${sessionScope.authUser.userNo}";
 		
 		var vo = {
 				setNo: setNo,
@@ -589,7 +589,7 @@
 	
 	/* 기본 setList 가져오기 */
 	function fetchList() {
-		var folderNo = ${folderVo.folderNo};
+		var folderNo = "${folderVo.folderNo}";
 		var color = "#"
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
