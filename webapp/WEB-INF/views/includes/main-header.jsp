@@ -36,44 +36,89 @@
 	</div>
 </div> --%>
 
-<!-- 로그인 이후 -->
-<div id="header-wrap">
-	<div id="loginHeader">
-		<ul class="nav">
-				<li class="login-item" id="login-title">
-					<button class="login-btn">QUIZBOOK</button>
-				</li>
+<c:choose>
+	 <c:when test="${sessionScope.authUser == null }">
+	 	<!-- 로그인 이전 -->
+		<div id="header-wrap">
+		   <div id="loginHeader">
+		      <ul class="nav">
+		            <li class="login-item" id="login-title">
+		               <button class="login-btn">QUIZBOOK</button>
+		            </li>
+		
+		            <li class="login-item" id="login-blankHeader"></li>
+		
+		
+		            <li class="login-item" id="login-followingHeader">
+		               <button class="login-btn">팔로잉</button>
+		            </li>
+		            <li class="login-item" id="login-newHeader">
+		               <button class="login-btn">만들기</button>
+		            </li>
+		            <li class="login-item" id="login-nav-search">
+		               <form action="${pageContext.request.contextPath}/test" method="post" >
+		                  <input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
+		               </form>
+		            </li>
+		            <li class="login-item" id="join-profileHeader">
+		               <button class="login-btn" id="lgin-btn-prime"
+		               data-toggle="modal" data-target="#loginModal">로그인</button>
+		               
+		            </li>
+		            <li class="login-item" id="join-signUpHeader">
+		               <button class="login-btn" 
+		               data-toggle="modal" data-target="#joinModal">회원가입</button>
+		            </li>
+		         </ul>
+		   </div>
+		</div>
+	 </c:when>
+	 
+	 
+	 <c:when test="${sessionScope.authUser != null }">
+	 	<!-- 로그인 이후 -->
+			<div id="header-wrap">
+				<div id="loginHeader">
+					<ul class="nav">
+							<li class="login-item" id="login-title">
+								<button class="login-btn">QUIZBOOK</button>
+							</li>
+			
+							<li class="login-item" id="login-blankHeader"></li>
+			
+			
+							<li class="login-item" id="login-followingHeader">
+								<button class="login-btn">팔로잉</button>
+							</li>
+							<li class="login-item" id="login-newHeader">
+								<button class="login-btn">만들기</button>
+							</li>
+							<li class="login-item" id="login-nav-search">
+								<form action="${pageContext.request.contextPath}/test" method="post">
+									<input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
+								</form>
+							</li>
+							<li class="login-item" id="login-profileHeader">
+								<button class="login-btn">
+								<!-- 사용자의 프로필사진 가져오기 -->
+								<c:choose>
+									<c:when test="${sessionScope.authUser == null}"> <!-- 프로필사진이 없을때 -->
+										<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" id="profileImg">
+									</c:when>
+									<c:when test="${sessionScope.authUser != null}"> <!-- 프로필사진이 있을때 -->
+										<img src="${pageContext.request.contextPath}/upload/user/peng.png" id="profileImg"/>
+									</c:when>
+								</c:choose>
+								</button>
+							</li>
+							<li class="login-item" id="login-signUpHeader">
+								<button class="login-btn">로그아웃</button>
+							</li>
+						</ul>
+				</div>
+			</div>
+	 </c:when>
+	</c:choose>	
 
-				<li class="login-item" id="login-blankHeader"></li>
 
 
-				<li class="login-item" id="login-followingHeader">
-					<button class="login-btn">팔로잉</button>
-				</li>
-				<li class="login-item" id="login-newHeader">
-					<button class="login-btn">만들기</button>
-				</li>
-				<li class="login-item" id="login-nav-search">
-					<form action="${pageContext.request.contextPath}/test" method="post">
-						<input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
-					</form>
-				</li>
-				<li class="login-item" id="login-profileHeader">
-					<button class="login-btn">
-					<!-- 사용자의 프로필사진 가져오기 -->
-					<c:choose>
-						<c:when test="${sessionScope.authUser == null}"> <!-- 프로필사진이 없을때 -->
-							<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" id="profileImg">
-						</c:when>
-						<c:when test="${sessionScope.authUser != null}"> <!-- 프로필사진이 있을때 -->
-							<img src="${pageContext.request.contextPath}/upload/user/peng.png" id="profileImg"/>
-						</c:when>
-					</c:choose>
-					</button>
-				</li>
-				<li class="login-item" id="login-signUpHeader">
-					<button class="login-btn">로그아웃</button>
-				</li>
-			</ul>
-	</div>
-</div>

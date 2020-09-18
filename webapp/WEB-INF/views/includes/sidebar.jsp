@@ -5,152 +5,168 @@
 <!-- 사이드바 -->
 
 	<nav class="col-sidenav">
-		<ul class="nav-top">
-			<li><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id }"> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/open-menu.png"
-					alt="menu"><span id="home-txt">홈</span>
-			</a></li>
-			<li><a href=""> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/recently.png"
-					alt="recently"> <span id="rec-txt">최근에 학습</span>
-			</a></li>
-			<li><a href=""> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/heart.png"
-					alt="heart-Like"><span id="fol-txt">팔로우</span>
-			</a></li>
-		</ul>
-		<div class="a">
-			<hr>
-		</div>
-		<ul class="nav-mid">
-			<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
-					alt="set"><span id="set-txt">세트만들기</span>
-			</a></li>
-			<c:if test="${userVo != null }">
-				<li class="myfolder-title"><a> <img class="fold-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-					alt="folder"><span id="fold-txt">내 폴더</span></a></li>
-			</c:if>
-		</ul>
-		<div class="folder-wrap">
-			<!-- 내폴더 -->
-			<div class="folder-Area myfolder">
-							
-			</div>
-				
-		</div>
-		
-		<c:if test="${userVo != null }">
-			<div class="newfolder">
-				폴더 +
-			</div>
-		
-			<c:if test="${userVo.id != sessionScope.authUser.id }">
-				<div class="otherfolder-title"> <img class="fold-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-					alt="folder"><span id="otherfold-txt">${userVo.nickName }</span>
+		<c:choose>
+			<c:when test="${sessionScope.authUser == null }">
+		 		
+			</c:when>
+			
+	 		<c:when test="${sessionScope.authUser != null }">
+	 			<ul class="nav-top">
+					<li><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id }"> <img class="img-block"
+						src="${pageContext.request.contextPath}/assets/images/05.사이드바/open-menu.png"
+						alt="menu"><span id="home-txt">홈</span>
+						</a></li>
+					<li><a href=""> <img class="img-block"
+											src="${pageContext.request.contextPath}/assets/images/05.사이드바/recently.png"
+											alt="recently"> <span id="rec-txt">최근에 학습</span>
+					</a></li>
+					<li><a href=""> <img class="img-block"
+											src="${pageContext.request.contextPath}/assets/images/05.사이드바/heart.png"
+											alt="heart-Like"><span id="fol-txt">팔로우</span>
+					</a></li>
+				</ul>
+				<div class="a">
+					<hr>
 				</div>
-			</c:if>
-		</c:if>
+				<ul class="nav-mid">
+					<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
+							src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
+							alt="set"><span id="set-txt">세트만들기</span>
+					</a></li>
+					<c:if test="${userVo != null }">
+						<li class="myfolder-title"><a> <img class="fold-block"
+							src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
+							alt="folder"><span id="fold-txt">내 폴더</span></a></li>
+					</c:if>
+				</ul>
+				<div class="folder-wrap">
+					<!-- 내폴더 -->
+					<div class="folder-Area myfolder">
+								
+					</div>
+				
+				</div>
 		
-		<div class="folder-wrap">
-			<!-- 방문한 페이지 사용자폴더 -->
-			<div class="folder-Area otherfolder">
-
+				<c:if test="${userVo != null }">
+					<div class="newfolder">
+						폴더 +
+					</div>
+		
+					<c:if test="${userVo.id != sessionScope.authUser.id }">
+						<div class="otherfolder-title"> <img class="fold-block"
+							src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
+							alt="folder"><span id="otherfold-txt">${userVo.id }</span>
+						</div>
+					</c:if>
+				</c:if>
+		
+			<div class="folder-wrap">
+				<!-- 방문한 페이지 사용자폴더 -->
+				<div class="folder-Area otherfolder">
+	
+				</div>
 			</div>
-		</div>
 		
 		
-		<div class="a">
-			<hr>
-		</div>
-		<ul class="nav-bot">
-			<li><a href=""> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/my.png"
-					alt="mypage"><span id="mypage-txt">정보수정</span>
-			</a></li>
-			<li><a href=""> <img class="img-block"
-					src="${pageContext.request.contextPath}/assets/images/05.사이드바/settings.png"
-					alt="navy-setting"><span id="setting-txt">설정</span>
-			</a></li>
-		</ul>
+			<div class="a">
+				<hr>
+			</div>
+				<ul class="nav-bot">
+					<li><a href=""> <img class="img-block"
+							src="${pageContext.request.contextPath}/assets/images/05.사이드바/my.png"
+							alt="mypage"><span id="mypage-txt">정보수정</span>
+					</a></li>
+					<li><a href=""> <img class="img-block"
+							src="${pageContext.request.contextPath}/assets/images/05.사이드바/settings.png"
+							alt="navy-setting"><span id="setting-txt">설정</span>
+					</a></li>
+				</ul>
+	 		</c:when>
+		</c:choose>
+		
 	</nav>
 	
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		var myuserNo = ${sessionScope.authUser.userNo};
-		console.log("내번호:" + myuserNo);
-		
-		var userNo = ${userVo.userNo};
-		console.log("방문한페이지번호" + userNo);
-		
-		var myVo = {
-				userNo: myuserNo
+		var folderRenderFlag = "${folderRenderFlag}";
+		//folderRenderFlag 값이 true일때만 사이드바에 폴더를 그린다
+		if(folderRenderFlag == 1) {
+			var myuserNo = "${sessionScope.authUser.userNo}";
+			console.log("내번호:" + myuserNo);
+			console.log("folderRenderFlag" + folderRenderFlag);
+			
+			var userNo = "${userVo.userNo}";
+			console.log("방문한페이지번호" + userNo);
+			
+			var myVo = {
+					userNo: myuserNo
+			}
+			
+			var otherVo = {
+					userNo: userNo
+			}
+			
+			/* 내 폴더 불러오기 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(myVo),
+				success : function(myfolderList){
+					console.log(myfolderList.length);
+					for(var i=0;i<myfolderList.length;i++) {
+						console.log(myfolderList[i]);
+						myfolderRender(myfolderList[i]);
+					}
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+			/* 세트복사 폴더리스트 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(myVo),
+				success : function(myfolderList){
+					console.log(myfolderList.length);
+					for(var i=0;i<myfolderList.length;i++) {
+						setCopyFolderRender(myfolderList[i]);
+					}
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+			/* 상대 폴더 불러오기 */
+			$.ajax({
+				url : "${pageContext.request.contextPath }/getFolderList",		
+				type : "post",
+				contentType : "application/json",
+				dataType: "json",
+				data : JSON.stringify(otherVo),
+				success : function(otherfolderList){
+					console.log(otherfolderList.length);
+					for(var i=0;i<otherfolderList.length;i++) {
+						otherfolderRender(otherfolderList[i]);
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
 		}
-		
-		var otherVo = {
-				userNo: userNo
-		}
-		
-		/* 내 폴더 불러오기 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(myVo),
-			success : function(myfolderList){
-				console.log(myfolderList.length);
-				for(var i=0;i<myfolderList.length;i++) {
-					console.log(myfolderList[i]);
-					myfolderRender(myfolderList[i]);
-				}
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		
-		/* 세트복사 폴더리스트 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(myVo),
-			success : function(myfolderList){
-				console.log(myfolderList.length);
-				for(var i=0;i<myfolderList.length;i++) {
-					setCopyFolderRender(myfolderList[i]);
-				}
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		
-		/* 상대 폴더 불러오기 */
-		$.ajax({
-			url : "${pageContext.request.contextPath }/getFolderList",		
-			type : "post",
-			contentType : "application/json",
-			dataType: "json",
-			data : JSON.stringify(otherVo),
-			success : function(otherfolderList){
-				console.log(otherfolderList.length);
-				for(var i=0;i<otherfolderList.length;i++) {
-					otherfolderRender(otherfolderList[i]);
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+
 	});
+
 	
 	$(document).on('click', '.myfolder-title', function(){
 		console.log("내폴더클릭");

@@ -59,10 +59,10 @@ public class MainDao {
 	}
 	
 	//저장한세트 가져오기
-	public int getSetCreate(MainVo setVo) {
+	public int getSetCreate(int userNo) {
 		System.out.println("MainDao.getSetCreate");
 		
-		int createSetNo = sqlSession.selectOne("set.getSetCreate", setVo);
+		int createSetNo = sqlSession.selectOne("set.getSetCreate", userNo);
 		
 		return createSetNo;
 	}

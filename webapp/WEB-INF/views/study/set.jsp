@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
@@ -39,11 +41,11 @@
 					<input class="textTitle" type="text" name="title" value="" id="setTitle"
 						placeholder="제목을 입력해주세요">
 					<c:if test="${setFlag == 0 }">
-						<button class="madeBtn" id="createBtn" onClick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'">만들기</button>
+						<button class="madeBtn" id="createBtn">만들기</button>
 					</c:if>
 					
 					<c:if test="${setFlag == 1 }">
-						<button class="madeBtn" id="modifyBtn" <%-- onClick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'" --%>>수정</button>
+						<button class="madeBtn" id="modifyBtn">수정</button>
 					</c:if>
 					
 					
@@ -54,9 +56,23 @@
 				</div>
 				<div>
 					<Button class="label">
-						<img class="boxImg" src="${pageContext.request.contextPath}/assets/images/세트만들기/box.png" />
-						<span class="p">다이어그램 추가 및 라벨붙이기</span>
+						<c:if test="${setFlag == 0 }">
+							<img class="boxImg" src="${pageContext.request.contextPath}/assets/images/세트만들기/box.png" />
+						</c:if>
+						
+						<c:if test="${setFlag == 1 }">
+							<c:if test="${setVo.setImg != null }">
+								<img class="boxImg" src="${pageContext.request.contextPath}/setImg/${setVo.setImg }" />
+							</c:if>
+							
+							<c:if test="${setVo.setImg == null }">
+								<img class="boxImg" src="${pageContext.request.contextPath}/assets/images/세트만들기/box.png" />
+							</c:if>
+						</c:if>
+						<span class="p">세트이미지 추가</span>
+						
 					</Button>
+					<input type="file" name="file" id="setFileUpload" accept="image/*" style="display: none">
 				</div>
 
 				<div class="content" id="wordCardContent">
@@ -89,9 +105,9 @@
 													<input class="textWord" type="text" value="" name="word"> 
 													<input class="textMean" type="text" value="" name="mean"> 
 														<label for="file-input"> 
-															<img class="add" src="${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png" />
+														<input type="file" name="file" data-wordimgcheck="0" data-wordupload="1" id="cardFileUpload" accept="image/*" style="display: none">
+															<img class="wordAdd" data-wordimg="1" src="${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png" />
 														</label>
-													<input class="file-input" type="file" style="display: none">
 												</div>
 												<div>
 													<span class="word">단어</span> <span class="mean">뜻</span>
@@ -133,16 +149,46 @@
 
 	</div>
 	<!-- main-wrap -->
+	
+<!-- 카드 null체크 -->
+<div class="modal fade" id="setNullCheckModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h4 class="modal-title">
+					
+					저장하시겠습니까?
+				</h4>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+				
+				<c:if test="${setFlag == 0 }">
+					<button type="button" class="btn btn-primary" id="setCreateBtn-modal">예</button>
+				</c:if>
+				
+				<c:if test="${setFlag == 1 }">
+					<button type="button" class="btn btn-primary" id="setModifyBtn-modal">예</button>
+				</c:if>
+				
+			</div>
+		</div>
+		<!-- modal-content  -->
+	</div>
+	<!-- modal-dialog  -->
+</div>
+<!-- 카드 null체크 -->
 
 </body>
 
 <script>
 
-	//폴더번호 잘 받아와짐
 	var wordCardNo = 1;
 	var folderno = "${folderNo}";
 	var setFlag = "${setFlag}";
 	var setNo = "${setVo.setNo}";
+	var nullcheck = "";
+	var setImgcheck = 0;
 	console.log("세트만들어지는폴더번호: " + folderno);
 	console.log("setNo = " + setNo);
 	
@@ -221,46 +267,128 @@
 				$("button[data-trcard='" + trCardNo + "']").attr("data-trcard", trCardNo - 1);
 				$("span[data-cardindex='" + trCardNo + "']").html(trCardNo - 1);
 				$("span[data-cardindex='" + trCardNo + "']").attr("data-cardindex", trCardNo - 1);
+				$("input[data-wordUpload='" + trCardNo + "']").attr("data-wordUpload", trCardNo - 1);
+				$("img[data-wordimg='" + trCardNo + "']").attr("data-wordimg", trCardNo - 1);
 			}
 			console.log("반복");
 			
 		}
-		
-		/* $("tr[data-trcardno]").each(function(){
-			var $this = $(this);
-			var trCardNoData = $this.data("trcardno");
-			console.log("내번호:" + trCardNoData);
-			console.log("지워진카드번호:" + trCardNo);
-			if(trCardNoData > trCardNo) {
-				console.log("ifttteeesssttt");
-				$this.attr("data-trcardno", trCardNoData - 1);
-				$("[data-trcard='"+trCardNoData+"']").attr("data-trcard", trCardNoData - 1);
-				
-				
-			} 
-		}); */
 	
 		});
+	
+	//선택한 세트이미지
+	$("#setFileUpload").change(function(){
+		setImgcheck = 1;
+		setReadURL(this);
+	});
+	
+	//선택한 카드이미지
+	$(document).on('change', "#cardFileUpload", function(){
+		console.log("변경");
+		
+		var $this = $(this);
+		
+		var cardImgNo = $this.data("wordupload");
+		$this.attr('data-wordimgcheck', 1);
+		console.log(cardImgNo);
+		
+		wordReadURL(this, cardImgNo);
+	});
+	
+	//세트이미지 업로드 클릭
+	$(document).on('click', '.label', function(){
+		console.log("세트이미지 업로드 클릭");
+		$("#setFileUpload").click();
+	});
+	
+	//카드이미지 업로드 클릭
+	$(document).on('click', '.wordAdd', function(){
+		console.log("이미지 업로드 클릭");
+		var $this = $(this);
+		
+		var no = $this.data("wordimg");
+		console.log("this.data.wordImg:" + no);
+		$("[data-wordupload=" + no + "]").click();
+	});
 	
 	//세트 만들기 클릭
 	$(document).on('click', '#createBtn', function(){
 		console.log("세트만들기클릭");
 		
+		nullcheck = '';
+		
+		
+		for(var i=1;i<=wordCardNo;i++) {
+			
+			
+			var textWord = $.trim($("tr[data-trcardno='" + i + "']").find(".textWord").val());
+			var textMean = $.trim($("tr[data-trcardno='" + i + "']").find(".textMean").val());
+			console.log(textWord);
+			console.log(textMean);
+			
+			
+			console.log("null체크");
+			console.log(i);
+			if(textWord == '' || textMean == '') {
+				console.log("null있음");
+				nullcheck += i + " ";
+				console.log("nullcheck:" + nullcheck);
+			} else {
+				console.log("null없음");
+			}
+		}
+		
+		if(nullcheck == '') {
+			$(".modal-title").text("저장하시겠습니까?");
+			$("#setNullCheckModal").modal();
+		} else {
+			$(".modal-title").html("단어나 뜻이 없는 카드가 존재합니다.<br><br>저장하시겠습니까?<br>");
+			$("#setNullCheckModal").modal();
+		}
+		
+	});
+	
+	//모달 세트만들기 클릭
+	$(document).on("click", "#setCreateBtn-modal", function(){
 		var setTitle = $("#setTitle").val();
 		var setExplain = $("#setExplain").val();
 		var setTag = $("#textTag").val();
-		var authUserId = '${sessionScope.authUser.id}';
-		var userNo = '${sessionScope.authUser.userNo}';
-		
-		
 
+		var authUserId = "${sessionScope.authUser.id}";
+		var userNo = "${sessionScope.authUser.userNo}";
+		var fileName = "";
 		
+		var setUploadData = new FormData();
+		setUploadData.append("file", $("#setFileUpload").prop('files')[0]);
+		
+		$.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "${pageContext.request.contextPath }/set/setImgUpload",
+            data: setUploadData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            async: false,
+            timeout: 600000,
+            success: function (saveName) {
+                console.log("SUCCESS : " + saveName);
+                fileName = saveName;
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+
+        });
+	
 		console.log(setTitle);
 		console.log(setExplain);
 		console.log(setTag);
 		console.log(folderno);
 		console.log("id:" + authUserId);
 		console.log("카드번호:" + wordCardNo);
+		console.log(fileName);
+		
 		
 		var setVo = {
 				setName: setTitle,
@@ -268,7 +396,8 @@
 				userNo: userNo,
 				id: authUserId,
 				tag: setTag,
-				folderNo: folderno
+				folderNo: folderno,
+				setImg: fileName
 		}
 		
 		$.ajax({
@@ -282,36 +411,95 @@
 				console.log("성공:" + no);
 				var createSetNo = no;
 				
+				
 				/* 카드갯수만큼 반복해서 insert실행 */
+				
 				for(var i=1;i<=wordCardNo;i++) {
 					console.log("createSetNo:" + createSetNo);
 					console.log("워드카드번호반복테스트");
+					var cardUploadData = new FormData();
+					
+					cardUploadData.append("file", $("[data-wordupload=" + i + "]").prop('files')[0]);
+					console.log("cardUploadData: " + cardUploadData);
+					
 					var orderNo = i;
+					console.log("오더넘버:::" + orderNo);
+					
 					var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
 					var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
 					var wordImg = 0;
-					var setCreateMap = {
-							createSetNo: createSetNo,
-							orderNo: orderNo,
-							authUserId: authUserId,
-							word: word,
-							meaning: meaning
-					}
-					console.log(setCreateMap);
+					
 					
 					$.ajax({
-						url : "${pageContext.request.contextPath }/set/cardCreate",		
-						type : "post",
-						contentType : "application/json",
-						dataType: "json",
-						data : JSON.stringify(setCreateMap),
-						success : function(count){
-							console.log("성공:" + count);
-						},
-						error : function(XHR, status, error) {
-							console.error(status + " : " + error);
-						}
-					});
+			            type: "POST",
+			            enctype: 'multipart/form-data',
+			            url: "${pageContext.request.contextPath }/set/cardImgUpload",
+			            data: cardUploadData,
+			            processData: false,
+			            contentType: false,
+			            cache: false,
+			            async: false,
+			            timeout: 600000,
+			            success: function (saveName) {
+			                console.log("SUCCESS : " + saveName);
+			                fileName = saveName;
+			              
+			                var setCreateMap = {
+									createSetNo: createSetNo,
+									orderNo: orderNo,
+									authUserId: authUserId,
+									word: word,
+									meaning: meaning,
+									wordImg: fileName
+							}
+							console.log(setCreateMap);
+			                
+			                $.ajax({
+								url : "${pageContext.request.contextPath }/set/cardCreate",		
+								type : "post",
+								contentType : "application/json",
+								dataType: "json",
+								data : JSON.stringify(setCreateMap),
+								success : function(count){
+									console.log("성공:" + count);
+								},
+								error : function(XHR, status, error) {
+									console.error(status + " : " + error);
+								}
+							});
+			                
+			            },
+			            error: function (e) {
+			                console.log("ERROR : ", e);
+			                
+			                var setCreateMap = {
+									createSetNo: createSetNo,
+									orderNo: orderNo,
+									authUserId: authUserId,
+									word: word,
+									meaning: meaning,
+									wordImg: ""
+							}
+							console.log(setCreateMap);
+			                
+			                $.ajax({
+								url : "${pageContext.request.contextPath }/set/cardCreate",		
+								type : "post",
+								contentType : "application/json",
+								dataType: "json",
+								data : JSON.stringify(setCreateMap),
+								success : function(count){
+									console.log("성공:" + count);
+								},
+								error : function(XHR, status, error) {
+									console.error(status + " : " + error);
+								}
+							});
+			            }
+
+			        });
+					
+					
 				}
 				
 			},
@@ -320,30 +508,96 @@
 			}
 		});
 		
-
+		$("#setNullCheckModal").modal("hide");
+		//location.href = '${pageContext.request.contextPath}/${sessionScope.authUser.id }';
+		
 	});
-	
-	
-	
-	
 	
 	
 	//세트 수정 클릭
 	$(document).on('click', '#modifyBtn', function(){
 		console.log("세트수정클릭");
 		
-		var authUserId = ${sessionScope.authUser.id};
-		var userNo = ${sessionScope.authUser.userNo};
+		nullcheck = '';
+		
+		for(var i=1;i<=wordCardNo;i++) {
+			
+			
+			var textWord = $.trim($("tr[data-trcardno='" + i + "']").find(".textWord").val());
+			var textMean = $.trim($("tr[data-trcardno='" + i + "']").find(".textMean").val());
+			console.log(textWord);
+			console.log(textMean);
+			
+			
+			console.log("null체크");
+			console.log(i);
+			if(textWord == '' || textMean == '') {
+				console.log("null있음");
+				nullcheck += i + " ";
+				console.log("nullcheck:" + nullcheck);
+			} else {
+				console.log("null없음");
+			}
+		}
+		
+		if(nullcheck == '') {
+			$(".modal-title").text("수정하시겠습니까?");
+			$("#setNullCheckModal").modal();
+		} else {
+			$(".modal-title").html("단어나 뜻이 없는 카드가 존재합니다.<br><br>수정하시겠습니까?<br>");
+			$("#setNullCheckModal").modal();
+		}
+		
+	});
+	
+	//모달 세트수정 클릭
+	$(document).on("click", "#setModifyBtn-modal", function(){
+		var authUserId = "${sessionScope.authUser.id}";
+		var userNo = "${sessionScope.authUser.userNo}";
 		var setFolderNo = "${setVo.folderNo}";
 		var setTitle = $("#setTitle").val();
 		var setExplain = $("#setExplain").val();
 		var setTag = $("#textTag").val();
+		var fileName = "${setVo.setImg}";
+		
+		var setUploadData = new FormData();
+		setUploadData.append("file", $("#setFileUpload").prop('files')[0]);
+		
+		console.log("fileName:::" + fileName);
+		
+		if(setImgcheck != 0) {
+			console.log("setModify notNull");
+			
+			$.ajax({
+	            type: "POST",
+	            enctype: 'multipart/form-data',
+	            url: "${pageContext.request.contextPath }/set/setImgUpload",
+	            data: setUploadData,
+	            processData: false,
+	            contentType: false,
+	            cache: false,
+	            async: false,
+	            timeout: 600000,
+	            success: function (saveName) {
+	                console.log("SUCCESS : " + saveName);
+	                fileName = saveName;
+	            },
+	            error: function (e) {
+	                console.log("ERROR : ", e);
+	            }
+
+	        });
+			
+		} else {
+			console.log("setModify null");
+		}
 		
 		var setVo = {
 				setNo: setNo,
 				setName: setTitle,
 				setExplain: setExplain,
-				tag: setTag
+				tag: setTag,
+				setImg: fileName
 		}
 		
 		var deleteSetNo = {
@@ -360,6 +614,33 @@
 			data : JSON.stringify(setVo),
 			success : function(no){
 				console.log("세트수정성공");
+				
+				/*
+				for(var i=1;i<=wordCardNo;i++) {
+					
+					console.log("UpdatesetNo:" + setNo);
+					console.log("워드카드번호반복테스트");
+					var orderNo = i;
+					var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
+					var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
+					var wordNo = $("tr[data-trcardno='" + i + "']").attr("data-trwordno");
+					var wordImg = $("[data-wordImg='" + i + "']").attr("src");
+					// /까지 받아와짐
+					//var wordImg2 = wordImg.substring(wordImg.lastIndexOf("/"));
+					var wordImgSplit = wordImg.split("/");
+					var wordImgModify = wordImgSplit[3];
+					
+					console.log("wordImg-" + i + ": " + wordImgModify);
+					var wordVo = {
+							wordNo: wordNo,
+							setNo: setNo,
+							orderNo: orderNo,
+							word: word,
+							meaning: meaning
+					}
+					console.log(wordVo);
+				}
+				*/
 				
 				console.log("카드초기화");
 				$.ajax({
@@ -385,13 +666,56 @@
 							var word = $("tr[data-trcardno='" + i + "']").find(".textWord").val();
 							var meaning = $("tr[data-trcardno='" + i + "']").find(".textMean").val();
 							var wordNo = $("tr[data-trcardno='" + i + "']").attr("data-trwordno");
-							var wordImg = 0;
+							var wordImg = $("[data-wordImg='" + i + "']").attr("src");
+							var wordImgModify = "";
+							
+							if($("[data-wordupload='" + i + "']").attr("data-wordimgcheck") == 0) {
+								console.log("wordImg not change:::");
+								var wordImgSplit = wordImg.split("/");
+								wordImgModify = wordImgSplit[3];
+								
+								if(wordImgModify == 'images') {
+									wordImgModify = "";
+								}
+							} else {
+								console.log("wordImg change:::");
+								
+								var cardUploadData = new FormData();
+								cardUploadData.append("file", $("[data-wordupload=" + i + "]").prop('files')[0]);
+								console.log("cardUploadData: " + cardUploadData);
+								
+								$.ajax({
+						            type: "POST",
+						            enctype: 'multipart/form-data',
+						            url: "${pageContext.request.contextPath }/set/cardImgUpload",
+						            data: cardUploadData,
+						            processData: false,
+						            contentType: false,
+						            cache: false,
+						            async: false,
+						            timeout: 600000,
+						            success: function (saveName) {
+						                console.log("SUCCESS : " + saveName);
+						                wordImgModify = saveName;
+						                
+						            },
+						            error: function (e) {
+						                console.log("ERROR : ", e);
+						                
+						            }
+
+						        });
+								
+								
+							}
+							
+							
 							var wordVo = {
-									wordNo: wordNo,
 									setNo: setNo,
 									orderNo: orderNo,
 									word: word,
-									meaning: meaning
+									meaning: meaning,
+									wordImg: wordImgModify
 							}
 							console.log(wordVo);
 							
@@ -424,14 +748,12 @@
 				console.error(status + " : " + error);
 			}
 		});
-	
 		
+		$("#setNullCheckModal").modal("hide");
+		//location.href = '${pageContext.request.contextPath}/${sessionScope.authUser.id }';
 	});
 	
-	
-	
-	
-	
+
 	function wordCardRender(wordCardNo) {
 		var str = "";
 		str += "<table>";
@@ -458,7 +780,8 @@
 		str += "							<input class='textWord' type='text' value='' name='word'>";
 		str += "							<input class='textMean' type='text' value='' name='mean'>";
 		str += "								<label for='file-input'>";
-		str += "									<img class='add' src='${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png'/>";
+		str += "								<input type='file' name='file' data-wordimgcheck='0' data-wordupload='" + wordCardNo + "'  id='cardFileUpload' accept='image/*' style='display: none'>"
+		str += "									<img class='wordAdd' data-wordImg='" + wordCardNo + "' src='${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png'/>";
 		str += "								</label>";
 		str += "							<input class='file-input' type='file' style='display: none'>";
 		str += "						</div>";
@@ -503,7 +826,14 @@
 		str += "							<input class='textWord' type='text' value='" + wordList.word + "' name='word'>";
 		str += "							<input class='textMean' type='text' value='" + wordList.meaning + "' name='mean'>";
 		str += "								<label for='file-input'>";
-		str += "									<img class='add' src='${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png'/>";
+		str += "								<input type='file' name='file' data-wordimgcheck='0' data-wordupload='" + wordList.orderNo + "' id='cardFileUpload' accept='image/*' style='display: none'>"
+		if(wordList.wordImg == null) {
+			str += "									<img class='wordAdd' data-wordImg='" + wordList.orderNo + "' src='${pageContext.request.contextPath}/assets/images/세트만들기/addImg.png'/>";
+		} else {
+			str += "									<img class='wordAdd' data-wordImg='" + wordList.orderNo + "' src='${pageContext.request.contextPath}/wordImg/" + wordList.wordImg + "'/>";
+		}
+		
+		
 		str += "								</label>";
 		str += "							<input class='file-input' type='file' style='display: none'>";
 		str += "						</div>";
@@ -522,6 +852,31 @@
 		$("#wordCardContent").append(str);
 		wordCardNo = wordCardNo + 1;
 	}
+	
+	function setReadURL(input) {
+		
+		 if (input.files && input.files[0]) {
+		  var reader = new FileReader();
+		  
+		  reader.onload = function (e) {
+		   $('.boxImg').attr('src', e.target.result);  
+		  }
+		  
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+	
+	function wordReadURL(input, cardImgNo) {
+		 if (input.files && input.files[0]) {
+		  var reader = new FileReader();
+		  
+		  reader.onload = function (e) {
+		   $("[data-wordimg='" + cardImgNo + "']").attr('src', e.target.result);  
+		  }
+		  
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
 		
 </script>
 </html>

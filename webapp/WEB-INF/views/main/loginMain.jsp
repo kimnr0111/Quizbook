@@ -21,8 +21,7 @@
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <title>Main</title>
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/headerfooter.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/sidebar.css" rel="stylesheet" type="text/css">
@@ -53,7 +52,7 @@
 					</div>
 					<!-- profileImg -->
 					<div id="userprofile-Info">
-						<a href="" class="user-alink alink-Title">${userVo.nickName }</a><br>
+						<a href="" class="user-alink alink-Title">${userVo.id }</a><br>
 						<a href="" class="user-alink alink-Content left-line">팔로잉 00</a>
 						<a href="" class="user-alink alink-Content">팔로워 00</a>
 					</div>
@@ -310,21 +309,27 @@
 		console.log("복사버튼클릭");
 		$("#setCopyModal").modal();
 		
+		/* var setNo = $("#setCopyNo").val();
+		console.log("setCopyNo : " + setNo);
+		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/setCopy",		
+			url : "${pageContext.request.contextPath }/set/getCardList",		
 			type : "post",
-			contentType : "application/json",
+			//contentType : "application/json",
 			dataType: "json",
-			data : JSON.stringify(vo),
-			success : function(count){
-				console.log(count)
+			data : {setno: setNo},
+			success : function(cardList){
+				for(var i=0;i<cardList.length;i++) {
+					console.log(cardList[i]);
+				}
+				
 
 				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
+		}); */
 		
 	});
 	
@@ -359,7 +364,7 @@
 		var folderNo = $("#setCopyFolderNo").val();
 		console.log("폴더번호:" + folderNo);
 		
-		var userNo = ${sessionScope.authUser.userNo};
+		var userNo = "${sessionScope.authUser.userNo}";
 		
 		var vo = {
 				setNo: setNo,
@@ -584,7 +589,7 @@
 	
 	/* 기본 setList 가져오기 */
 	function fetchList() {
-		var folderNo = ${folderVo.folderNo};
+		var folderNo = "${folderVo.folderNo}";
 		var color = "#"
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
