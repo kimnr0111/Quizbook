@@ -39,6 +39,7 @@ public class UserApiController {
 		UserVo authUser = userService.login(userVo);
 		
 		if(authUser != null) { //로그인 성공일때
+			System.out.println(authUser.toString());
 			session.setAttribute("authUser", authUser);
 			result = 1;
 		} else { //로그인 실패일때

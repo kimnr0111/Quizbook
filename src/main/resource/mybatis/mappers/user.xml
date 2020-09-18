@@ -20,15 +20,15 @@
  		
 		<![CDATA[
 			insert all 
-			into users (userNo, id, password, age) values (#{userNo}, #{id}, #{password}, #{age})
-			into folder values(FOLDERNO.nextval, #{userNo}, '폴더', FOLDERNO.nextval, 0, 1, 0, sysdate)
+			into users (userNo, id, password, age, joinDate) values (#{userNo}, #{id}, #{password}, #{age}, sysdate)
+			into folder values(FOLDERNO.nextval, #{userNo}, '내 폴더', FOLDERNO.nextval, 0, 1, 0, sysdate)
 			select 1 from dual
 		]]>
 	</insert>
 	
 	<select id="getUserByIdPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
-			select *
+			select id, userNo
 			from users
 			where id = #{id} 
 			and password = #{password}

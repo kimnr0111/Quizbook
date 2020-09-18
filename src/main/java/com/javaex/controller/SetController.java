@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.MainService;
 import com.javaex.service.WordService;
@@ -32,9 +35,16 @@ public class SetController {
 	public String Set(Model model, @PathVariable("folderno") int folderNo) {
 		System.out.println("set/Set");
 		
+		//세트 수정인지 만들기인지 구분하기 위한 정보 전달
 		int setFlag = 0;
-		model.addAttribute("folderNo", folderNo);
 		model.addAttribute("setFlag", setFlag);
+		
+		//어느 폴더에 저장될건지 구분하는 정보 전달
+		model.addAttribute("folderNo", folderNo);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		int folderRenderFlag = 0;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
 	
 		return "study/set";
 	}
@@ -46,12 +56,13 @@ public class SetController {
 		
 		System.out.println("세트번호" + setNo);
 		
-		//List<WordVo> wordList = wordService.getWords(setNo);
-		//System.out.println(wordList.toString());
-		//model.addAttribute("wordList", wordList);
-		
+		//세트 수정인지 만들기인지 구분하기 위한 정보 전달
 		int setFlag = 1;
 		model.addAttribute("setFlag", setFlag);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		boolean folderRenderFlag = false;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
 		MainVo setVo = mainService.getSetOne(setNo); //클릭한 세트의 정보 넘기기
 		System.out.println(setVo.toString());
@@ -74,6 +85,15 @@ public class SetController {
 		return wordList;
 	}
 	
+	/* 세트이미지 업로드 */
+	@ResponseBody
+	@RequestMapping(value = "/setImgUpload", method = { RequestMethod.GET, RequestMethod.POST })
+	public String setImgUpload(@RequestParam("file") MultipartFile file) {
+		System.out.println("set/setImgUpload");
+		
+		return mainService.setImgUpload(file);
+	}
+	
 	/* 세트만들기 */
 	@ResponseBody
 	@RequestMapping(value = "/setCreate", method = { RequestMethod.GET, RequestMethod.POST })
@@ -85,10 +105,26 @@ public class SetController {
 		/* 기존세트만들기 활용 */
 		mainService.setCreate(setVo);
 		
+		int userNo = setVo.getUserNo();
+		System.out.println("set/setCreate userNo:" + userNo);
+		
 		/* 만들어진세트 번호가져오기 */
-		int createSetNo = mainService.getSetCreate(setVo);
+		int createSetNo = mainService.getSetCreate(userNo);
 		
 		return createSetNo;
+		
+	}
+	
+	/* 카드이미지 업로드 */
+	@ResponseBody
+	@RequestMapping(value = "/cardImgUpload", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cardImgUpload(@RequestParam("file") MultipartFile file) {
+		System.out.println("set/cardImgUpload");
+		
+		String fileName = file.getOriginalFilename();
+		System.out.println(fileName);
+		
+		return wordService.cardImgUpload(file);
 		
 	}
 	
@@ -105,8 +141,9 @@ public class SetController {
 		int orderNo = (int) setCreateMap.get("orderNo"); 
 		String word = (String) setCreateMap.get("word");
 		String meaning = (String) setCreateMap.get("meaning");
+		String wordImg = (String) setCreateMap.get("wordImg");
 						
-		WordVo wordVo = new WordVo( 0, setNo, orderNo, word, meaning, "abc");
+		WordVo wordVo = new WordVo( 0, setNo, orderNo, word, meaning, wordImg);
 		System.out.println(wordVo.toString());
 		
 		return wordService.cardCreate(wordVo);
@@ -163,7 +200,7 @@ public class SetController {
 	@ResponseBody
 	@RequestMapping(value = "/setCopy", method = { RequestMethod.GET, RequestMethod.POST })
 	public int setCopy(@RequestBody MainVo vo) {
-		System.out.println("/Quizbook/folderList");
+		System.out.println("set/folderList");
 
 		System.out.println(vo.getFolderNo());
 		System.out.println(vo.getSetNo());
@@ -174,8 +211,39 @@ public class SetController {
 		int userNo = vo.getUserNo();
 
 		mainService.getSet(folderNo, setNo, userNo);
-
+		System.out.println("========================");
+		int createSetNo = mainService.getSetCreate(userNo);
+		
+		System.out.println("createSetNo : " + createSetNo);
+		
+		List<WordVo> cardList = wordService.getWords(setNo);
+		
+		System.out.println("cardListsize : " + cardList.toString());
+		
+		for(int i=0;i<cardList.size();i++) {
+			System.out.println(cardList.get(i) + "\n");
+			cardList.get(i).setSetNo(createSetNo);
+			wordService.cardCreate(cardList.get(i));
+		}
 		return folderNo;
+
+	}
+	
+	/* 카드리스트 가져오기 */
+	@ResponseBody
+	@RequestMapping(value = "/getCardList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<WordVo> getCardList(@RequestParam("setno") int setNo) {
+		System.out.println("set/getCardList");
+
+		
+		System.out.println("setNo:::" + setNo);
+
+		List<WordVo> cardList = wordService.getWords(setNo);
+		
+		System.out.println("cardList는? : " + cardList.toString());
+		
+		return cardList;
+
 
 	}
 
