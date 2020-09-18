@@ -50,7 +50,7 @@ public class StudyController {
 		/////////////////////////////////////
 		
 		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
-		boolean folderRenderFlag = false;
+		int folderRenderFlag = 0;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
 		System.out.println("세트번호"+setNo); 

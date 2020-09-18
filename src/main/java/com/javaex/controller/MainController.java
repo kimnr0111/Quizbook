@@ -50,7 +50,7 @@ public class MainController {
 		
 		//세션값 받아오기(아이디)
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
 		System.out.println(authUser);
 		
 		// 로그인한 유저 기본폴더 불러오기(사이드바 세트만들기용)
@@ -58,6 +58,11 @@ public class MainController {
 		int authUserNo = authUserVo.getUserNo();
 		FolderVo userFolderVo = mainService.getFolder(authUserNo);
 		session.setAttribute("authUserFolder", userFolderVo);
+		
+		// 내 폴더리스트 불러오기
+		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
+		System.out.println("my폴더리스트 : " + myfolderList.toString());
+		model.addAttribute("myfolderList", myfolderList);
 
 		// 아이디로 유저번호 알아내기
 		UserVo userVo = mainService.getUser(id);
@@ -68,18 +73,14 @@ public class MainController {
 		FolderVo folderVo = mainService.getFolder(userNo);
 		model.addAttribute("folderVo", folderVo);
 
-		// 내 폴더리스트 불러오기
-		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
-		System.out.println("my폴더리스트 : " + myfolderList.toString());
-		model.addAttribute("myfolderList", myfolderList);
-
+		
 		// 방문페이지 폴더리스트 불러오기
 		List<FolderVo> otherfolderList = mainService.folderList(userNo);
 		System.out.println("other폴더리스트 : " + otherfolderList.toString());
 		model.addAttribute("otherfolderList", otherfolderList);
 		
 		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
-		boolean folderRenderFlag = true;
+		int folderRenderFlag = 1;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
 
 		// 팔로우, 팔로워 숫자 나중에 넣기
