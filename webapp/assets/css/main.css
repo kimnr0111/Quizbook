@@ -371,6 +371,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	color: #FFFFFF;
 	font-size: 15px;
 	margin-top:15px;
+	
 }
 
 
@@ -406,6 +407,74 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 		font-size: 11px;
 		margin-top:6px;
 	}
+	
+	
+	
+	/* 폴더 생성 모달 */
+	#folderCreateModal-Content {
+		width:350px;
+		height:200px;
+		padding: 10px 20px 10px 20px;
+	}
+	
+	#folderCreate-Name, #folderCreate-Namecreate{
+	color:#333;
+	font-size:18px;
+	font-family: "NotoSansKR-Bold";
+	display:inline-block;
+	margin-right: 5px;
+	}
+	
+	#folderCreate-Namecreate, #folderCreate-folderName{
+	margin-bottom: 30px;
+	}
+	
+	#folderCreate-folderName {
+	color:#4e4e4e;
+	border-width: 0px;
+	border-bottom: 2px solid #FFD739;
+	width: 210px;
+	font-size:18px;
+	font-family: "NotoSansKR-Bold";
+	}
+	
+	#folderCreateModal-Footer {
+		text-align:center;
+	}
+	
+	#folderCreateModal-Button, #folderCreateModal-CancleButton {
+		background-color: #FFD739;
+		color: #404040;
+		border: 0px;
+		font-size:15px;
+		font-family: "NotoSansKR-Bold";
+		margin: auto;
+	}
+	
+	/* 폴더 ,세트 삭제 모달 */
+	#Folder-Delete, #Set-Delete {
+		color:#333;
+		font-size:18px;
+		font-family: "NotoSansKR-Bold";
+		margin-bottom: 30px;
+	}
+	
+	#folderDeleteModal-Content, #setDeleteModal-Content {
+		width:350px;
+		height:150px;
+		padding: 10px 20px 10px 20px;
+		text-align:center;
+	}
+	
+	#setDel-modal, #setCan-modal, #folderDeleteModal-Button, #folderCancleModal-Button {
+		background-color: #FFD739;
+		color: #404040;
+		border: 0px;
+		font-size:15px;
+		font-family: "NotoSansKR-Bold";
+		margin: auto;
+	}
+	
 	
 /* 푸터 하단고정 */
 html,body{height:100%}

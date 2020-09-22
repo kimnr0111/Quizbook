@@ -42,7 +42,7 @@
 						<a href="">
 							<c:choose>
 								<c:when test="${userVo.userImg == null}"> <!-- 프로필사진이 없을때 -->
-									<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" class="mainImg">
+									<img src="${pageContext.request.contextPath}/assets/images/07.프로필/기본.png" class="mainImg">
 								</c:when>
 								<c:when test="${userVo.userImg != null}"> <!-- 프로필사진이 있을때 -->
 									<img src="${pageContext.request.contextPath}/upload/user/${userVo.userImg}" class="mainImg">
@@ -106,17 +106,18 @@
 <!-- 세트삭제 모달창 -->
 <div class="modal fade" id="setDeleteModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" id="setDeleteModal-Content">
 			<div class="modal-body">
-				<h4 class="modal-title">
+				<h4 class="modal-title" id="Set-Delete">
 					삭제하시겠습니까?
 				</h4>
+				<div class="setCreateModal-Footer">
+					<button type="button" class="btn btn-default" id="setCan-modal" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" id="setDel-modal">삭제</button>
+					<input type="hidden" value="" id="setDelNo"> <br>	
+				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" id="setDel-modal">삭제</button>
-				<input type="hidden" value="" id="setDelNo"> <br>	
-			</div>
+			
 		</div>
 		<!-- modal-content  -->
 	</div>
@@ -151,20 +152,26 @@
 <!-- 폴더생성 모달창 -->
 <div class="modal fade" id="folderCreateModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" id="folderCreateModal-Content">
 		<form action="${pageContext.request.contextPath }/folderCreate" method="post">
 			<div class="modal-body">
-				<input type="text" name="folderName" placeholder="폴더이름" id="folderCreate-folderName">
+				<p id="folderCreate-Namecreate"> 폴더 생성</p>
+					<div class="folderCreat">
+						<p id="folderCreate-Name"> 폴더명:</p>
+						<input type="text" name="folderName" placeholder="폴더이름을 입력하세요" id="folderCreate-folderName">
+					</div>
+				<div id="folderCreateModal-Footer">
+					<!--<button type="button" class="btn btn-default" id="folderCreateModal-CancleButton" data-dismiss="modal">취소</button>-->
+					<button type="submit" class="btn btn-primary" id="folderCreateModal-Button">확인</button>
+					<input type="hidden" name="userNo" value="${sessionScope.authUser.userNo }" id="folderCreate-userNo"><br>
+					<input type="hidden" name="folderNo" value="" id="folderCreate-folderNo"><br>
+					<input type="hidden" name="groupNo" value="" id="folderCreate-groupNo"><br>
+					<input type="hidden" name="orderNo" value="" id="folderCreate-orderNo"><br>
+					<input type="hidden" name="depth" value="" id="folderCreate-depth"><br>
+				</div>
+			
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="submit" class="btn btn-primary" id="folderCreateModal-Button">만들기</button>
-				<input type="hidden" name="userNo" value="${sessionScope.authUser.userNo }" id="folderCreate-userNo"><br>
-				<input type="hidden" name="folderNo" value="" id="folderCreate-folderNo"><br>
-				<input type="hidden" name="groupNo" value="" id="folderCreate-groupNo"><br>
-				<input type="hidden" name="orderNo" value="" id="folderCreate-orderNo"><br>
-				<input type="hidden" name="depth" value="" id="folderCreate-depth"><br>
-			</div>
+			
 		</form>
 		</div>
 		
@@ -178,14 +185,14 @@
 <!-- 폴더삭제 모달창 -->
 <div class="modal fade" id="folderDeleteModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" id="folderDeleteModal-Content">
 		<form action="${pageContext.request.contextPath }/folderDelete" method="get">
-			<div class="modal-body">
+			<div class="modal-body" id="Folder-Delete">
 				삭제하시겠습니까?
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
-				<button type="submit" class="btn btn-primary" id="folderDeleteModal-Button">예</button>
+			<div class="deleteModal-Footer">
+				<button type="button" class="btn btn-default" id="folderCancleModal-Button"data-dismiss="modal">취소</button>
+				<button type="submit" class="btn btn-primary" id="folderDeleteModal-Button">삭제</button>
 				<input type="hidden" name="folderNo" value="" id="folderDelete-folderNo"><br>
 				<input type="hidden" name="groupNo" value="" id="folderDelete-groupNo"><br>
 				<input type="hidden" name="orderNo" value="" id="folderDelete-orderNo"><br>
