@@ -3,12 +3,12 @@
 /*폰트 적용*/
 @font-face {
 	font-family: "NotoSansKR-Regular";
-	src: url("font/NotoSansKR-Regular.otf");
+	src: url("fonts/NotoSansKR-Regular.otf");
 }
 
 @font-face {
 	font-family: "NotoSansKR-Bold";
-	src: url("font/NotoSansKR-Bold.otf");
+	src: url("fonts/NotoSansKR-Bold.otf");
 }
 
 /* 여백 초기화 */

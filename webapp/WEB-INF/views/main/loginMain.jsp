@@ -59,9 +59,19 @@
 					<!-- profileInfo -->
 					<div id="userprofile-Button">
 						<div class="leftButton">
-							<a href="${pageContext.request.contextPath}/set/${folderVo.folderNo }" id="userAlink" class="user-alink">
-								<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
-							</a>
+							<c:choose>
+								<c:when test="${userVo.id == sessionScope.authUser.id }">
+									<a href="${pageContext.request.contextPath}/set/${folderVo.folderNo }" id="userAlink" class="user-alink">
+										<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
+									</a>
+								</c:when>
+								<c:when test="${userVo.id != sessionScope.authUser.id }">
+									<a href="#" id="userAlink" class="user-alink">
+										<img src="${pageContext.request.contextPath}/assets/images/iconmonstr-pencil-4-32.png" class="mainImg">
+									</a>
+								</c:when>
+							</c:choose>
+							
 						</div>
 						<div class="rightButton">
 							<a href="" class="user-alink">
