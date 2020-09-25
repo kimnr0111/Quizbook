@@ -134,13 +134,13 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }		
 /* =============================== 사진 업로드 버튼 */
 /* 이름 입력창 */
-#pro-name-area, #pro-job-area {
+/* #pro-name-area, #pro-job-area {
 	
 	vertical-align: top;
 	
 	
 	display:inline-block;
-}
+} */
 .form-name { 
   padding:0px 0px 0px 10px;
   margin-top: 10px;
@@ -193,6 +193,44 @@ textarea::placeholder {
     -webkit-appearance: none;  /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
+}
+
+
+.form-age { 
+  padding:0px 0px 0px 10px;
+  margin-top: 10px;
+  border-radius: 8px; 
+  width:150px; 
+  height:40px; 
+  border:1px solid #8E8D8D;
+  font-family:"NotoSansKR-regular", sans-serif;
+  font-size:16px;
+  }
+  
+/* 간격  */
+
+#pro-name-area {
+	margin-top:15px;
+}
+
+#pro-age-area {
+	margin-top:15px;
+}
+
+#pro-job-area {
+	margin-top:15px;
+}
+
+#pro-info-area {
+	margin-top:15px;
+}
+
+.profile-textarea {
+	margin-top:15px;
+}
+
+.filebox {
+	margin-left:15px;
 }
 
 

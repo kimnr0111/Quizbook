@@ -83,5 +83,19 @@ public class StudyController {
 		
 		return "study/main";
 	}
+	
+	@RequestMapping(value = "/{setNo}/diagram", method = { RequestMethod.GET, RequestMethod.POST })
+	public String game2(HttpSession session, Model model, @PathVariable("setNo") int setNo) throws JsonProcessingException {
+		System.out.println(setNo);
+		List<WordVo> wordList = wordService.getWords(setNo); 
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonText = mapper.writeValueAsString(wordList);
+		model.addAttribute( "json", jsonText );
+		
+		return "study/diagram";
+	}
+	
+	
 
 }

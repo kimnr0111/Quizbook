@@ -23,6 +23,7 @@ public class WordDao {
 		System.out.println("wordDao:getWords");
 		System.out.println(setNo);
 		List<WordVo> wordList = sqlSession.selectList("word.getWords", setNo);
+		System.out.println(wordList);
 		return wordList;
 	}
 	
