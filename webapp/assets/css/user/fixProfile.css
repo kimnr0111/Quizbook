@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 /* 폰트적용 */
@@ -196,3 +197,39 @@ textarea::placeholder {
 }
 
 
+.form-age { 
+  padding:0px 0px 0px 10px;
+  margin-top: 10px;
+  border-radius: 8px; 
+  width:150px; 
+  height:40px; 
+  border:1px solid #8E8D8D;
+  font-family:"NotoSansKR-regular", sans-serif;
+  font-size:16px;
+  }
+  
+/* 간격  */
+
+#pro-name-area {
+	margin-top:15px;
+}
+
+#pro-age-area {
+	margin-top:15px;
+}
+
+#pro-job-area {
+	margin-top:15px;
+}
+
+#pro-info-area {
+	margin-top:15px;
+}
+
+.profile-textarea {
+	margin-top:15px;
+}
+
+.filebox {
+	margin-left:15px;
+}

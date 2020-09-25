@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript"
@@ -54,7 +59,7 @@
 				<img src="${pageContext.request.contextPath}/assets/images/01.메인.png" alt="profile img" class="img-circle">
 				<!-- 버튼  -->
 				<span class="filebox" id="pro-cancle">
-					<label for="ex_file">선택</label> <input type="file" id="ex_file">
+					<label for="ex_file">변경</label> <input type="file" id="ex_file">
 				</span>
 			</div>
 			
@@ -64,26 +69,33 @@
 				<input class="form-name" id="txtFirstName" type="text"
 					name="FirstName" value="" placeholder="이름을 입력해주세요"> <br>
 			</div>
+			
+			<!-- 나이 -->
+			<div id="pro-age-area">
+				<p>나이</p>
+				<input class="form-age" id="txtFirstName" type="text"
+					name="FirstName" value="" placeholder="나이 수정"> <br>
+			</div>
 
 			<!-- 직업  -->
 			<div id="pro-job-area">
 				<p>직업</p>
 				
 				<div class="dropdown">
-				<select name="month" id="dLabel">
-						<option value=1>1</option>
-                        <option value=2>2</option>
-                        <option value=3>3</option>
-                        <option value=4>4</option>
-                        <option value=5>5</option>
-                        <option value=6>6</option>
-                        <option value=7>7</option>
-                        <option value=8>8</option>
-                        <option value=9>9</option>
-                        <option value=10>10</option>
-                        <option value=11>11</option>
-                        <option value=12>12</option>
-                </select>
+					<select name="month" id="dLabel">
+							<option value=1>1</option>
+	                        <option value=2>2</option>
+	                        <option value=3>3</option>
+	                        <option value=4>4</option>
+	                        <option value=5>5</option>
+	                        <option value=6>6</option>
+	                        <option value=7>7</option>
+	                        <option value=8>8</option>
+	                        <option value=9>9</option>
+	                        <option value=10>10</option>
+	                        <option value=11>11</option>
+	                        <option value=12>12</option>
+	                </select>
                 </div>
 				
 			</div>
