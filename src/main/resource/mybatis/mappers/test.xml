@@ -10,7 +10,7 @@
       			  from word
       			  where setNo = #{setNo}
       			  order by dbms_random.value)
-			where rownum <= 10
+			where rownum <= 20
 		]]>
 	</select>
 	

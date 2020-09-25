@@ -33,6 +33,8 @@
 		<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
 		
 			<div id="studyTest-Area">
+			
+			
 				<div id="studyTest-contentsArea">
 					
 				</div>
@@ -87,6 +89,7 @@
 	var testWordNum = 0;
 	var testList = ${testList};
 	var remainingWord = testList.length;
+	var totalWord = testList.length;
 	var correctWord = 0;
 	var incorrectWord = 0;
 	
@@ -118,7 +121,7 @@
 		if(testList.length == testWordNum) {
 			/* 결과창으로 이동 코드짜야됨 */
 			console.log("끝");
-			/* 모달창으로 결과 알려줌 */
+			resultRender(totalWord, correctWord);
 			
 		} else {
 			console.log("크기" + testList.length);
@@ -193,12 +196,25 @@
 	}
 	
 	
+	function resultRender(totalWord, correctWord) {
+		console.log("결과");
+		var str = "";
+		str += "<div id='studyTest-Result'>";
+		str += "	<span id='studyTest-ResultCorrect'>" + correctWord + " </span>/";
+		str += "	<span id='studyTest-ResultInCorrect'>" + totalWord + "</span><br>";
+		str += "	<span>문제를 맞추셨습니다</span>";
+		str += "	<div id='studyTest-ResultButtonArea'>";
+		str += "		<div id='studyTest-Other' OnClick='location.href =&apos;${pageContext.request.contextPath}/${sessionScope.authUser.id }&apos;'>다른 세트 선택</div>";
+		str += "		<div id='studyTest-Re' OnClick='location.href =&apos;${pageContext.request.contextPath}/study/test/${setNo}&apos;'>처음부터 다시하기</div>";
+		str += "	</div>";
+		str += "</div>";
+		str += "";
+		
+		$("#studyTest-Area").html(str);
+	}
 	
 	
-	
-	
-	
-	
+
 	
 </script>
 </html>

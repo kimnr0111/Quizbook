@@ -81,6 +81,7 @@ public class StudyController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonTestList = mapper.writeValueAsString(testList);
 		model.addAttribute("testList", jsonTestList);
+		model.addAttribute("setNo", setNo);
 		
 		return "study/test";
 	}

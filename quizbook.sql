@@ -118,6 +118,12 @@ from (select *
 where rownum <= 10;
 
 
+select *
+from sets
+where folderno = 2
+order by setname;
+
+
 
 
 
