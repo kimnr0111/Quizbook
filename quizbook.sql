@@ -106,14 +106,14 @@ insert into word values(wordNo.nextval, 1, 'kim', 'nuri', 'asdfasdfasdfasdf', 1)
 
 select *
 from word
-where setNo = 21
+where setNo = 9
 order by dbms_random.value;
 
 --랜덤으로 10개 출력
 select *
 from (select *
       from word
-      where setNo = 21
+      where setNo = 9
       order by dbms_random.value)
 where rownum <= 10;
 

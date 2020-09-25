@@ -81,19 +81,6 @@
 					alt="navy-setting"><span id="setting-txt">설정</span>
 			</a></li>
 		</ul>
-			<div class="a">
-				<hr>
-			</div>
-				<ul class="nav-bot">
-					<li><a href=""> <img class="img-block"
-							src="${pageContext.request.contextPath}/assets/images/05.사이드바/my.png"
-							alt="mypage"><span id="mypage-txt">정보수정</span>
-					</a></li>
-					<li><a href=""> <img class="img-block"
-							src="${pageContext.request.contextPath}/assets/images/05.사이드바/settings.png"
-							alt="navy-setting"><span id="setting-txt">설정</span>
-					</a></li>
-				</ul>
 	 		</c:when>
 		</c:choose>
 		

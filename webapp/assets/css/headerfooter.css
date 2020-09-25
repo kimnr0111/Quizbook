@@ -7,11 +7,12 @@
 
 .nav {
 	height: 50px;
+	width:1400px;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-left: 0;
+	padding-left: 45px;
 	margin-bottom: 0;
 	list-style: none;
     align-items: center;
@@ -108,7 +109,7 @@
 }
 
 #loginHeader {
-	width: 1400px;
+	width: 1385px;
 	height:50px;
 	background-color: #4257B2;
 	margin: 0 auto;
@@ -133,12 +134,11 @@
 }
 
 #login-profileHeader {
-	width:100px;
-	margin: 0px 40px 0px 20px;
+	margin: 0px;
 }
 
 #login-nav-search {
-	margin-right:50px;
+	margin-right:40px;
 	width:650px;
 }
 

@@ -138,14 +138,14 @@
 <!-- 세트복사 모달창 -->
 <div class="modal fade" id="setCopyModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" id="setCopy-Content">
 			<div class="modal-body">
 				<div class="folder-Area setCopyFolder">
 					
 				</div>
 			</div>
 			
-			<div class="modal-footer">
+			<div class="modal-footer" id="setModal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				<button type="button" class="btn btn-primary" id="setCopyModal-Button">복사</button>
 				<input type="hidden" value="" id="setCopyNo"><br>

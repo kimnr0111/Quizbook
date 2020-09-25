@@ -19,6 +19,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 /* 로그인 이후 main */
+
 #main-wrap {
 	min-width:1400px;
 	overflow:hidden;
@@ -27,7 +28,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #main-body {
 	display:flex;
-	width:1400px;
+	width:1300px;
 	background-color: #FFFFFF;
 	margin: 0 auto;
     padding: 0 30px;
@@ -52,8 +53,10 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 /*유저프로필*/
 #user-profile {
 	position:relative;
+	width:950px;
 	height:230px;
 	padding:20px 0px 0px 0px;
+	margin-left:5px;
 }
 
 #userprofile-Img {
@@ -120,6 +123,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	width:22px;
 	height:20px;
 	float:right;
+	margin-left:30px;
 }
 
 .order-menu {
@@ -151,9 +155,10 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 /*유저세트*/
 #user-set {
-	min-height:1000px;
+	min-height:1020px;
+	width:950px;
 	background-color:#F4F4F4;
-	margin:10px 0px 0px 0px;
+	margin:10px 0px 0px 5px;
 	
 }
 
@@ -165,7 +170,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #userset-setArea {
 	width:100%;
-	padding:0px 0px 0px 65px;
+	padding:0px 0px 0px 50px;
 	/*padding:0px 50px 0px 100px;*/
 }
 
@@ -411,10 +416,16 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	
 	
 	/* 폴더 생성 모달 */
+	
+	#folderCreateModal {
+		text-align: center;
+	}
+	
 	#folderCreateModal-Content {
 		width:350px;
 		height:200px;
 		padding: 10px 20px 10px 20px;
+		margin:0 auto;
 	}
 	
 	#folderCreate-Name, #folderCreate-Namecreate{
@@ -452,6 +463,24 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	}
 	
 	/* 폴더 ,세트 삭제 모달 */
+   #folderDeleteModal, #setDeleteModal {
+         text-align: center;
+       }
+       
+    @media screen and (min-width: 768px) {
+      .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+      }
+    }
+       
+	 .modal-dialog {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        
 	#Folder-Delete, #Set-Delete {
 		color:#333;
 		font-size:18px;
@@ -464,6 +493,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 		height:150px;
 		padding: 10px 20px 10px 20px;
 		text-align:center;
+		margin: 0 auto;
 	}
 	
 	#setDel-modal, #setCan-modal, #folderDeleteModal-Button, #folderCancleModal-Button {
@@ -473,9 +503,35 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 		font-size:15px;
 		font-family: "NotoSansKR-Bold";
 		margin: auto;
+		margin-right:2px;
+	 	margin-left:2px;
 	}
 	
+	/* 세트 폴더 복사 */
+	#setCopyModal {
+		text-align: center;
+	}
 	
+	#setCopy-Content {
+		text-align: left;
+		width:500px;
+	}
+
+	#setModal-footer {
+		text-align:center;
+	}
+	
+	#setCopyModal-Button, #setCopyCancleModal-Button {
+		background-color: #FFD739;
+		color: #404040;
+		border: 0px;
+		font-size:15px;
+		font-family: "NotoSansKR-Bold";
+		margin: auto;
+		margin-right:2px;
+	 	margin-left:2px;
+	}
+
 /* 푸터 하단고정 */
 html,body{height:100%}
 body{margin:0}

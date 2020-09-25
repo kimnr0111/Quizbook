@@ -118,6 +118,8 @@
 		if(testList.length == testWordNum) {
 			/* 결과창으로 이동 코드짜야됨 */
 			console.log("끝");
+			/* 모달창으로 결과 알려줌 */
+			
 		} else {
 			console.log("크기" + testList.length);
 			console.log(testWordNum);
