@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 /* 폰트적용 */
@@ -134,13 +135,13 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }		
 /* =============================== 사진 업로드 버튼 */
 /* 이름 입력창 */
-/* #pro-name-area, #pro-job-area {
+#pro-name-area, #pro-job-area {
 	
 	vertical-align: top;
 	
 	
 	display:inline-block;
-} */
+}
 .form-name { 
   padding:0px 0px 0px 10px;
   margin-top: 10px;
@@ -232,5 +233,3 @@ textarea::placeholder {
 .filebox {
 	margin-left:15px;
 }
-
-

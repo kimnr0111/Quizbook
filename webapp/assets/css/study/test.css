@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+/*폰트 적용*/
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src: url("../fonts/NotoSansKR-Regular.otf");
+}
+
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src: url("../fonts/NotoSansKR-Bold.otf");
+}
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+}
+
+/* test영역 */
+#studyTest-Area {
+	position: relative;
+	left: 280px;
+	margin: 50px 0px 50px 0px;
+	width: 850px;
+	height: 600px;
+	background-color: #FAFAFA;
+}
+
+/* contents영역 */
+#studyTest-contentsArea {
+	position: relative;
+	display: flex;
+	top: 50px;
+	left: 25px;
+	width: 800px;
+	height: 450px;
+	background-color: #FAFAFA;
+}
+
+/* 글 + 이미지 */
+#studyTest-textArea {
+	width: 500px;
+	height: 450px;
+	
+	/* display:flex;
+	align-items:center;
+	justify-content:center; */
+
+}
+
+#studyTest-Text {
+	position: relative;
+	top: 50px;
+	left: 50px;
+	font-size: 60px;
+}
+
+#studyTest-imgArea {
+	width: 300px;
+	height: 450px;
+}
+
+#studyTest-Img {
+	width: 250px;
+	height: 250px;
+	margin: 50px 0px 0px 25px;
+}
+
+/* 글 */
+#studyTest-textAreaOnly {
+	width: 800px;
+	height: 450px;
+}
+
+
+/* 이미지 */
+#studyTest-imgAreaOnly {
+	width: 800px;
+	height: 450px;
+}
+
+#studyTest-ImgOnly {
+	width: 450px;
+	height: 450px;
+	margin: 0px 0px 0px 175px;
+}
+
+
+/* 정답입력 영역 */
+#studyTest-answerArea {
+	position: relative;
+	width: 500px;
+	top: 65px;
+	left: 25px;
+}
+
+/* 정답입력창 */
+#studyTest-answerBox {
+	width: 600px;
+	height: 50px;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #000000;
+	font-size: 20px;
+	background-color: #FAFAFA;
+}
+#studyTest-answerSpan {
+	color: #9E9E9E;
+	font-family:"NotoSansKR-Regular";
+}
+
+/* 버튼영역 */
+#studyTest-buttonArea {
+	position: relative;
+	left: 700px;
+	width: 300px;
+	height: 70px;
+	font-family:"NotoSansKR-Bold";
+    font-size: 20px;
+}
+
+/* 정답버튼 */
+#studyTest-button {
+	width: 120px;
+	height: 50px;
+	border: none;
+	outline: none;
+	color: #FFFFFF;
+	background-color: #3498DB;
+	border-radius: 5px;
+}
+
+/* 학습사이드바 */
+#studyTestResult {
+	position: relative;
+	left: 330px;
+	margin: 50px 0px 50px 0px;
+	width: 130px;
+	height: 600px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 20px #f0f0f0;
+	font-family:"NotoSansKR-Regular";
+    font-size: 15px;
+}
+
+/* 학습사이드바 내부요소 위치조정 */
+.studyTestResult-title {
+	margin: 20px 0px 150px 0px;
+	cursor: pointer;
+}
+.studyTestResult-contents {
+	vertical-align:middle;
+	padding-left: 13px;
+}
+.material-icons {
+	vertical-align:middle;
+	width: 30px;
+	height: 30px;
+	color:#1ABC9C;	
+}
+.studyTestResult-text {
+	margin: 30px 0px 30px 0px;
+	text-align:center;
+}
+
+.studyTest-correct-color{
+	color:#27A78E;
+}
+.studyTest-incorrect-color{
+	color:#E74C3C;
+}
+.studyTest-left-color{
+	color:#474747;
+}
+
+/* 강조효과 */
+.studyTestResult-title:hover {
+		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+  		
+}
+

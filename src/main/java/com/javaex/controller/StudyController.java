@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javaex.service.MainService;
+import com.javaex.service.TestService;
 import com.javaex.service.WordService;
 import com.javaex.vo.FolderVo;
 import com.javaex.vo.MainVo;
@@ -28,6 +29,8 @@ public class StudyController {
 	private MainService mainService;
 	@Autowired
 	private WordService wordService;
+	@Autowired
+	private TestService testService;
 	
 	@RequestMapping(value = "/{setNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String study(HttpSession session, Model model, @PathVariable("setNo") int setNo) throws JsonProcessingException{
@@ -46,6 +49,7 @@ public class StudyController {
 		MainVo mainVo = mainService.getSetOne(setNo);
 		String setName = mainVo.getSetName();
 		model.addAttribute("setName", setName);
+		model.addAttribute("setNo", setNo);
 		
 		/////////////////////////////////////
 		
@@ -67,23 +71,21 @@ public class StudyController {
 		return "study/main";
 	}
 	
-	@RequestMapping(value="/main", method={RequestMethod.GET, RequestMethod.POST})
-	public String study(HttpSession session, Model model){
-		System.out.println("studyController:main");
+	@RequestMapping(value = "/test/{setNo}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String studyTest(HttpSession session, Model model, @PathVariable("setNo") int setNo) throws JsonProcessingException{
+		System.out.println("studyController:test");
 		
-		//session 불러오기
-		UserVo loginUser = (UserVo) session.getAttribute("authUser");
-		System.out.println(loginUser);
+		List<WordVo> testList = testService.getTestList(setNo);
+		System.out.println(testList.toString());
 		
-		// 내 폴더리스트 불러오기
-		List<FolderVo> myfolderList = mainService.folderList(loginUser.getUserNo());
-		System.out.println("my폴더리스트 : " + myfolderList.toString());
-		model.addAttribute("myfolderList", myfolderList);
-
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonTestList = mapper.writeValueAsString(testList);
+		model.addAttribute("testList", jsonTestList);
 		
-		return "study/main";
+		return "study/test";
 	}
 	
+
 	@RequestMapping(value = "/{setNo}/diagram", method = { RequestMethod.GET, RequestMethod.POST })
 	public String game2(HttpSession session, Model model, @PathVariable("setNo") int setNo) throws JsonProcessingException {
 		System.out.println(setNo);
@@ -97,5 +99,21 @@ public class StudyController {
 	}
 	
 	
+	/*
+	 * @RequestMapping(value="/main", method={RequestMethod.GET,
+	 * RequestMethod.POST}) public String study(HttpSession session, Model model){
+	 * System.out.println("studyController:main");
+	 * 
+	 * //session 불러오기 UserVo loginUser = (UserVo) session.getAttribute("authUser");
+	 * System.out.println(loginUser);
+	 * 
+	 * // 내 폴더리스트 불러오기 List<FolderVo> myfolderList =
+	 * mainService.folderList(loginUser.getUserNo());
+	 * System.out.println("my폴더리스트 : " + myfolderList.toString());
+	 * model.addAttribute("myfolderList", myfolderList);
+	 * 
+	 * 
+	 * return "study/main"; }
+	 */
 
 }
