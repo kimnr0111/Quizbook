@@ -11,5 +11,6 @@
     	<mapper resource="mybatis/mappers/folder.xml" />
     	<mapper resource="mybatis/mappers/word.xml" />
     	<mapper resource="mybatis/mappers/test.xml" />
+    	<mapper resource="mybatis/mappers/study.xml" />
     </mappers>
 </configuration>

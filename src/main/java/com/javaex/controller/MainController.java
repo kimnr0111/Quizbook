@@ -121,6 +121,21 @@ public class MainController {
 		
 		return setList;
 	}
+	
+	/* 이름순 세트리스트 불러오기 */
+	@ResponseBody
+	@RequestMapping(value = "/nameSetList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<MainVo> nameSetList(@RequestBody MainVo mainVo) {
+		System.out.println("/Quizbook/nameSetList");
+		System.out.println(mainVo);
+		
+		int folderNo = mainVo.getFolderNo();
+		
+		List<MainVo> setList = mainService.getSetListName(folderNo);
+		System.out.println("구분하기 : : : " + setList.toString());
+		
+		return setList;
+	}
 
 	/* 세트삭제 */
 	@ResponseBody

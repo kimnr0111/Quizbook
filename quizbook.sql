@@ -58,11 +58,36 @@ create table word(
     constraint word_fk_setNo foreign key(setNo) references sets(setNo) on delete cascade
 );
 
+--study
+create table study(
+    studyNo number not null,
+    userNo number not null,
+    setNo number not null,
+    studyDate date not null,
+    studyPct number not null,
+    constraint study_pk primary key(studyNo),
+    constraint study_fk_userNo foreign key(userNo) references users(userNo) on delete cascade,
+    constraint study_fk_setNo foreign key(setNo) references sets(setNo) on delete cascade
+);
+
+--correct
+create table answer(
+    answerNo number not null,
+    studyNo number not null,
+    wordNo number not null,
+    correct number not null,
+    constraint answer_pk primary key(answerNo),
+    constraint answer_fk_studyNo foreign key(studyNo) references study(studyNo) on delete cascade,
+    constraint answer_fk_wordNo foreign key(wordNo) references word(wordNo) on delete cascade
+);
+
 --sequence
 create sequence seq_user_no start with 1 increment by 1;
 create sequence folderNo start with 1 increment by 1;
 create sequence setNo start with 1 increment by 1;
 create sequence wordNo start with 1 increment by 1;
+create sequence studyNo start with 1 increment by 1;
+create sequence answerNo start with 1 increment by 1;
 
 --insert user
 insert into users values(1, '123', '±è', '´©¸®', '±è´©¸®', '1234', sysdate, 26, 'peng.png', '', '', '');
@@ -71,6 +96,9 @@ insert into users values(2, '456', '±è', '´©¸®', '±è´©¸®2', '1234', sysdate, 26,
 --insert basic folder
 insert into folder values(folderNo.nextval, 1, '³» Æú´õ', folderNo.nextval, 0, 1, 0, sysdate);
 insert into folder values(folderNo.nextval, 2, '³» Æú´õ', folderNo.nextval, 0, 1, 0, sysdate);
+
+--insert newStudy
+insert into study values(studyNo.nextval, 2, 4, sysdate, 0);
 
 --select
 select *
@@ -85,12 +113,20 @@ from sets;
 select * 
 from word;
 
+select *
+from study;
+
+select *
+from answer;
+
 --drop table and sequence
 
 drop table users;
 drop table folder;
 drop table sets;
 drop table word;
+drop table study;
+drop table answer;
 
 drop sequence seq_user_no;
 drop SEQUENCE folderNo;
@@ -106,7 +142,7 @@ insert into word values(wordNo.nextval, 1, 'kim', 'nuri', 'asdfasdfasdfasdf', 1)
 
 select *
 from word
-where setNo = 9
+where setNo = 21
 order by dbms_random.value;
 
 --·£´ýÀ¸·Î 10°³ Ãâ·Â
@@ -121,14 +157,40 @@ where rownum <= 10;
 select *
 from sets
 where folderno = 2
-order by setname;
+order by setname asc;
+
+select *
+from sets
+where folderno = 2
+order by regdate desc;
+
+delete from study
+where studyno = 1;
 
 
+select *
+from study
+where userNo = 2
+and setNo = 24;
+
+select *
+from (  select studyNo
+        from study
+        where userNo = 2
+        and setNo = 25
+        
+        union all
+        
+        select null as studyNo
+        from dual)
+where studyNo is not null or rownum = 1;
 
 
+insert into answer values(answerNo.nextval, 2, 167, 0);
 
-
-
+select *
+from word
+where setno = 25;
 
 
 

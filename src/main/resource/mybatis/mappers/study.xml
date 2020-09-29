@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study">
+
+	<insert id="createStudy" parameterType="com.javaex.vo.StudyVo">
+		<![CDATA[
+			insert into study values(studyNo.nextval, #{userNo}, #{setNo}, sysdate, 0)
+		]]>
+	</insert>
+	
+	<select id="selectStudy" parameterType="com.javaex.vo.StudyVo" resultType="com.javaex.vo.StudyVo">
+		<![CDATA[
+			select *
+			from study
+			where userNo = #{userNo}
+			and setNo = #{setNo}
+		]]>
+	</select>
+	
+</mapper>

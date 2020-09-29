@@ -14,4 +14,16 @@
 		]]>
 	</select>
 	
+	<insert id="studyResultCorrect" parameterType="com.javaex.vo.AnswerVo">
+		<![CDATA[
+			insert into answer values(answerNo.nextval, #{studyNo}, #{wordNo}, 1)
+		]]>
+	</insert>
+	
+	<insert id="studyResultIncorrect" parameterType="com.javaex.vo.AnswerVo">
+		<![CDATA[
+			insert into answer values(answerNo.nextval, #{studyNo}, #{wordNo}, 0)
+		]]>
+	</insert>
+	
 </mapper>

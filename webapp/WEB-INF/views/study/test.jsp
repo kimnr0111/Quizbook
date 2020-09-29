@@ -92,12 +92,12 @@
 	var totalWord = testList.length;
 	var correctWord = 0;
 	var incorrectWord = 0;
+	var studyNo = "${studyInfo.studyNo}";
+	console.log("studyNo:" + studyNo);
 	
 	$(document).ready(function(){
 		console.log("크기" + testList.length);
 		testWordRender(testWordNum);
-		
-		//testWordNum = testWordNum + 1;
 
 		$(".studyTest-left-color").text(remainingWord);
 		$(".studyTest-correct-color").text(correctWord);
@@ -107,19 +107,24 @@
 	
 	$(document).on('click', '#studyTest-button', function(){
 		console.log("정답버튼클릭");
+		var wordNo = testList[testWordNum].wordNo;
+		console.log(wordNo);
 		
 		var studyTestAnswer = $("#studyTest-answerBox").val();
 		if(studyTestAnswer == testList[testWordNum].word) {
 			correctWord = correctWord + 1;
+			var correctFlag = 1;
+			studyResult(wordNo, studyNo, correctFlag);
 		} else {
 			incorrectWord = incorrectWord + 1;
+			var correctFlag = 0;
+			studyResult(wordNo, studyNo, correctFlag);
 		}
 		
 		testWordNum = testWordNum + 1;
 		remainingWord = remainingWord - 1;
 		
 		if(testList.length == testWordNum) {
-			/* 결과창으로 이동 코드짜야됨 */
 			console.log("끝");
 			resultRender(totalWord, correctWord);
 			
@@ -205,12 +210,40 @@
 		str += "	<span>문제를 맞추셨습니다</span>";
 		str += "	<div id='studyTest-ResultButtonArea'>";
 		str += "		<div id='studyTest-Other' OnClick='location.href =&apos;${pageContext.request.contextPath}/${sessionScope.authUser.id }&apos;'>다른 세트 선택</div>";
-		str += "		<div id='studyTest-Re' OnClick='location.href =&apos;${pageContext.request.contextPath}/study/test/${setNo}&apos;'>처음부터 다시하기</div>";
+		str += "		<div id='studyTest-Re' OnClick='location.href =&apos;${pageContext.request.contextPath}/study/test/${studyInfo.setNo}&apos;'>처음부터 다시하기</div>";
 		str += "	</div>";
 		str += "</div>";
 		str += "";
 		
 		$("#studyTest-Area").html(str);
+	}
+	
+	/* 학습결과저장 */
+	function studyResult(wordNo, studyNo, correctFlag) {
+		console.log("학습결과");
+		console.log(wordNo);
+		console.log(studyNo);
+		console.log(correctFlag);
+		
+		var answerVo = {
+				wordNo: wordNo,
+				studyNo: studyNo,
+				correctFlag: correctFlag
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/study/test/studyResult",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(answerVo),
+			dataType: "json",
+			success : function(num){
+				console.log("성공");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 	}
 	
 	

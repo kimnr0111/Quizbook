@@ -79,8 +79,8 @@
 							</a>
 						</div>
 						<ul class="order-menu">
-							<a href=""><li class='order-list orderby-recently'>등록순</li></a>
-							<a href=""><li class='order-list orderby-name'>이름순</li></a>
+							<li class='order-list orderby-recently'>등록순</li>
+							<li class='order-list orderby-name'>이름순</li>
 						</ul>
 					</div>
 					<!-- profileButton -->
@@ -590,7 +590,7 @@
 		$(".order-menu").hide();
 		
 		$("#userset-setArea").html("");
-		fetchList();
+		nameFetchList();
 	});
 	
 	
@@ -607,7 +607,7 @@
 	/* 기본 setList 가져오기 */
 	function fetchList() {
 		var folderNo = "${folderVo.folderNo}";
-		var color = "#"
+		var color = "#";
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
 		var mainVo = {
@@ -616,6 +616,38 @@
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath }/setList",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mainVo),
+			dataType: "json",
+			success : function(setList){
+				console.log(setList);
+				for(var i=0;i<setList.length;i++) {
+					color = "#"
+					render(setList[i]);
+					color += letters[Math.floor(Math.random() * letters.length)];
+					console.log(color);
+					$("#userset-"+setList[i].setNo).css('background-color', color);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	/* 이름순정렬 setList 가져오기 */
+	function nameFetchList() {
+		var folderNo = "${folderVo.folderNo}";
+		var color = "#";
+		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
+		
+		var mainVo = {
+				folderNo: folderNo
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/nameSetList",		
 			type : "post",
 			contentType : "application/json",
 			data : JSON.stringify(mainVo),

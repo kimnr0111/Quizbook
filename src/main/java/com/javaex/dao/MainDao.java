@@ -29,16 +29,21 @@ public class MainDao {
 	public List<MainVo> getSetList(int folderNo) {
 		System.out.println("MainDao:getSetList");
 		
-		/*
-		 * HashMap<String, Integer> listMap = new HashMap<String, Integer>();
-		 * listMap.put("userNo", userNo); listMap.put("folderNo", folderNo);
-		 */
 		List<MainVo> setList = sqlSession.selectList("set.selectSetList", folderNo);
-		
 		
 		return setList;
 		
 	}
+	
+	//세트리스트 가져오기(아이디포함, 이름순)
+		public List<MainVo> getSetListName(int folderNo) {
+			System.out.println("MainDao:getSetListName");
+			
+			List<MainVo> setList = sqlSession.selectList("set.selectSetListName", folderNo);
+			
+			return setList;
+			
+		}
 	
 	//세트 가져오기
 	public MainVo getSet(int setNo) {

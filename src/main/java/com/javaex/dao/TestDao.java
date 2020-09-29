@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.AnswerVo;
 import com.javaex.vo.WordVo;
 
 @Repository
@@ -21,6 +22,26 @@ public class TestDao {
 		List<WordVo> testList = sqlSession.selectList("test.getTestList", setNo);
 		
 		return testList;
+	}
+	
+	public void studyResultCorrect(AnswerVo answerVo) {
+		System.out.println("TestDao:studyResultCorrect");
+		
+		System.out.println(answerVo.toString());
+		
+		sqlSession.insert("test.studyResultCorrect", answerVo);
+		
+		
+	}
+	
+	public void studyResultIncorrect(AnswerVo answerVo) {
+		System.out.println("TestDao:studyResultIncorrect");
+		
+		System.out.println(answerVo.toString());
+		
+		sqlSession.insert("test.studyResultIncorrect", answerVo);
+		
+		
 	}
 
 }

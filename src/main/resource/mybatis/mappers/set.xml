@@ -17,6 +17,20 @@
 		]]>
 	</select>
 	
+	<!-- 세트 리스트 가져오기(이름순) -->
+	<select id="selectSetListName" parameterType="int" resultType="com.javaex.vo.MainVo">
+		<![CDATA[
+			select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    				nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    				sets.setimg, sets.tag, sets.setlike, 
+    				sets.setdislike, users.id
+			from sets, users
+			where sets.userNo = users.userNo
+			and sets.folderNo = #{folderNo}
+			order by sets.setname asc
+		]]>
+	</select>
+	
 	<!-- 세트 가져오기 -->
 	<select id="selectSet" parameterType="int" resultType="com.javaex.vo.MainVo">
 		<![CDATA[

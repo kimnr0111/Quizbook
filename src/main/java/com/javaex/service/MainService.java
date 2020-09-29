@@ -32,12 +32,22 @@ public class MainService {
 		return userVo;
 	}
 	
-	//세트리스트 가져오기
+	//세트리스트 가져오기(최신순)
 	public List<MainVo> getSetList(int folderNo) {
 		System.out.println("MainService:getSetList");
 		
 		//세트가져오기(아이디포함)
 		List<MainVo> setList = mainDao.getSetList(folderNo);
+		
+		return setList;
+	}
+	
+	//세트리스트 가져오기(이름순)
+	public List<MainVo> getSetListName(int folderNo) {
+		System.out.println("MainService:getSetListName");
+		
+		//세트가져오기(아이디포함)
+		List<MainVo> setList = mainDao.getSetListName(folderNo);
 		
 		return setList;
 	}
