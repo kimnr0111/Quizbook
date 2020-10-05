@@ -23,6 +23,7 @@
 	max-width:100px;
 }
 
+
 .gameCard:active {
 	background-color: red;
 	z-index: 1;
