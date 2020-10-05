@@ -132,6 +132,7 @@ drop sequence seq_user_no;
 drop SEQUENCE folderNo;
 drop SEQUENCE setNo;
 drop SEQUENCE wordNo;
+drop sequence answerNo;
 
 --test
 update users
@@ -193,7 +194,14 @@ from word
 where setno = 25;
 
 
+select *
+from answer
+where studyNo = 2
+and wordNo = 167;
 
+update study
+set studydate = sysdate
+where studyNo = 5;
 
 
 

@@ -18,7 +18,9 @@ public class StudyService {
 		//사용자가 클릭한 세트를 학습한 적이 있는경우 기존 학습정보 조회 학습날짜 갱신
 		//사용자가 클릭한 세트를 학습한 적이 없는경우 새로운 학습정보생성
 		//작업실행 후 학습정보 가져오기
+		
 		StudyVo studySelect = studyDao.selectStudy(studyVo);
+		System.out.println("createStudy:" + studySelect);
 		
 		if(studySelect == null) {
 			System.out.println("null");
@@ -27,6 +29,10 @@ public class StudyService {
 			
 			studySelect = studyDao.selectStudy(studyVo);
 
+		} else {
+			System.out.println("notnull");
+			
+			studyDao.updateStudy(studySelect);
 		}
 		
 		return studySelect;

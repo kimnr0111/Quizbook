@@ -28,11 +28,17 @@ public class TestService {
 	public void studyResult(int wordNo, int studyNo, int correctFlag) {
 		System.out.println("TestService:studyResult");
 		AnswerVo answerVo = new AnswerVo(studyNo, wordNo);
-		if(correctFlag == 1) {
-			testDao.studyResultCorrect(answerVo);
+		AnswerVo answerSelect = testDao.studyResultSelect(answerVo);
+		if(answerSelect == null) {
+			if(correctFlag == 1) {
+				testDao.studyResultCorrect(answerVo);
+			} else {
+				testDao.studyResultIncorrect(answerVo);
+			}
 		} else {
-			testDao.studyResultIncorrect(answerVo);
+			System.out.println("answerSelect:notnull");
 		}
+		
 		
 	}
 

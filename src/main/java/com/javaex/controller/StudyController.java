@@ -90,10 +90,9 @@ public class StudyController {
 		UserVo loginUser = (UserVo) session.getAttribute("authUser");
 		int userNo = loginUser.getUserNo();
 		
-		//userNo, setNo를 받아서 study 만들기
 		StudyVo studyVo = new StudyVo(userNo, setNo);
 		
-		//만들어진 study 가져오기
+		//만들어진 study가져오기
 		StudyVo studyInfo = studyService.createStudy(studyVo);
 		System.out.println("studyInfo확인" + studyInfo);
 

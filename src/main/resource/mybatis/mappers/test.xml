@@ -26,4 +26,13 @@
 		]]>
 	</insert>
 	
+	<select id="studyResultSelect" parameterType="com.javaex.vo.AnswerVo" resultType="com.javaex.vo.AnswerVo">
+		<![CDATA[
+			select *
+			from answer
+			where studyNo = #{studyNo}
+			and wordNo = #{wordNo}
+		]]>
+	</select>
+	
 </mapper>

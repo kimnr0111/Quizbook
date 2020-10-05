@@ -18,4 +18,12 @@
 		]]>
 	</select>
 	
+	<update id="updateStudy" parameterType="com.javaex.vo.StudyVo">
+		<![CDATA[
+			update study
+			set studydate = sysdate
+			where studyNo = #{studyNo}
+		]]>
+	</update>
+	
 </mapper>

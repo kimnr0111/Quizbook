@@ -24,6 +24,7 @@ public class TestDao {
 		return testList;
 	}
 	
+	/* 테스트결과 저장 */
 	public void studyResultCorrect(AnswerVo answerVo) {
 		System.out.println("TestDao:studyResultCorrect");
 		
@@ -41,6 +42,19 @@ public class TestDao {
 		
 		sqlSession.insert("test.studyResultIncorrect", answerVo);
 		
+		
+	}
+	
+	/* 테스트결과 가져오기 */
+	public AnswerVo studyResultSelect(AnswerVo answerVo) {
+		System.out.println("TestDao:studyResultSelect");
+		
+		System.out.println("answerVo:" + answerVo.toString());
+		
+		AnswerVo answerSelect = sqlSession.selectOne("test.studyResultSelect", answerVo);
+		
+		
+		return answerSelect;
 		
 	}
 

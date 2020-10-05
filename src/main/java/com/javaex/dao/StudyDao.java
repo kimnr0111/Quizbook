@@ -28,5 +28,13 @@ public class StudyDao {
 		return studySelect;
 		
 	}
+	
+	/* 학습정보 최신화 */
+	public void updateStudy(StudyVo studyVo) {
+		System.out.println("StudyDao:updateStudy");
+		System.out.println("updateStudy:" + studyVo);
+		
+		sqlSession.update("study.updateStudy", studyVo);
+	}
 
 }
