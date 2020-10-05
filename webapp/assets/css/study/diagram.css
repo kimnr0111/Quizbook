@@ -1,22 +1,23 @@
 @charset "UTF-8";
 
 .diagram {
-	padding: 10px;
-	width: 800px;
-	height: 500px;
-	margin-top: 50px;
-	margin-left: 250px;
-	border-bottom: 2px solid #c3c3c3;
-	background-color: gray;
+	padding:100px;
 	position: relative;
-	display:inline-block;
+    left: 280px;
+    margin: 50px 0px 50px 0px;
+    width: 850px;
+    height: 600px;
+    background-color: #FAFAFA;
 }
 
 .gameCard {
+	padding:5px;
 	position: relative;
-	background-color: cyan;
 	position: absolute;
 	z-index: 0;
+	text-align:center;
+	border: 1px solid #000000;
+	background-color:#FFFFFF;
 }
 
 .gameCard img {
@@ -24,7 +25,6 @@
 }
 
 .gameCard:active {
-	background-color: red;
 	z-index: 1;
 	pointer-events: none;
 }
@@ -33,11 +33,54 @@
 	cursor: grab;
 }
 
-#time_out{
-	position:absolute;
-	width:200px;
-}
-
 .diagram:active:hover {
 	cursor: grabbing;
-} 
+}
+
+#body {
+    display: flex;
+    width: 1300px;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#studyTestResult {
+	position: relative;
+	left: 330px;
+	margin: 50px 0px 50px 0px;
+	width: 130px;
+	height: 600px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 20px #f0f0f0;
+	font-family:"NotoSansKR-Regular";
+    font-size: 15px;
+}
+
+.studyTestResult-title {
+	margin: 20px 0px 150px 0px;
+	cursor: pointer;
+}
+.studyTestResult-contents {
+	vertical-align:middle;
+	padding-left: 13px;
+}
+.material-icons {
+	vertical-align:middle;
+	width: 30px;
+	height: 30px;
+	color:#1ABC9C;	
+}
+.studyTestResult-text {
+	margin: 30px 0px 30px 0px;
+	text-align:center;
+}
+
+/* 강조효과 */
+.studyTestResult-title:hover {
+		background-color:#FFD739;
+  		color:white;
+  		text-decoration:none;
+  		
+}
+

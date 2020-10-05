@@ -15,12 +15,17 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
-
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 <link
 	href="${pageContext.request.contextPath}/assets/css/headerfooter.css"
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/sidebar.css"
 	rel="stylesheet" type="text/css">
+	
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 
 
 <link
@@ -44,8 +49,22 @@
 
 		<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
 		
-			<span id="time_out">0시0분0초</span>
 			<div class="diagram">
+			</div>
+			
+			<div id="studyTestResult">
+				<div class="studyTestResult-title" id="prevPage">
+					<i class='material-icons' style='font-size: 30px'>keyboard_arrow_left</i>
+					<span class="studyTestResult-contents">세트</span>
+					
+				</div>
+				
+				<div class="studyTestResult-text">
+					카드 맞추기
+					<br><br>시간<br>
+					<span id="time_out">0시0분0초</span>					
+				</div>
+			
 			</div>
 			
 	</div>
@@ -267,12 +286,12 @@ function putCard(sel, cardVo) {
 				
 			case 3:
 				$(element).addClass("gameCard");
-				$(element).html('<div><img id=img-'+pk+' src="${pageContext.request.contextPath}/wordImg/'+cardVo.wordImg+'"/>'+cardVo.word+'</div>');
+				$(element).html('<div><img id=img-'+pk+' src="${pageContext.request.contextPath}/wordImg/'+cardVo.wordImg+'"/></div>'+cardVo.word);
 				break;
 			
 			case 4:
 				$(element).addClass("gameCard");
-				$(element).html('<div><img id=img-'+pk+' src=""/></div>'+cardVo.word);
+				$(element).html('<div><img id=img-'+pk+' src="${pageContext.request.contextPath}/wordImg/'+cardVo.wordImg+'"/></div>');
 				break;
 			
 		}
