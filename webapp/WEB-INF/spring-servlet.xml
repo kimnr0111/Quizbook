@@ -36,7 +36,7 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
+	
 	<!-- 기본 뷰 리졸버 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
