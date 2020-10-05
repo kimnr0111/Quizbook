@@ -82,11 +82,65 @@ public class MainController {
 		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
 		int folderRenderFlag = 1;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
+		
+		//최근학습페이지 구분
+		int recentlyStudy = 0;
+		model.addAttribute("recentlyStudy", recentlyStudy);
 
 		// 팔로우, 팔로워 숫자 나중에 넣기
 
 		return "main/loginMain";
 	}
+	
+	// 최근학습페이지
+		@RequestMapping(value = "/{id}/recentlyStudy", method = { RequestMethod.GET, RequestMethod.POST })
+		public String loginMainRecently(HttpSession session, Model model, @PathVariable("id") String id) {
+			System.out.println("/Quizbook/loginMainRecently");
+			
+			//세션값 받아오기(아이디)
+			UserVo authUser = (UserVo) session.getAttribute("authUser");
+			
+			System.out.println(authUser);
+			
+			// 로그인한 유저 기본폴더 불러오기(사이드바 세트만들기용)
+			UserVo authUserVo = mainService.getUser(authUser.getId());
+			int authUserNo = authUserVo.getUserNo();
+			FolderVo userFolderVo = mainService.getFolder(authUserNo);
+			session.setAttribute("authUserFolder", userFolderVo);
+			
+			// 내 폴더리스트 불러오기
+			List<FolderVo> myfolderList = mainService.folderList(authUserNo);
+			System.out.println("my폴더리스트 : " + myfolderList.toString());
+			model.addAttribute("myfolderList", myfolderList);
+
+			// 아이디로 유저번호 알아내기
+			UserVo userVo = mainService.getUser(id);
+			model.addAttribute("userVo", userVo);
+			
+			// 개인페이지 접속시 기본폴더 출력(나중에 최근학습 세트목록 불러오기로 수정)
+			int userNo = userVo.getUserNo();
+			FolderVo folderVo = mainService.getFolder(userNo);
+			model.addAttribute("folderVo", folderVo);
+
+			
+			// 방문페이지 폴더리스트 불러오기
+			List<FolderVo> otherfolderList = mainService.folderList(userNo);
+			System.out.println("other폴더리스트 : " + otherfolderList.toString());
+			model.addAttribute("otherfolderList", otherfolderList);
+			
+			//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+			int folderRenderFlag = 1;
+			model.addAttribute("folderRenderFlag", folderRenderFlag);
+			
+			//최근학습페이지 구분
+			int recentlyStudy = 1;
+			model.addAttribute("recentlyStudy", recentlyStudy);
+
+			// 팔로우, 팔로워 숫자 나중에 넣기
+
+			return "main/loginMain";
+		}
+	
 	
 	/* 폴더리스트 불러오기 */
 	@ResponseBody
@@ -132,6 +186,21 @@ public class MainController {
 		int folderNo = mainVo.getFolderNo();
 		
 		List<MainVo> setList = mainService.getSetListName(folderNo);
+		System.out.println("구분하기 : : : " + setList.toString());
+		
+		return setList;
+	}
+	
+	/* 최근학습 세트리스트 불러오기 */
+	@ResponseBody
+	@RequestMapping(value = "/recentlySetList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<MainVo> recentlySetList(@RequestBody MainVo mainVo) {
+		System.out.println("/Quizbook/nameSetList");
+		System.out.println(mainVo);
+		
+		int userNo = mainVo.getUserNo();
+		
+		List<MainVo> setList = mainService.getSetListRecently(userNo);
 		System.out.println("구분하기 : : : " + setList.toString());
 		
 		return setList;

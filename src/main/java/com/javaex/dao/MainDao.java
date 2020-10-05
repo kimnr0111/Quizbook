@@ -36,14 +36,23 @@ public class MainDao {
 	}
 	
 	//세트리스트 가져오기(아이디포함, 이름순)
-		public List<MainVo> getSetListName(int folderNo) {
-			System.out.println("MainDao:getSetListName");
+	public List<MainVo> getSetListName(int folderNo) {
+		System.out.println("MainDao:getSetListName");
+		
+		List<MainVo> setList = sqlSession.selectList("set.selectSetListName", folderNo);
+		
+		return setList;
 			
-			List<MainVo> setList = sqlSession.selectList("set.selectSetListName", folderNo);
-			
-			return setList;
-			
-		}
+	}
+	
+	//최근학습 세트리스트 가져오기
+	public List<MainVo> getSetListRecently(int userNo) {
+		System.out.println("MainDao:getSetListRecently");
+		
+		List<MainVo> setList = sqlSession.selectList("set.selectSetListRecently", userNo);
+		
+		return setList;
+	}
 	
 	//세트 가져오기
 	public MainVo getSet(int setNo) {

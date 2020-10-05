@@ -52,6 +52,16 @@ public class MainService {
 		return setList;
 	}
 	
+	//최근학습 세트리스트가져오기
+		public List<MainVo> getSetListRecently(int userNo) {
+			System.out.println("MainService:getSetListRecently");
+			
+			//최근학습 세트가져오기
+			List<MainVo> setList = mainDao.getSetListRecently(userNo);
+			
+			return setList;
+		}
+	
 	//세트 복사
 	public int getSet(int folderNo, int setNo, int userNo) {
 		System.out.println("MainService:getSet");
@@ -88,6 +98,8 @@ public class MainService {
 		
 		return setVo;
 	}
+	
+	
 	
 	//세트 이미지 업로드
 	public String setImgUpload(MultipartFile file) {

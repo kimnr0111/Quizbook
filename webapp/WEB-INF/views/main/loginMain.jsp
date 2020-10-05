@@ -259,7 +259,14 @@
 	/* 세트리스트 불러오기 */
 	$(document).ready(function(){
 		
-		fetchList();
+		var recentlyStudy = "${recentlyStudy}";
+		
+		if(recentlyStudy == 0) {
+			fetchList();
+		} else {
+			console.log("recentlyStudy");
+			recentlyfetchList();
+		}
 		
 	});
 	
@@ -580,7 +587,7 @@
 		$(".order-menu").hide();
 		
 		$("#userset-setArea").html("");
-		fetchList();
+		registerFetchList(folderno);
 		
 	});
 	
@@ -590,7 +597,7 @@
 		$(".order-menu").hide();
 		
 		$("#userset-setArea").html("");
-		nameFetchList();
+		nameFetchList(folderno);
 	});
 	
 	
@@ -636,9 +643,41 @@
 		});
 	}
 	
+	/* 등록순 setList 가져오기 */
+	function registerFetchList(folderno) {
+		var folderNo = folderno;
+		var color = "#";
+		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
+		
+		var mainVo = {
+				folderNo: folderNo
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/setList",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mainVo),
+			dataType: "json",
+			success : function(setList){
+				console.log(setList);
+				for(var i=0;i<setList.length;i++) {
+					color = "#"
+					render(setList[i]);
+					color += letters[Math.floor(Math.random() * letters.length)];
+					console.log(color);
+					$("#userset-"+setList[i].setNo).css('background-color', color);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
 	/* 이름순정렬 setList 가져오기 */
-	function nameFetchList() {
-		var folderNo = "${folderVo.folderNo}";
+	function nameFetchList(folderno) {
+		var folderNo = folderno;
 		var color = "#";
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
@@ -648,6 +687,40 @@
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath }/nameSetList",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mainVo),
+			dataType: "json",
+			success : function(setList){
+				console.log(setList);
+				for(var i=0;i<setList.length;i++) {
+					color = "#"
+					render(setList[i]);
+					color += letters[Math.floor(Math.random() * letters.length)];
+					console.log(color);
+					$("#userset-"+setList[i].setNo).css('background-color', color);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	/* 최근학습 setList 가져오기 */
+	function recentlyfetchList() {
+		var userNo = "${sessionScope.authUser.userNo}";
+		var color = "#";
+		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
+		
+		var mainVo = {
+				userNo: userNo
+		}
+		
+		$("#userset-folderName").text("최근학습목록");
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/recentlySetList",		
 			type : "post",
 			contentType : "application/json",
 			data : JSON.stringify(mainVo),

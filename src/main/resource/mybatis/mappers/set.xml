@@ -31,6 +31,25 @@
 		]]>
 	</select>
 	
+	<!-- 최근학습 세트리스트 가져오기 -->
+	<select id="selectSetListRecently" parameterType="int" resultType="com.javaex.vo.MainVo">
+		<![CDATA[
+			select se.userno, se.setno, se.setname, nvl(se.setexplain, ' ') as setexplain, se.setimg, se.id
+			from study st, (select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    						nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    						sets.setimg, sets.tag, sets.setlike, 
+    						sets.setdislike, users.id
+							from sets, users
+							where sets.userNo = users.userNo
+							and sets.folderNo = 2
+							order by sets.regDate desc) se
+			where st.userno = se.userno
+			and st.setno = se.setno
+			and se.userno = #{userNo}
+			order by studydate desc
+		]]>
+	</select>
+	
 	<!-- 세트 가져오기 -->
 	<select id="selectSet" parameterType="int" resultType="com.javaex.vo.MainVo">
 		<![CDATA[

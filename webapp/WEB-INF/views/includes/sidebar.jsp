@@ -16,7 +16,7 @@
 						src="${pageContext.request.contextPath}/assets/images/05.사이드바/open-menu.png"
 						alt="menu"><span id="home-txt">홈</span>
 						</a></li>
-					<li><a href=""> <img class="img-block"
+					<li><a href="${pageContext.request.contextPath}/${sessionScope.authUser.id }/recentlyStudy"> <img class="img-block"
 											src="${pageContext.request.contextPath}/assets/images/05.사이드바/recently.png"
 											alt="recently"> <span id="rec-txt">최근에 학습</span>
 					</a></li>
@@ -28,6 +28,7 @@
 				<div class="a">
 					<hr>
 				</div>
+				<c:if test="${userVo != null }">
 				<ul class="nav-mid">
 					<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
 							src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
@@ -47,7 +48,7 @@
 				
 				</div>
 		
-				<c:if test="${userVo != null }">
+				
 					<div class="newfolder">
 						폴더 +
 					</div>

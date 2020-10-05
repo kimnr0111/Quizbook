@@ -32,12 +32,6 @@
 
 
 <body>
-
-
-
-	<!-- 테스트!!!!!!!!!!! -->
-	
-	
 	
 	<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	<div id="body">
@@ -149,7 +143,7 @@
 							<li><a href="#"><span>&#xf00c</span> 학습하기</a></li>
 							<li><a href="#"><span>&#xF24d</span> 낱말 카드</a></li>
 							<li><a href="${pageContext.request.contextPath}/study/test/${setNo}"><span>&#xf044</span> 테스트</a></li>
-							<li><a href="#"><span>&#xf439</span> 게임</a></li>
+							<li><a href="${pageContext.request.contextPath}/study/${setNo}/diagram"><span>&#xf439</span> 게임</a></li>
 						</ul>
 					</div>
 				</div>
