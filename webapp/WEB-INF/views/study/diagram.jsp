@@ -55,34 +55,49 @@
 <script type="text/javascript">
 		
 		var move;
-		var transX;
-		var transY;
-		
+		var transX=0;
+		var transY=0;
+			
 	$('.diagram').on('mousedown','.gameCard',function(e){
-		
 		move = $(this);
+		
+		console.log(ArrayXnY.length);
+		
+		var divWidth = move.context.clientWidth;
+		var divHeight = move.context.clientHeight;
+		var x = move.context.offsetLeft;
+		var y = move.context.offsetTop;
+		
+		var moveXnY = {left:x, top:y, width:divWidth, height:divHeight, no:move.data('order'), pk:move.data('pk')};
+
+		ArrayXnY = jQuery.grep(ArrayXnY, function(value) {
+			  return value.pk != moveXnY.pk;
+		});
+		
+		
+		
 		
 		var posX2 = move.context.offsetLeft;
         var posY2 = move.context.offsetTop;
         
         var posX4 = e.offsetX;
         var posY4 = e.offsetY;
+        
+		$('.gameCard').css('pointer-events','none');
 		
-			$('.diagram').on("mousemove", function(event1){	
-				
-				var posX1 = event1.offsetX;
-		        var posY1 = event1.offsetY;
-		       
-		        /* pos1~3 diagram 기준 card 좌표 pos4 card기준 클릭 좌표*/
-		        
-		        transX = posX1-posX2-posX4;
-		        transY = posY1-posY2-posY4;
-		        
-				move.css('transform','translate(' + transX + 'px, ' + transY + 'px)');
-				
-				/* 이벤트 막기 */
-				$('.gameCard').css('pointer-events','none');
-			});
+		$('.diagram').on("mousemove", function(event1){	
+			var posX1 = event1.offsetX;
+	        var posY1 = event1.offsetY;
+	       
+	        /* pos1~3 diagram 기준 card 좌표 pos4 card기준 클릭 좌표*/
+	        
+	        transX = posX1-posX2-posX4;
+	        transY = posY1-posY2-posY4;
+	        
+			move.css('transform','translate(' + transX + 'px, ' + transY + 'px)');
+			
+			/* 이벤트 막기 */
+		});
 			
 			
 			
@@ -93,28 +108,99 @@
 		$(this).off("mousemove");
 		$('.gameCard').css('pointer-events','');
 		
-		var x = move.context.offsetLeft+transX;
-		var y = move.context.offsetTop+transY;
 		var divWidth = move.context.clientWidth;
 		var divHeight = move.context.clientHeight;
+		var x = move.context.offsetLeft+transX;
+		var y = move.context.offsetTop+transY;
 		
-		var moveXnY = {left:x, top:y, width:divWidth, height:divHeight, no:move.text()};
+		var moveXnY = {left:x, top:y, width:divWidth, height:divHeight, no:move.data('order'), pk:move.data('pk')};
+		var result = false;
+		var ping = false;
 		
 		for (var j=0;j<ArrayXnY.length;j++) {
-			
 	        if (checkOverlap(moveXnY,ArrayXnY[j])) {
-	        	console.log(moveXnY.no+"가"+ArrayXnY[j].no+"와 겹친다");
-	        	console.log(move.data('order'));
-	        	console.log(ArrayXnY[j].no);
+	        	ping=true;
+	        	console.log("중복");
+	    		/* grep사용해서 ArrayXnY에서 moveXnY 제거했는데 어째서 중복체크를 두번해야 하는지 오류 원인 파악해야함 */
+	    		
+	    		if(moveXnY.pk==ArrayXnY[j].pk){
+		    		console.log('같은것');
+	    			continue;
+	    		}
+	    		
 	        	if(move.data('order')==ArrayXnY[j].no){
+		    		console.log('삭제');
 	        		$('[data-order='+move.data('order')+']').remove();
+	        		result=true;
+	        		ping=false;
+	        		break;
 	        	}
+	        		
 	        }
 		}
+		
+		console.log(result);
+		console.log(ping);
+		
+		if(result==false&&ping==false){
+			console.log("push");
+    		ArrayXnY.push(moveXnY);
+		}
+		
+		else if(result==false&&ping==true){
+			console.log("팅");
+			
+			var posX2 = move.context.offsetLeft;
+	        var posY2 = move.context.offsetTop;
+	        
+			var x;
+			var y;
+
+			var divWidth = move.context.clientWidth;
+			var divHeight = move.context.clientHeight;
+			
+			
+			while(true){
+				
+		        x = Math.random() * gameWidth-posX2;
+		        y = Math.random() * gameHeight-posY2;
+		        
+		        var moveXnY = {left:move.context.offsetLeft+x, top:move.context.offsetTop+y, width:divWidth, height:divHeight, no:move.data('order'), pk:move.data('pk')};
+				
+		        var ovlFlag=0;
+				
+		        for(var j=0;j<ArrayXnY.length;j++){
+		        	
+		        	if(moveXnY.pk==ArrayXnY[j].pk){
+						continue;
+					}
+		        	
+		        	if (checkOverlap(moveXnY,ArrayXnY[j])) {
+		        		ovlFlag++;
+						console.log('중복');
+			        }
+		        	
+		        }
+		        console.log(ovlFlag);
+		        if(ovlFlag==0){
+		        	break;
+		        }
+			
+			}
+			
+			move.css('transform','translate(' + x + 'px, ' + y + 'px)');
+			
+    		ArrayXnY.push(moveXnY);
+		}
+		
+
+		
 		
 		if($('.gameCard').length==0){
 			stop();
 		}
+		
+		move='';
 		
 	});
 	
@@ -128,46 +214,42 @@
 <script type="text/javascript">
 function checkOverlap(a, b) {
 	
-	var padding = 5;
+	var result;
+	var padding = 0;
 	
-	var x1 = a.left
-	var x2 = b.left;
-
-	var y1 = a.top;
-	var y2 = b.top;
+	var aLeft = a.left;
+	var bLeft = b.left;
 	
-	var w1 = a.width;
-	var w2 = b.width;
-
-	var h1 = a.height;
-	var h2 = b.height;
+	var aRight = aLeft+a.width;
+	var bRight = bLeft+b.width;
 	
+	var aUp = a.top;
+	var bUp = b.top;
 	
-	var minX = (w1/2)+(w2/2);
-	var minY = (h1/2)+(h2/2);
+	var aDown = aUp+a.height;
+	var bDown = bUp+b.height;
 	
-	var X = Math.abs(x1-x2);
-	var Y = Math.abs(y1-y2);
+	var cond1 = aLeft > bRight+padding;
+	var cond2 = aRight+padding < bLeft;
+	var cond3 = aUp > bDown+padding;
+	var cond4 = aDown+padding < bUp;
 	
-	if (X <= minX+padding && Y <= minY+padding) return true;
-	return false;
+	if (cond1||cond2||cond3||cond4){
+		result =  false;		
+	} else {
+		result = true;
+	}
+	return result;
 }
 	
 </script>
 
 <script type="text/javascript">
-var sel;
-function putCard(sel) {
+var pk=0;
+var dataPk=0;
+function putCard(sel, cardVo) {
 	var flag = false;
 
-	
-	
-	
-	
-	
-	
-	
-	
 	do{
 		var element = document.createElement("div"); 
 
@@ -175,22 +257,22 @@ function putCard(sel) {
 		
 			case 1:
 				$(element).addClass("gameCard");
-				$(element).text(""+list[i].word);
+				$(element).text(""+cardVo.word);
 				break;
 				
 			case 2:
 				$(element).addClass("gameCard");
-				$(element).text(""+list[i].meaning);
+				$(element).text(""+cardVo.meaning);
 				break;
 				
 			case 3:
 				$(element).addClass("gameCard");
-				$(element).html('<div id="card_content"> <img src="${pageContext.request.contextPath}/quizbook/'+list[i].wordImg+'"class="imgWithText" /><div class="text">'+list[i].word+'</div></div>');
+				$(element).html('<div><img id=img-'+pk+' src="${pageContext.request.contextPath}/wordImg/'+cardVo.wordImg+'"/>'+cardVo.word+'</div>');
 				break;
 			
 			case 4:
 				$(element).addClass("gameCard");
-				$(element).html('<img class="imgOnly" src="${pageContext.request.contextPath}/quizbook/'+list[i].wordImg+'"/>');
+				$(element).html('<div><img id=img-'+pk+' src=""/></div>'+cardVo.word);
 				break;
 			
 		}
@@ -201,46 +283,88 @@ function putCard(sel) {
 		$(element).css('position', 'absolute').css('left', x).css('top', y);
 		
 		
-		/* element.setAttribute("data", "myId"); */
-		
-		$(element).attr('data-order', list[i].orderNo);
-		
-		/* $(element).data('orderno', list[i].orderNo);
-		$(element).attr('data-'+list[i].orderNo); */
-		
+		$(element).attr('data-order', cardVo.orderNo);
 		
 		$(".diagram").append(element);
 		
-		
-		
-		var divWidth = $(element).width();
-		var divHeight = $(element).height();
-		
-		var XnY = {left:x, top:y, width:divWidth, height:divHeight, no:list[i].orderNo};
-		
-		for (var j=0;j<ArrayXnY.length;j++) {
-	        if (checkOverlap(XnY,ArrayXnY[j])) {
-	        	element.remove();
-	        	flag=true;
-	        	break;
-	        } 
-	        
-	        flag=false;
+		if(sel==3||sel==4){
+			
+			$("#img-"+pk).load(function() {
+				
+				$(element).attr('data-pk', dataPk);
+				
+				var divWidth = $(element).width();
+				var divHeight = $(element).height();
+	
+				var XnY = {left:x, top:y, width:divWidth, height:divHeight, no:cardVo.orderNo, pk:dataPk};
+				dataPk=dataPk+1;
+
+				
+				for (var j=0;j<ArrayXnY.length;j++) {
+					if(XnY.pk==ArrayXnY[j].pk){
+						continue;
+					}
+					if (checkOverlap(XnY,ArrayXnY[j])) {
+						console.log('삭제');
+			        	element.remove();
+			        	
+			        	
+			        	putCard(sel, cardVo);
+			        	
+			        	flag=true;
+			        	break;
+			        } 
+			        
+			        flag=false;
+				}
+				
+				
+				if(ArrayXnY.length==0||!flag){
+					ArrayXnY.push(XnY);
+					pk=pk+1;
+				}
+				
+
+		    });
+			
 		}
 		
-		
-		if(ArrayXnY.length==0||!flag){
-			ArrayXnY.push(XnY);
+		else {
+			$(element).attr('data-pk', dataPk);
+
+			var divWidth = $(element).width();
+			var divHeight = $(element).height();
+
+			var XnY = {left:x, top:y, width:divWidth, height:divHeight, no:cardVo.orderNo, pk:dataPk};
+			dataPk=dataPk+1;
+
+			
+			for (var j=0;j<ArrayXnY.length;j++) {
+	
+				if (checkOverlap(XnY,ArrayXnY[j])) {
+					console.log('삭제');
+		        	element.remove();
+		        	flag=true;
+		        	break;
+		        } 
+		        
+		        flag=false;
+			}
+			
+			
+			if(ArrayXnY.length==0||!flag){
+				ArrayXnY.push(XnY);
+				pk=pk+1;
+			}
+			
+
 		}
-		
-	}while(flag!=false)
-		
+	}while(flag!=false);
 }
 	
 </script>
 
 <script type="text/javascript">
-
 var gameWidth = $(".diagram").width();
 var gameHeight = $(".diagram").height();
 
@@ -248,29 +372,34 @@ var ArrayXnY = [];
 var i;
 var list = ${json};
 
-for(i=0; i<list.length; i++){
-	
-	if(list[i].wordImg == null){
-		putCard(1);
-		putCard(2);
+		
+	for(i=0; i<list.length; i++){
+		
+		if(list[i].wordImg == null){
+			var cardVo=list[i];
+			putCard(1, cardVo);
+			putCard(2, cardVo);
+		}
+		
+		
+		//글과 그림이 있는경우
+		else if(list[i].wordImg != null && list[i].word != null){
+			var cardVo=list[i];
+			putCard(2, cardVo);
+			putCard(3, cardVo);
+		}
+		
+		
+		//그림이 있는경우
+		else if(list[i].wordImg != null && list[i].word == null){
+			var cardVo=list[i];
+			putCard(2, cardVo);
+			putCard(4, cardVo);
+		}
+		
 	}
 	
 	
-	//글과 그림이 있는경우
-	else if(list[i].wordImg != null && list[i].word != null){
-		putCard(2);
-		putCard(3);
-	}
-	
-	
-	//그림이 있는경우
-	else if(list[i].wordImg != null && list[i].word == null){
-		putCard(2);
-		putCart(4);
-	}
-	
-}
-
 </script>
 
 <script type="text/javascript">
@@ -284,12 +413,12 @@ for(i=0; i<list.length; i++){
 	});
 	
 	function increment(){
-	seconds++;
-	var hour = parseInt(seconds/3600);
-	var min = parseInt((seconds%3600)/60);
-	var sec = seconds%60;
-	
-	document.getElementById('time_out').innerHTML = hour+"시"+min+"분" + sec+"초";
+		seconds++;
+		var hour = parseInt(seconds/3600);
+		var min = parseInt((seconds%3600)/60);
+		var sec = seconds%60;
+		
+		document.getElementById('time_out').innerHTML = hour+"시"+min+"분" + sec+"초";
 	}
 	
 	function stop(){

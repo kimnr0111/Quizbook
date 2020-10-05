@@ -360,21 +360,23 @@
 	var crt_index = 0;
 	
 	function card(index) {
-		
-		console.log(list[crt_index].wordImg);
 		//글만 있는경우
+		
 		if(list[crt_index].wordImg == null){
+			console.log('글');
 			$('.front').text(""+list[crt_index].word);
 			$('.back').text(""+list[crt_index].meaning);
 		}
 		//글과 그림이 있는경우
-		else if(list[crt_index].wordImg != null && list[crt_index].word != null){
-			$('.front').html('<div id="card_content"> <img src="${pageContext.request.contextPath}/quizbook/'+list[crt_index].wordImg+'"class="imgWithText" /><div class="text">'+list[crt_index].word+'</div></div>');
+		else if(list[crt_index].wordImg != null && list[crt_index].word!=false && list[crt_index].meaning!=false){
+			console.log('글+그림');
+			$('.front').html('<div id="card_content"> <img src="${pageContext.request.contextPath}/wordImg/'+list[crt_index].wordImg+'"class="imgWithText" /><div class="text">'+list[crt_index].word+'</div></div>');
 			$('.back').text(""+list[crt_index].meaning);
 		}
 		//그림이 있는경우
-		else if(list[crt_index].wordImg != null && list[crt_index].word == null){
-			$('.front').html('<img class="imgOnly" src="${pageContext.request.contextPath}/quizbook/'+list[crt_index].wordImg+'"/>');
+		else if(list[crt_index].wordImg != null && !(!list[crt_index].word)){
+			console.log('그림');
+			$('.front').html('<img class="imgOnly" src="${pageContext.request.contextPath}/wordImg/'+list[crt_index].wordImg+'"/>');
 			$('.back').text(""+list[crt_index].meaning);
 		}
 		

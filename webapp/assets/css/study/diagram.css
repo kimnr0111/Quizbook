@@ -2,10 +2,10 @@
 
 .diagram {
 	padding: 10px;
-	width: 850px;
-	height: 600px;
+	width: 800px;
+	height: 500px;
 	margin-top: 50px;
-	margin-left: 400px;
+	margin-left: 250px;
 	border-bottom: 2px solid #c3c3c3;
 	background-color: gray;
 	position: relative;
@@ -19,9 +19,12 @@
 	z-index: 0;
 }
 
+.gameCard img {
+	max-width:100px;
+}
+
 .gameCard:active {
 	background-color: red;
-	cursor: grabbing;
 	z-index: 1;
 	pointer-events: none;
 }
@@ -35,3 +38,6 @@
 	width:200px;
 }
 
+.diagram:active:hover {
+	cursor: grabbing;
+} 
