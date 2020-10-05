@@ -234,7 +234,7 @@
 function checkOverlap(a, b) {
 	
 	var result;
-	var padding = 0;
+	var padding = 5;
 	
 	var aLeft = a.left;
 	var bLeft = b.left;
