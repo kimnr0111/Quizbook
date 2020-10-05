@@ -32,7 +32,7 @@
 
 </head>
 <body>
-	<c:import url="/WEB-INF/views/includes/main-header2.jsp"></c:import>
+	<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	<!-- header -->
 
 

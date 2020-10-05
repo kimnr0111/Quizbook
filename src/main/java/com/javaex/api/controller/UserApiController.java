@@ -48,4 +48,14 @@ public class UserApiController {
 		
 		return result;
 	}
+	
+	//로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 }

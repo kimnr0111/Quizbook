@@ -36,7 +36,7 @@
     
 		<property name="user" value="quizbook" />
 
-		<property name="password" value="quizbook" />
+		<property name="password" value="1234" />
 
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
