@@ -20,10 +20,13 @@
 											src="${pageContext.request.contextPath}/assets/images/05.사이드바/recently.png"
 											alt="recently"> <span id="rec-txt">최근에 학습</span>
 					</a></li>
-					<li><a href=""> <img class="img-block"
+					
+					<!-- 빼놓음 -->
+					<%-- <li><a href=""> <img class="img-block"
 											src="${pageContext.request.contextPath}/assets/images/05.사이드바/heart.png"
 											alt="heart-Like"><span id="fol-txt">팔로우</span>
-					</a></li>
+					</a></li> --%>
+					
 				</ul>
 				<div class="a">
 					<hr>

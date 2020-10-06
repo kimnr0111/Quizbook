@@ -1,15 +1,14 @@
-
 @charset "UTF-8";
 
 /* 폰트적용 */
 @font-face {
-	font-family: "NotoSansKR-Regular";
-	src:url("fonts/NotoSansKR-Regular.otf");
+   font-family: "NotoSansKR-Regular";
+   src:url("fonts/NotoSansKR-Regular.otf");
 }
 
 @font-face {
-	font-family: "NotoSansKR-Bold";
-	src:url("fonts/NotoSansKR-Bold.otf");
+   font-family: "NotoSansKR-Bold";
+   src:url("fonts/NotoSansKR-Bold.otf");
 }
 /****************************************************************/
 /* 초기화 관련 ***************************************************/
@@ -17,90 +16,91 @@
 
 /* 여백 초기화 */
 body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
-	legend, p, select, table, th, td, tr, textarea, button, form {
-	margin: 0;
-	padding: 0;
-	outline:0;
+   legend, p, select, table, th, td, tr, textarea, button, form {
+   margin: 0;
+   padding: 0;
+   outline:0;
 }
 
 /* 바디정렬 */
 
 /* ===== Form 양식 ===== */
 .profile-form {
-	width: 1150px;
-	height: 600px;
-	margin: auto;
-	background-color:#F9F9F9;
-	font-family: "NotoSansKR-Regular";
-	font-size: 15px;
+   width: 1200px;
+   height: 1100px;
+   margin: auto;
+   font-family: "NotoSansKR-Regular";
+   font-size: 15px;
 }
 
 /* ==== 좌측 네비 ==== */
 
 .leftButton-pro {
-	width: 20px;
-	height: 20px;
+   width: 20px;
+   height: 20px;
 }
 
 .profile-nav {
-	height: 600px;
-	padding: 60px 135px 0px 60px;
-	float: left;
+   height: 600px;
+   padding: 60px 90px 0px 0px;
+   float: left;
 }
 
 .sideTxt {
-	font-family: "NotoSansKR-Bold";
-	font-weight: bold;
-	font-size: 18px;
+   font-family: "NotoSansKR-Bold";
+   font-weight: bold;
+   font-size: 18px;
+   cursor: pointer;
 }
 #sideFix {
-	margin-bottom:10px;
+   margin-bottom:10px;
 }
 
 
 /* ---------------타이틀 - 프로필수정 ----------------*/
 
 #profile-content {
-	width: 700px;
-	height: 600px;
-	margin: auto;
-	background-color:#F9F9F9;
-	display: inline-block;
+   width: 830px;
+   margin: auto;
+   background-color:#F9F9F9;
+   display: inline-block;
+   padding:0px 100px 100px 100px;
 }
 
 #pro-title {
-	width: 300px;
-	font-family: "NotoSansKR-Bold";
-	font-weight: bold;
-	font-size: 32px;
-	padding-top: 60px;
-	margin-bottom:50px;
-	display: inline-block;
+   width: 300px;
+   font-family: "NotoSansKR-Bold";
+   font-weight: bold;
+   font-size: 32px;
+   padding-top: 60px;
+   margin-bottom:50px;
+   display: inline-block;
 } 
 
 /* ------------취소 확인 버튼 ------------- */
 .btn-top {
-	float: right;
-	padding-top:60px;
+   float: right;
+   padding-top:60px;
 }
 .pro-btn{
-	width: 60px;
-	height: 35px;
-	background-color: #68CAC0;
-	font-family: "NotoSansKR-Bold";
-	font-weight: bold;
-	font-size: 15px;
-	color: #FFFFFF;
-	border: 0px;
-	border-radius: 20px;
+   width: 60px;
+   height: 35px;
+   background-color: #68CAC0;
+   font-family: "NotoSansKR-Bold";
+   font-weight: bold;
+   font-size: 15px;
+   color: #FFFFFF;
+   border: 0px;
+   border-radius: 20px;
 }
 
 #pro-cancle {
-	margin-right: 10px;
+   margin-right: 10px;
 }
 
 /* =============사진 업로드 버튼 ===============*/
 .filebox label {
+  margin-left: 30px;
   text-align:center;
   width: 60px;
   height: 35px;
@@ -132,21 +132,21 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}		
+}      
 /* =============================== 사진 업로드 버튼 */
 /* 이름 입력창 */
-#pro-name-area, #pro-job-area {
-	
-	vertical-align: top;
-	
-	
-	display:inline-block;
-}
+/* #pro-name-area, #pro-job-area {
+   
+   vertical-align: top;
+   
+   
+   display:inline-block;
+} */
 .form-name { 
   padding:0px 0px 0px 10px;
   margin-top: 10px;
-  border-radius: 8px; 
-  width:300px; 
+  border-radius: 5px; 
+  width:220px; 
   height:40px; 
   border:1px solid #8E8D8D;
   font-family:"NotoSansKR-regular", sans-serif;
@@ -158,39 +158,44 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 
 #dLabel {
     padding-left: 10px;
-	width: 150px;
-	height:40px;
+   width: 220px;
+   height:40px;
     background-color: white;
     border: 1px solid #8E8D8D;
-    border-radius: 10px;
+    border-radius: 5px;
     display: inline-block;
     font-family: "NotoSansKR-Bold";
-	font-size: 20px;
-	font-weight: bold;
-	line-height:100%;
+   font-size: 18px;
+   font-weight: bold;
+   line-height:100%;
 }
 .dropdown {
-	margin-top:10px;
+   margin-top:10px;
 }
 
+#img-text {
+   margin-bottom: 10px;
+}
 .img-circle {
-	width:70px;
-	height:70px;
-	border-radius:50%;
+   width:180px;
+   height:180px;
+   border-radius:50%;
 }
 
 .profile-textarea>textarea{
-	resize: none;
-	width: 612px; height:150px;
-	}
+   resize: none;
+   width: 630px; height:150px;
+   border-radius:5px;
+   }
 
 textarea::placeholder {
-	padding-left:10px;
-	line-height:148px;
-	}
+   padding-left:10px;
+   line-height:148px;
+   
+   }
 
-	select {
-	background: url('../../images/scroll.png') no-repeat right/20%;
+   select {
+   background: url('../../images/scroll.png') no-repeat right/20%;
     -webkit-appearance: none;  /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
@@ -200,8 +205,8 @@ textarea::placeholder {
 .form-age { 
   padding:0px 0px 0px 10px;
   margin-top: 10px;
-  border-radius: 8px; 
-  width:150px; 
+  border-radius: 5px; 
+  width:220px; 
   height:40px; 
   border:1px solid #8E8D8D;
   font-family:"NotoSansKR-regular", sans-serif;
@@ -211,25 +216,27 @@ textarea::placeholder {
 /* 간격  */
 
 #pro-name-area {
-	margin-top:15px;
+   margin-top:30px;
 }
 
 #pro-age-area {
-	margin-top:15px;
+   display:inline-block;
+   margin-top:30px;
 }
 
 #pro-job-area {
-	margin-top:15px;
+   margin-top:30px;
 }
 
 #pro-info-area {
-	margin-top:15px;
+   margin-top:30px;
 }
 
 .profile-textarea {
-	margin-top:15px;
+   margin-top:30px;
 }
 
 .filebox {
-	margin-left:15px;
+   margin-top:30px;
 }
+

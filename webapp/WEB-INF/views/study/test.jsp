@@ -105,13 +105,14 @@
 
 	});
 	
+	/* 정답버튼클릭 */
 	$(document).on('click', '#studyTest-button', function(){
 		console.log("정답버튼클릭");
 		var wordNo = testList[testWordNum].wordNo;
 		console.log(wordNo);
 		
 		var studyTestAnswer = $("#studyTest-answerBox").val();
-		if(studyTestAnswer == testList[testWordNum].word) {
+		if(studyTestAnswer == testList[testWordNum].meaning) {
 			correctWord = correctWord + 1;
 			var correctFlag = 1;
 			studyResult(wordNo, studyNo, correctFlag);
@@ -144,6 +145,50 @@
 		$("#studyTest-answerBox").val("");
 		
 		
+
+	});
+	
+	/* 엔터키처리 */
+	$("#studyTest-answerBox").keydown(function(key) {
+
+		if (key.keyCode == 13) {
+			console.log("엔터키입력");
+			var wordNo = testList[testWordNum].wordNo;
+			console.log(wordNo);
+			
+			var studyTestAnswer = $("#studyTest-answerBox").val();
+			if(studyTestAnswer == testList[testWordNum].meaning) {
+				correctWord = correctWord + 1;
+				var correctFlag = 1;
+				studyResult(wordNo, studyNo, correctFlag);
+			} else {
+				incorrectWord = incorrectWord + 1;
+				var correctFlag = 0;
+				studyResult(wordNo, studyNo, correctFlag);
+			}
+			
+			testWordNum = testWordNum + 1;
+			remainingWord = remainingWord - 1;
+			
+			if(testList.length == testWordNum) {
+				console.log("끝");
+				resultRender(totalWord, correctWord);
+				
+			} else {
+				console.log("크기" + testList.length);
+				console.log(testWordNum);
+				
+				testWordRender(testWordNum);
+				
+				
+			}
+			
+			$(".studyTest-left-color").text(remainingWord);
+			$(".studyTest-correct-color").text(correctWord);
+			$(".studyTest-incorrect-color").text(incorrectWord);
+			
+			$("#studyTest-answerBox").val("");
+		}
 
 	});
 	

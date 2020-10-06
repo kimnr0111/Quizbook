@@ -41,11 +41,9 @@
     						sets.setdislike, users.id
 							from sets, users
 							where sets.userNo = users.userNo
-							and sets.folderNo = 2
 							order by sets.regDate desc) se
-			where st.userno = se.userno
-			and st.setno = se.setno
-			and se.userno = #{userNo}
+			where st.setno = se.setno
+			and st.userno = #{userNo}
 			order by studydate desc
 		]]>
 	</select>
@@ -98,5 +96,19 @@
 			where setNo = #{setNo}
 		]]>
 	</delete>
+	
+	<!-- 검색창 검색 -->
+	<select id="searchSetList" parameterType="String" resultType="com.javaex.vo.MainVo">
+		<![CDATA[
+			select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    				nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    				sets.setimg, sets.tag, sets.setlike, 
+    				sets.setdislike, users.id
+			from sets, users
+			where sets.userNo = users.userNo
+			and (setname like '%'||#{keyword}||'%'
+			or tag like '%'||#{keyword}||'%')
+		]]>
+	</select>
 	
 </mapper>

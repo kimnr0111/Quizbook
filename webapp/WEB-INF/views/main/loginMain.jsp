@@ -53,8 +53,10 @@
 					<!-- profileImg -->
 					<div id="userprofile-Info">
 						<a href="" class="user-alink alink-Title">${userVo.id }</a><br>
-						<a href="" class="user-alink alink-Content left-line">팔로잉 00</a>
-						<a href="" class="user-alink alink-Content">팔로워 00</a>
+						
+						<!-- <a href="" class="user-alink alink-Content left-line">팔로잉 00</a>
+						<a href="" class="user-alink alink-Content">팔로워 00</a> -->
+						
 					</div>
 					<!-- profileInfo -->
 					<div id="userprofile-Button">
@@ -792,8 +794,8 @@
 		str += "	</div>";
 		str += "	<div class='setFooter'>";
 		str += "		<a href='${pageContext.request.contextPath }/" + mainVo.id + "' class='user-alink'><span class='setFooter-setUser'>"+mainVo.id+"</span></a><br>"; //유저번호가져옴 유저아이디 가져오게 수정
-		str += "		<span class='setFooter-like'>♥"+mainVo.setlike+"</span>";
-		str += "		<span class='setFooter-dislike'>♡"+mainVo.setdislike+"</span>";
+/* 		str += "		<span class='setFooter-like'>♥"+mainVo.setlike+"</span>";
+		str += "		<span class='setFooter-dislike'>♡"+mainVo.setdislike+"</span>"; */
 		str += "	</div>";
 		str += "</div>";
 		str += "";

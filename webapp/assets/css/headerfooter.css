@@ -139,7 +139,7 @@
 
 #login-nav-search {
 	margin-right:40px;
-	width:650px;
+	width:700px;
 }
 
 #profileImg {
@@ -150,7 +150,7 @@
 }
 
 #login-searchHeader {
-	width:650px;
+	width:700px;
 	height:30px;
 	border-radius: 20px;
 	padding: 10px 5px 10px 10px;
@@ -203,6 +203,9 @@
 	margin-top:15px;
 }
 
+#headerCreateBtn {
+	margin: 0px 20px 0px 30px;
+}
 
 /* ///////////////////////////////////////헤더끝 */
 

@@ -258,5 +258,17 @@ public class MainService {
 		mainDao.deleteFolder(folderNo);
 		mainDao.orderNoDelete(folderVo);
 	}
+	
+	
+	//검색창 검색
+	public List<MainVo> searchSetList(String keyword) {
+		System.out.println("MainService:searchSetList");
+		
+		System.out.println(keyword);
+		
+		List<MainVo> searchSetList = mainDao.searchSetList(keyword);
+		
+		return searchSetList;
+	}
 
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javaex.service.MainService;
 import com.javaex.vo.FolderVo;
 import com.javaex.vo.MainVo;
@@ -35,13 +37,38 @@ public class MainController {
 		return "main/index";
 	}
 
-	// 검색
-	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
-	public String test(@RequestParam("keyword") String keyword) {
+	// 검색페이지로 이동
+	@RequestMapping(value = "/searchSetList", method = { RequestMethod.GET, RequestMethod.POST })
+	public String test(HttpSession session, Model model, @RequestParam("keyword") String keyword) throws JsonProcessingException {
 		System.out.println("검색 테스트");
 		System.out.println("키워드 : " + keyword);
-		return "main/index";
-	}
+		
+		List<MainVo> searchSetList = mainService.searchSetList(keyword);
+		System.out.println(searchSetList);
+		
+		//세션값 받아오기(아이디)
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		UserVo authUserVo = mainService.getUser(authUser.getId());
+		System.out.println(authUserVo.toString());
+		int authUserNo = authUserVo.getUserNo();
+		
+		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
+		System.out.println("my폴더리스트 : " + myfolderList.toString());
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonText = mapper.writeValueAsString(searchSetList);
+		model.addAttribute( "jsonSearchSetList", jsonText );
+		
+		UserVo userVo = mainService.getUser(authUser.getId());
+		model.addAttribute("userVo", userVo);
+		
+		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
+		int folderRenderFlag = 1;
+		model.addAttribute("folderRenderFlag", folderRenderFlag);
+		
+		return "main/search";
+	}	
 
 	// 아이디로 개인페이지 접속
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })

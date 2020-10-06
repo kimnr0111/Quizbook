@@ -114,7 +114,20 @@ select *
 from word;
 
 select *
-from study;
+from study
+order by studydate desc;
+
+select se.userno, se.setno, se.setname, nvl(se.setexplain, ' ') as setexplain, se.setimg, se.id
+from study st, (select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    				nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    				sets.setimg, sets.tag, sets.setlike, 
+    				sets.setdislike, users.id
+			from sets, users
+			where sets.userNo = users.userNo
+			order by sets.regDate desc) se
+where st.setno = se.setno
+and st.userno = 2
+order by studydate desc;
 
 select *
 from answer;
@@ -203,7 +216,14 @@ update study
 set studydate = sysdate
 where studyNo = 5;
 
-
+select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    				nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    				sets.setimg, sets.tag, sets.setlike, 
+    				sets.setdislike, users.id
+from sets, users
+where sets.userNo = users.userNo
+and (setname like '%234%'
+or tag like '%222%');
 
 
 

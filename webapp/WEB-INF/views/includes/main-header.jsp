@@ -48,15 +48,16 @@
 		
 		            <li class="login-item" id="login-blankHeader"></li>
 		
-		
-		            <li class="login-item" id="login-followingHeader">
+					<!-- 나중에 만들기 -->
+		            <!-- <li class="login-item" id="login-followingHeader">
 		               <button class="login-btn" data-toggle="modal" data-target="#loginModal">팔로잉</button>
-		            </li>
+		            </li> -->
+		            
 		            <li class="login-item" id="login-newHeader">
-		               <button class="login-btn" data-toggle="modal" data-target="#loginModal">만들기</button>
+		               <button class="login-btn" id="headerCreateBtn" data-toggle="modal" data-target="#loginModal">만들기</button>
 		            </li>
 		            <li class="login-item" id="login-nav-search">
-		               <form action="${pageContext.request.contextPath}/test" method="post" >
+		               <form action="${pageContext.request.contextPath}/searchSetList" method="post" >
 		                  <input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
 		               </form>
 		            </li>
@@ -106,20 +107,21 @@
 				<div id="loginHeader">
 					<ul class="nav">
 							<li class="login-item" id="login-title">
-								<button class="login-btn">QUIZBOOK</button>
+								<button class="login-btn" onclick="location.href='${pageContext.request.contextPath}/${sessionScope.authUser.id }'">QUIZBOOK</button>
 							</li>
 			
 							<li class="login-item" id="login-blankHeader"></li>
 			
-			
-							<li class="login-item" id="login-followingHeader">
+							<!-- 나중에 만들기 -->
+							<!-- <li class="login-item" id="login-followingHeader">
 								<button class="login-btn">팔로잉</button>
-							</li>
+							</li> -->
+							
 							<li class="login-item" id="login-newHeader">
-								<button class="login-btn">만들기</button>
+								<button class="login-btn" id="headerCreateBtn">만들기</button>
 							</li>
 							<li class="login-item" id="login-nav-search">
-								<form action="${pageContext.request.contextPath}/test" method="post">
+								<form action="${pageContext.request.contextPath}/searchSetList" method="post">
 									<input type="text" placeholder="&#xF002; 검색" id="login-searchHeader" name="keyword">
 								</form>
 							</li>

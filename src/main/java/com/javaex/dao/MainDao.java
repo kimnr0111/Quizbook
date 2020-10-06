@@ -152,4 +152,13 @@ public class MainDao {
 		System.out.println("MainDao:orderNoDelete");
 		sqlSession.update("folder.orderNoDelete", folderVo);
 	}
+	
+	//검색창 검색
+	public List<MainVo> searchSetList(String keyword) {
+		System.out.println("MainDao:searchSetList");
+		
+		List<MainVo> searchSetList = sqlSession.selectList("set.searchSetList", keyword);
+		
+		return searchSetList;
+	}
 }
