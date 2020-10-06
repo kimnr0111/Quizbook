@@ -589,7 +589,7 @@
 		$(".order-menu").hide();
 		
 		$("#userset-setArea").html("");
-		registerFetchList(folderno);
+		registerFetchList();
 		
 	});
 	
@@ -599,7 +599,7 @@
 		$(".order-menu").hide();
 		
 		$("#userset-setArea").html("");
-		nameFetchList(folderno);
+		nameFetchList();
 	});
 	
 	
@@ -646,8 +646,8 @@
 	}
 	
 	/* 등록순 setList 가져오기 */
-	function registerFetchList(folderno) {
-		var folderNo = folderno;
+	function registerFetchList() {
+		var folderNo = "${folderVo.folderNo}";
 		var color = "#";
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
@@ -678,8 +678,8 @@
 	}
 	
 	/* 이름순정렬 setList 가져오기 */
-	function nameFetchList(folderno) {
-		var folderNo = folderno;
+	function nameFetchList() {
+		var folderNo = "${folderVo.folderNo}";
 		var color = "#";
 		var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
 		
