@@ -260,5 +260,34 @@ textarea, button, form {margin: 0; padding: 0;}
 		width:20px;
 		height:20px;
 	}
+	
+	
+	.study-test {
+		padding-left: 10px;
+	}
+
+	.study-diagram {
+		padding-left: 10px;
+	}
+	
+	
+	.text-test {
+		font-family:"NotoSansKR-Regular";
+     	font-weight: bold;
+      	font-size: 15px;
+      	margin-left: 15px;
+	}
+	
+	.text-diagram {
+		font-family:"NotoSansKR-Regular";
+     	font-weight: bold;
+      	font-size: 15px;
+      	margin-left: 17px;
+	}
+	
+	.fontAwsome5 {
+		font-family: 'Font Awesome 5 Free';
+		font-weight:bold;
+	}
 
   	

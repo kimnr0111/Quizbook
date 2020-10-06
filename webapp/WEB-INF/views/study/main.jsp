@@ -112,38 +112,13 @@
 			<!-- study_area 끝  -->
 
 			<div id="user_wrap">
-				<div class="fontAwsome5">
-					<a href="#" id="icon_home">&#xf015</a>
-				</div>
 				<div id="study_user">
 					<div id="addShadow">
-						<div id="user_data">
-							<div id="logo">
-								<img
-									src="${pageContext.request.contextPath}/assets/images/01.메인.png"
-									id="logoImg" />
-							</div>
-							<div id="user_data_nick"><a href="#">크롱</a></div>
-						</div>
-						<div id="followNo">
-							<div id="following">
-								<a href="#">팔로잉 1</a>
-							</div>
-							<div id="follow_divider">|</div>
-							<div id="follower">
-								<a href="#">팔로워 10000</a>
-							</div>
-						</div>
-						<div id="heart_wrap">
-							<div id="heart">
-								<a href="#" id="aHeart">&#xf004</a>
-							</div>
-						</div>
 						<ul id="study_user_nav" class="fontAwsome5">
 							<li><a href="#"><span>&#xf00c</span> 학습하기</a></li>
 							<li><a href="#"><span>&#xF24d</span> 낱말 카드</a></li>
-							<li><a href="${pageContext.request.contextPath}/study/test/${setNo}"><span>&#xf044</span> 테스트</a></li>
-							<li><a href="${pageContext.request.contextPath}/study/${setNo}/diagram"><span>&#xf439</span> 게임</a></li>
+							<li><a href="${pageContext.request.contextPath}/study/test/${setNo}"><span>&#xf044</span> <span class="study-sideText">테스트</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/study/${setNo}/diagram"><span>&#xf439</span> <span class="study-sideText">게임</span></a></li>
 						</ul>
 					</div>
 				</div>

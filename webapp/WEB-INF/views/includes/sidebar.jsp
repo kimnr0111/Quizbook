@@ -31,30 +31,31 @@
 				<div class="a">
 					<hr>
 				</div>
-				<c:if test="${userVo != null }">
-				<ul class="nav-mid">
-					<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
-							src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
-							alt="set"><span id="set-txt">세트만들기</span>
-					</a></li>
+				<c:if test="${studySideBar == null }">
 					<c:if test="${userVo != null }">
-						<li class="myfolder-title"><a> <img class="fold-block"
-							src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
-							alt="folder"><span id="fold-txt">내 폴더</span></a></li>
-					</c:if>
-				</ul>
-				<div class="folder-wrap">
-					<!-- 내폴더 -->
-					<div class="folder-Area myfolder">
+						<ul class="nav-mid">
+							<li><a href="${pageContext.request.contextPath}/set/${sessionScope.authUserFolder.folderNo }"> <img class="img-block"
+									src="${pageContext.request.contextPath}/assets/images/05.사이드바/puzzle.png"
+									alt="set"><span id="set-txt">세트만들기</span>
+							</a></li>
+						<c:if test="${userVo != null }">
+								<li class="myfolder-title"><a> <img class="fold-block"
+									src="${pageContext.request.contextPath}/assets/images/05.사이드바/folder2.png"
+									alt="folder"><span id="fold-txt">내 폴더</span></a></li>
+						</c:if>
+						</ul>
+						<div class="folder-wrap">
+						<!-- 내폴더 -->
+							<div class="folder-Area myfolder">
 								
-					</div>
+							</div>
 				
-				</div>
+						</div>
 		
 				
-					<div class="newfolder">
-						폴더 +
-					</div>
+						<div class="newfolder">
+							폴더 +
+						</div>
 		
 					<c:if test="${userVo.id != sessionScope.authUser.id }">
 						<div class="otherfolder-title"> <img class="fold-block"
@@ -70,7 +71,15 @@
 	
 				</div>
 			</div>
+				</c:if>
+				
 		
+		<c:if test="${studySideBar != null }">
+			<ul class="fontAwsome5 nav-top">
+				<li class="study-fontWeight"><a href="${pageContext.request.contextPath}/study/test/${setNo}"><span class="study-test">&#xf044</span> <span class="text-test">테스트</span></a></li>
+				<li class="study-fontWeight"><a href="${pageContext.request.contextPath}/study/${setNo}/diagram"><span class="study-diagram">&#xf439</span> <span class="text-diagram">게임</span></a></li>
+			</ul>
+		</c:if>
 		
 		<div class="a">
 			<hr>

@@ -67,6 +67,10 @@ public class StudyController {
 		int folderRenderFlag = 0;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
+		//학습하기 사이드바
+		int studySideBar = 1;
+		model.addAttribute("studySideBar", studySideBar);
+		
 		System.out.println("세트번호"+setNo); 
 		List<WordVo> wordList = wordService.getWords(setNo); 
 		System.out.println(wordList.toString());
@@ -105,6 +109,10 @@ public class StudyController {
 		model.addAttribute("testList", jsonTestList);
 		model.addAttribute("studyInfo", studyInfo);
 		
+		//학습하기 사이드바
+		int studySideBar = 1;
+		model.addAttribute("studySideBar", studySideBar);
+		
 		return "study/test";
 	}
 	
@@ -138,6 +146,10 @@ public class StudyController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonText = mapper.writeValueAsString(wordList);
 		model.addAttribute( "json", jsonText );
+		
+		//학습하기 사이드바
+		int studySideBar = 1;
+		model.addAttribute("studySideBar", studySideBar);
 		
 		return "study/diagram";
 	}
