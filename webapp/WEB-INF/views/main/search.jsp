@@ -44,8 +44,36 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
+<!-- 세트복사 모달창 -->
+<div class="modal fade" id="setCopyModal">
+	<div class="modal-dialog">
+		<div class="modal-content" id="setCopy-Content">
+			<div class="modal-body">
+				<div class="folder-Area setCopyFolder">
+					
+				</div>
+			</div>
+			
+			<div class="modal-footer" id="setModal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary" id="setCopyModal-Button">복사</button>
+				<input type="hidden" value="" id="setCopyNo"><br>
+				<input type="hidden" value="" id="setCopyFolderNo"><br>
+			</div>
+		</div>
+		
+		<!-- modal-content  -->
+	</div>
+	<!-- modal-dialog  -->
+</div>
+<!-- 세트복사 모달창 -->	
+
+<!-- 우클릭메뉴 -->
+<ul class='custom-menu set-menu'>
+	<li id="setCopy" class='custom-menu-attribute bottom-line'>복사</li>
+</ul>
 
 </body>
 
@@ -53,22 +81,100 @@
 
 /* 세트리스트 불러오기 */
 $(document).ready(function(){
-	var list = ${jsonSearchSetList};
+	//var list = ${jsonSearchSetList};
 	var color = "#"
 	var letters = ['6FC4FD', 'F4CC28', 'F8887D', '61E498'];
-	console.log(list);
+	var keyword = "${keyword}";
 	
-	for(var i=0;i<list.length;i++) {
+	/* for(var i=0;i<list.length;i++) {
 		searchSetListRender(list[i]);
-	}
-	
-	for(var i=0;i<list.length;i++) {
 		color += letters[Math.floor(Math.random() * letters.length)];
 		$("#userset-"+list[i].setNo).css('background-color', color);
-	}
+	} */
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath }/getSearchList",		
+		type : "post",
+		data : {keyword: keyword},
+		success : function(searchSetList){
+			console.log(searchSetList);
+			for(var i=0;i<searchSetList.length;i++) {
+				color = "#"
+					searchSetListRender(searchSetList[i]);
+				color += letters[Math.floor(Math.random() * letters.length)];
+				console.log(color);
+				$("#userset-"+searchSetList[i].setNo).css('background-color', color);
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 	
 });
 
+/* 세트우클릭 */
+$(document).on('contextmenu', '.userset-set', function() {
+	event.preventDefault();
+	var $this = $(this);
+    var no = $this.data("setno");
+    console.log(no);
+    
+    $("#setCopyNo").val(no); //setNo값 전달
+    
+    $(".set-menu").css({top: event.pageY + "px", left: event.pageX + "px"});
+	$(".set-menu").show();
+/* 우클릭 후 클릭 */
+}).on('click', function() {
+		$(".set-menu").hide();
+});
+
+/* 복사버튼클릭 */
+$(document).on('click', '#setCopy', function(){
+	event.preventDefault();
+	console.log("복사버튼클릭");
+	$("#setCopyModal").modal();
+	
+	});
+	
+/* 모달창 복사버튼클릭 */
+$(document).on('click', '#setCopyModal-Button', function(){
+	console.log("모달창 복사버튼 클릭");
+	
+	var setNo = $("#setCopyNo").val();
+	console.log("세트번호:" + setNo);
+	
+	
+	var folderNo = $("#setCopyFolderNo").val();
+	console.log("폴더번호:" + folderNo);
+	
+	var userNo = "${sessionScope.authUser.userNo}";
+	
+	var vo = {
+			setNo: setNo,
+			folderNo: folderNo,
+			userNo: userNo
+	}
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath }/set/setCopy",		
+		type : "post",
+		contentType : "application/json",
+		dataType: "json",
+		data : JSON.stringify(vo),
+		success : function(count){
+			console.log(count)
+
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	
+	
+	$("#setCopyModal").modal("hide");
+});
 
 /* set 그리기 */
 function searchSetListRender(mainVo) {

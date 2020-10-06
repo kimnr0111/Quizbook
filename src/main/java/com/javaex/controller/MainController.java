@@ -43,9 +43,6 @@ public class MainController {
 		System.out.println("검색 테스트");
 		System.out.println("키워드 : " + keyword);
 		
-		List<MainVo> searchSetList = mainService.searchSetList(keyword);
-		System.out.println(searchSetList);
-		
 		//세션값 받아오기(아이디)
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
@@ -56,20 +53,38 @@ public class MainController {
 		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
 		System.out.println("my폴더리스트 : " + myfolderList.toString());
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonText = mapper.writeValueAsString(searchSetList);
-		model.addAttribute( "jsonSearchSetList", jsonText );
 		
-		UserVo userVo = mainService.getUser(authUser.getId());
-		model.addAttribute("userVo", userVo);
+		/*
+		 * ObjectMapper mapper = new ObjectMapper(); String jsonText =
+		 * mapper.writeValueAsString(searchSetList); model.addAttribute(
+		 * "jsonSearchSetList", jsonText );
+		 */
+		
+		/*
+		 * UserVo userVo = mainService.getUser(authUser.getId());
+		 * model.addAttribute("userVo", userVo);
+		 */
+		model.addAttribute("keyword", keyword);
 		
 		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
-		int folderRenderFlag = 1;
+		int folderRenderFlag = 0;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
 		return "main/search";
-	}	
-
+	}
+	
+	// 검색한 리스트 가져오기
+	@ResponseBody
+	@RequestMapping(value = "/getSearchList" , method = { RequestMethod.GET, RequestMethod.POST })
+	public List<MainVo> getSearchList(HttpSession session, Model model, @RequestParam("keyword") String keyword) {
+		System.out.println("/Quizbook/getSearchList");
+		System.out.println("/Quizbook/getSearchList :::" + keyword);
+		List<MainVo> searchSetList = mainService.searchSetList(keyword);
+		System.out.println(searchSetList);
+		
+		return searchSetList;
+	}
+	
 	// 아이디로 개인페이지 접속
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginMain(HttpSession session, Model model, @PathVariable("id") String id) {
