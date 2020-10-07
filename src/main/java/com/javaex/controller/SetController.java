@@ -223,6 +223,7 @@ public class SetController {
 		for(int i=0;i<cardList.size();i++) {
 			System.out.println(cardList.get(i) + "\n");
 			cardList.get(i).setSetNo(createSetNo);
+			
 			wordService.cardCreate(cardList.get(i));
 		}
 		return folderNo;

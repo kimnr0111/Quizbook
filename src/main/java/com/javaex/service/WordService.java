@@ -78,6 +78,12 @@ public class WordService {
 	public int cardCreate(WordVo wordVo) {
 		System.out.println("WordService:cardCreate");
 		
+		String wordImg = wordVo.getWordImg();
+		
+		if(wordImg == null) {
+			wordVo.setWordImg("");
+		}
+		
 		return wordDao.cardCreate(wordVo);
 		
 	}

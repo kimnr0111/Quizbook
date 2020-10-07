@@ -756,7 +756,7 @@
 		});
 		
 		$("#setNullCheckModal").modal("hide");
-		//location.href = '${pageContext.request.contextPath}/${sessionScope.authUser.id }';
+		location.href = '${pageContext.request.contextPath}/${sessionScope.authUser.id }';
 	});
 	
 
