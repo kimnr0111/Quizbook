@@ -57,12 +57,12 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 .previousButton {
-	left: 37%;
+	left: 43%;
 }
 
 .progressIndex {
-	left: 45%;
-	right: 45%;
+	left: 47%;
+	right: 47%;
 	margin: auto;
 	
 	text-align: center;
@@ -72,7 +72,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 .nextButton {
-	right: 37%;
+	right: 43%;
 }
 
 /* ! position static이 아닌 조상을 기준 최하단에 고정 및 좌우정렬 (여기서는 study_area를 기준) */
@@ -104,13 +104,13 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 div.card_wrap {
-	width: 600px;
+	width: 850px;
 	height: 400px;
 	float: left;
 }
 
 div.study_area {
-	width: 600px;
+	width: 850px;
 	height: 500px;
 	float: left;
 	position: relative;

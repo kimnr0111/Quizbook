@@ -129,6 +129,18 @@ where st.setno = se.setno
 and st.userno = 2
 order by studydate desc;
 
+select se.userno, se.setno, se.setname, nvl(se.setexplain, ' ') as setexplain, se.setimg, se.id
+			from study st, (select sets.setno, sets.folderno, sets.userno, sets.setname, 
+    						nvl(sets.setexplain, ' ') as setexplain, sets.regdate, 
+    						sets.setimg, sets.tag, sets.setlike, 
+    						sets.setdislike, users.id
+							from sets, users
+							where sets.userNo = users.userNo
+							order by sets.regDate desc) se
+			where st.setno = se.setno
+			and st.userno = 2
+			order by studydate desc;
+
 select *
 from answer;
 

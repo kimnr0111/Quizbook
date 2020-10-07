@@ -111,18 +111,6 @@
 			</div>
 			<!-- study_area 끝  -->
 
-			<div id="user_wrap">
-				<div id="study_user">
-					<div id="addShadow">
-						<ul id="study_user_nav" class="fontAwsome5">
-							<li><a href="#"><span>&#xf00c</span> 학습하기</a></li>
-							<li><a href="#"><span>&#xF24d</span> 낱말 카드</a></li>
-							<li><a href="${pageContext.request.contextPath}/study/test/${setNo}"><span>&#xf044</span> <span class="study-sideText">테스트</span></a></li>
-							<li><a href="${pageContext.request.contextPath}/study/${setNo}/diagram"><span>&#xf439</span> <span class="study-sideText">게임</span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- study_area, study_user, bottom line을 위한 wrap 끝 -->
 
