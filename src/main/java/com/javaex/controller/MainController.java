@@ -52,22 +52,16 @@ public class MainController {
 		
 		List<FolderVo> myfolderList = mainService.folderList(authUserNo);
 		System.out.println("my폴더리스트 : " + myfolderList.toString());
+		model.addAttribute("myfolderList", myfolderList);
+		
+		FolderVo userFolderVo = mainService.getFolder(authUserNo);
+		session.setAttribute("authUserFolder", userFolderVo);
 		
 		
-		/*
-		 * ObjectMapper mapper = new ObjectMapper(); String jsonText =
-		 * mapper.writeValueAsString(searchSetList); model.addAttribute(
-		 * "jsonSearchSetList", jsonText );
-		 */
-		
-		/*
-		 * UserVo userVo = mainService.getUser(authUser.getId());
-		 * model.addAttribute("userVo", userVo);
-		 */
 		model.addAttribute("keyword", keyword);
 		
 		//사이드바 폴더를 그릴건지 안그릴건지 구분하기 위한 정보 전달
-		int folderRenderFlag = 0;
+		int folderRenderFlag = 1;
 		model.addAttribute("folderRenderFlag", folderRenderFlag);
 		
 		return "main/search";

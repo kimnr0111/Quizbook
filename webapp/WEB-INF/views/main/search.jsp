@@ -137,6 +137,19 @@ $(document).on('click', '#setCopy', function(){
 	
 	});
 	
+/* 세트복사 폴더클릭 */
+$(document).on('click', '.myContextmenu', function(){
+	console.log("세트복사 폴더클릭");
+	var $this = $(this);
+	
+	console.log("클릭한폴더 번호는: " + $this.data("folderno"));
+	
+	var clickfolderno = $this.data("folderno");
+	
+	$("#setCopyFolderNo").val(clickfolderno);
+	
+});
+	
 /* 모달창 복사버튼클릭 */
 $(document).on('click', '#setCopyModal-Button', function(){
 	console.log("모달창 복사버튼 클릭");
