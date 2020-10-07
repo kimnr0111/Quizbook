@@ -137,16 +137,16 @@
 		<div class="modal-dialog" role="document" id="alert-modal-dialog">
 			<div class="modal-content" id="alert-modal-content">
 
-				<div class="modal-header">
-					<h5 class="modal-title">알림</h5>
+				<div class="modal-header" id="modalAlert-header">
+					<h5 class="modal-title" id="modalAlert-title">알림</h5>
 				</div>
 
-				<div class="modal-body">
+				<div class="modal-body" id="modalAlert-body">
 					<p></p>
 				</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<div class="modal-footer" id="modalAlert-footer">
+					<button type="button" class="btn btn-primary" id="modalAlert-button" data-dismiss="modal">확인</button>
 				</div>
 
 			</div>

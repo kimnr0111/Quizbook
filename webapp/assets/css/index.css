@@ -236,7 +236,9 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 }
 
 #alert-modal-content {
-	margin-top:10%;
+	margin-top:-80%;
+	font-size:18px;
+	font-family: "NotoSansKR-Bold";
 }
 
 #alert-modal-dialog {
@@ -253,4 +255,29 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
   overflow:hidden;
   overflow-y:scroll;
   padding-right:0 !important;
+}
+
+#modalAlert-header {
+	border: none;
+}
+
+#modalAlert-title {
+	
+}
+
+#modalAlert-body {
+	
+}
+
+#modalAlert-footer {
+	border: none;
+}
+
+#modalAlert-button {
+	background-color: #FFD739;
+	color: #404040;
+	border: 0px;
+	font-size:15px;
+	font-family: "NotoSansKR-Bold";
+	margin: auto;
 }

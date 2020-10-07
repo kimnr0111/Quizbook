@@ -160,23 +160,25 @@
 <!-- 카드 null체크 -->
 <div class="modal fade" id="setNullCheckModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h4 class="modal-title">
+		<div class="modal-content" id="setNullCheckModal-Content">
+			<div class="modal-body" id="setNullCheckModal-Body">
+				<p id="setNullCheckModal-CheckText">
 					
 					저장하시겠습니까?
-				</h4>
+				</p>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+			
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="setNullCheckModal-Cancel">아니오</button>
 				
-				<c:if test="${setFlag == 0 }">
-					<button type="button" class="btn btn-primary" id="setCreateBtn-modal">예</button>
-				</c:if>
+			<c:if test="${setFlag == 0 }">
+				<button type="button" class="btn btn-primary" id="setCreateBtn-modal">예</button>
+			</c:if>
 				
-				<c:if test="${setFlag == 1 }">
-					<button type="button" class="btn btn-primary" id="setModifyBtn-modal">예</button>
-				</c:if>
+			<c:if test="${setFlag == 1 }">
+				<button type="button" class="btn btn-primary" id="setModifyBtn-modal">예</button>
+			</c:if>
+			<div class="setNullCheckModal-Footer">
+				
 				
 			</div>
 		</div>
@@ -346,10 +348,10 @@
 		}
 		
 		if(nullcheck == '') {
-			$(".modal-title").text("저장하시겠습니까?");
+			$("#setNullCheckModal-CheckText").text("저장하시겠습니까?");
 			$("#setNullCheckModal").modal();
 		} else {
-			$(".modal-title").html("단어나 뜻이 없는 카드가 존재합니다.<br><br>저장하시겠습니까?<br>");
+			$("#setNullCheckModal-CheckText").html("단어나 뜻이 없는 카드가 존재합니다.<br><br>저장하시겠습니까?<br>");
 			$("#setNullCheckModal").modal();
 		}
 		
