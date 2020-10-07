@@ -141,7 +141,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	height: 600px;
 	background-color: #FFFFFF;
 	box-shadow: 0px 0px 20px #f0f0f0;
-	font-family:"NotoSansKR-Bold";
+	font-family:"NotoSansKR-Regular";
     font-size: 15px;
 }
 
@@ -191,7 +191,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	position: relative;
 	top: 280px;
 	text-align: center;
-	font-family:"NotoSansKR-Regular";
+	font-family:"NotoSansKR-Bold";
 	font-size: 30px;
 }
 
