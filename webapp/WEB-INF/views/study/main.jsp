@@ -40,8 +40,10 @@
 	<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	<div id="body">
 
-
-	<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
+	<div id="nav-marginRight">
+		<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
+	</div>
+	
 		
 		<!-- study_area, study_user, bottom line을 위한 wrap  -->
 		<div id="study_wrap">

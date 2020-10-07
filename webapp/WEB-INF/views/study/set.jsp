@@ -31,6 +31,7 @@
 	<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	<div class="main-wrap">
 		<div class="main-body">
+			<div id="main-bodyMarginLeft">
 			<c:import url="/WEB-INF/views/includes/sidebar.jsp"></c:import>
 
 			<div class="main">
@@ -141,7 +142,7 @@
 					</div>
 					
 
-				
+				</div>
 				<!-- main -->
 				
 

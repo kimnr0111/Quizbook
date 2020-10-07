@@ -184,6 +184,7 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 .main-body {
 	display: flex;
 	width: 1400px;
+	min-height: 900px;
 	background-color: #FFFFFF;
 	margin: 0 auto;
 	padding: 0 30px;
@@ -386,6 +387,10 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 .boxImg {
 	width: 50px;
 	height: 50px;
+}
+
+#main-bodyMarginLeft {
+	margin-left: 50px;
 }
 
 

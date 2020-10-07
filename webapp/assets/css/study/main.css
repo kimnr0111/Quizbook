@@ -15,13 +15,17 @@ body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
 	margin: 0 auto;
 }
 
+#nav-marginRight {
+	margin-left: 50px;
+}
+
 /* 애니메이션 중복적용을 위해 추가 (translate) */
 #study_wrap {
 	display:inline-block;
 	width: 850px;
 	height: 600px;
 	margin-top: 50px;
-	margin-left: 297px;
+	margin-left: 347px;
 	
 	border-bottom: 2px solid #c3c3c3;
 }
